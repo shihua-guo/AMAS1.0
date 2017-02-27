@@ -2,25 +2,25 @@
     "amasApp": {
         "activity" : {
             "home": {
-                "title": "Activities",
-                "createLabel": "Create a new Activity",
-                "createOrEditLabel": "Create or edit a Activity",
-                "search": "Search for Activity"
+                "title": "活动列表",
+                "createLabel": "新增一个活动",
+                "createOrEditLabel": "新增/编辑活动",
+                "search": "通过任意关键字查找社团活动"
             },
-            "created": "A new Activity is created with identifier {{ param }}",
-            "updated": "A Activity is updated with identifier {{ param }}",
-            "deleted": "A Activity is deleted with identifier {{ param }}",
+            "created": "ID为 {{ param }}的活动创建成功！",
+            "updated": "ID为 {{ param }}的活动修改成功！",
+            "deleted": "ID为 {{ param }}的活动删除成功！",
             "delete": {
-                "question": "Are you sure you want to delete Activity {{ id }}?"
+                "question": "你确定要删除活动 {{ id }}?"
             },
             "detail": {
-                "title": "Activity"
+                "title": "活动详细信息"
             },
-            "actiName": "Acti Name",
-            "actiDate": "Acti Date",
-            "actiPlace": "Acti Place",
-            "actiContent": "Acti Content",
-            "assoacti": "Assoacti"
+            "actiName": "活动名称",
+            "actiDate": "活动日期",
+            "actiPlace": "活动地点",
+            "actiContent": "活动内容",
+            "assoacti": "社团"
         }
     }
 }

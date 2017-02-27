@@ -2,29 +2,29 @@
     "amasApp": {
         "association" : {
             "home": {
-                "title": "Associations",
-                "createLabel": "Create a new Association",
-                "createOrEditLabel": "Create or edit a Association",
-                "search": "Search for Association"
+                "title": "社团列表",
+                "createLabel": "新增社团",
+                "createOrEditLabel": "新增/编辑社团",
+                "search": "通过任意关键字查找社团"
             },
-            "created": "A new Association is created with identifier {{ param }}",
-            "updated": "A Association is updated with identifier {{ param }}",
-            "deleted": "A Association is deleted with identifier {{ param }}",
+            "created": "ID为 {{ param }}的社团创建成功！",
+            "updated": "ID为 {{ param }}的社团修改成功！",
+            "deleted": "ID为 {{ param }}的社团删除成功！",
             "delete": {
-                "question": "Are you sure you want to delete Association {{ id }}?"
+                "question": "你确定要删除此社团 {{ id }}?"
             },
             "detail": {
-                "title": "Association"
+                "title": "社团详情"
             },
-            "assoId": "Asso Id",
-            "assoName": "Asso Name",
-            "assoFoundDate": "Asso Found Date",
-            "assoIntrodution": "Asso Introdution",
-            "assoImage": "Asso Image",
-            "department": "Department",
-            "activity": "Activity",
-            "property": "Property",
-            "membasso": "Membasso"
+            "assoId": "社团编号",
+            "assoName": "社团名称",
+            "assoFoundDate": "社团成立时间",
+            "assoIntrodution": "社团简介",
+            "assoImage": "图片",
+            "department": "部门",
+            "activity": "活动",
+            "property": "物品",
+            "membasso": "成员"
         }
     }
 }

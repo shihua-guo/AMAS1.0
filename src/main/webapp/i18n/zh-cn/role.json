@@ -2,22 +2,22 @@
     "amasApp": {
         "role" : {
             "home": {
-                "title": "Roles",
-                "createLabel": "Create a new Role",
-                "createOrEditLabel": "Create or edit a Role",
-                "search": "Search for Role"
+                "title": "角色",
+                "createLabel": "新增一个角色",
+                "createOrEditLabel": "新增/编辑角色",
+                "search": "通过任意关键字查找角色"
             },
-            "created": "A new Role is created with identifier {{ param }}",
-            "updated": "A Role is updated with identifier {{ param }}",
-            "deleted": "A Role is deleted with identifier {{ param }}",
+            "created": "ID为 {{ param }}的角色创建成功！",
+            "updated": "ID为 {{ param }}的角色修改成功！",
+            "deleted": "ID为 {{ param }}的角色删除成功！",
             "delete": {
-                "question": "Are you sure you want to delete Role {{ id }}?"
+                "question": "你确定要删除角色 {{ id }}?"
             },
             "detail": {
-                "title": "Role"
+                "title": "角色详情"
             },
-            "roleName": "Role Name",
-            "membrole": "Membrole"
+            "roleName": "角色名称",
+            "membrole": "成员"
         }
     }
 }

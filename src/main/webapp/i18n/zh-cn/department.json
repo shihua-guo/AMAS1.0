@@ -2,26 +2,26 @@
     "amasApp": {
         "department" : {
             "home": {
-                "title": "Departments",
-                "createLabel": "Create a new Department",
-                "createOrEditLabel": "Create or edit a Department",
-                "search": "Search for Department"
+                "title": "部门列表",
+                "createLabel": "新增一个部门",
+                "createOrEditLabel": "新增/编辑部门",
+                "search": "通过任意关键字查找部门"
             },
-            "created": "A new Department is created with identifier {{ param }}",
-            "updated": "A Department is updated with identifier {{ param }}",
-            "deleted": "A Department is deleted with identifier {{ param }}",
+            "created": "ID为 {{ param }}的部门创建成功！",
+            "updated": "ID为 {{ param }}的部门创建成功！",
+            "deleted": "ID为 {{ param }}的部门创建成功！",
             "delete": {
-                "question": "Are you sure you want to delete Department {{ id }}?"
+                "question": "你确定要删除部门 {{ id }}?"
             },
             "detail": {
-                "title": "Department"
+                "title": "部门详细信息"
             },
-            "deptName": "Dept Name",
-            "deptIntrodution": "Dept Introdution",
-            "deptImage": "Dept Image",
-            "duty": "Duty",
-            "assodept": "Assodept",
-            "membdept": "Membdept"
+            "deptName": "部门名称",
+            "deptIntrodution": "部门介绍",
+            "deptImage": "部门照片",
+            "duty": "值日表",
+            "assodept": "所属社团",
+            "membdept": "部门成员"
         }
     }
 }

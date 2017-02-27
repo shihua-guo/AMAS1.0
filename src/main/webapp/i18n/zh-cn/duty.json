@@ -2,24 +2,24 @@
     "amasApp": {
         "duty" : {
             "home": {
-                "title": "Duties",
-                "createLabel": "Create a new Duty",
-                "createOrEditLabel": "Create or edit a Duty",
-                "search": "Search for Duty"
+                "title": "值班表",
+                "createLabel": "新增一个值班表",
+                "createOrEditLabel": "新增/编辑值班表",
+                "search": "通过任意关键字查找值班表"
             },
-            "created": "A new Duty is created with identifier {{ param }}",
-            "updated": "A Duty is updated with identifier {{ param }}",
-            "deleted": "A Duty is deleted with identifier {{ param }}",
+            "created": "ID为 {{ param }}的值班表创建成功！",
+            "updated": "ID为 {{ param }}的值班表修改成功！",
+            "deleted": "ID为 {{ param }}的值班表删除成功！",
             "delete": {
-                "question": "Are you sure you want to delete Duty {{ id }}?"
+                "question": "你确定要删除值班 {{ id }}?"
             },
             "detail": {
-                "title": "Duty"
+                "title": "值班表详细信息"
             },
-            "weekday": "Weekday",
-            "dutyIntrodution": "Duty Introdution",
-            "department": "Department",
-            "amember": "Amember"
+            "weekday": "值班日期",
+            "dutyIntrodution": "值班任务",
+            "department": "值班部门",
+            "amember": "值班成员"
         }
     }
 }

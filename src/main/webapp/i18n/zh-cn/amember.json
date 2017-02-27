@@ -2,31 +2,31 @@
     "amasApp": {
         "amember" : {
             "home": {
-                "title": "Amembers",
-                "createLabel": "Create a new Amember",
-                "createOrEditLabel": "Create or edit a Amember",
-                "search": "Search for Amember"
+                "title": "成员列表",
+                "createLabel": "新增一个成员",
+                "createOrEditLabel": "新增/编辑活动",
+                "search": "通过任意关键字查找社团成员"
             },
-            "created": "A new Amember is created with identifier {{ param }}",
-            "updated": "A Amember is updated with identifier {{ param }}",
-            "deleted": "A Amember is deleted with identifier {{ param }}",
+            "created": "ID为 {{ param }}的成员创建成功！",
+            "updated": "ID为 {{ param }}的成员修改成功！",
+            "deleted": "ID为 {{ param }}的成员删除成功！",
             "delete": {
-                "question": "Are you sure you want to delete Amember {{ id }}?"
+                "question": "你确定要删除成员 {{ id }}?"
             },
             "detail": {
-                "title": "Amember"
+                "title": "成员详细信息"
             },
-            "membName": "Memb Name",
-            "membNO": "Memb NO",
-            "membClass": "Memb Class",
-            "membPhone": "Memb Phone",
-            "membQQ": "Memb QQ",
-            "membEmail": "Memb Email",
-            "membJoinDate": "Memb Join Date",
-            "association": "Association",
-            "department": "Department",
-            "role": "Role",
-            "dutymemb": "Dutymemb"
+            "membName": "姓名",
+            "membNO": "学号",
+            "membClass": "班级",
+            "membPhone": "手机",
+            "membQQ": "QQ",
+            "membEmail": "Email",
+            "membJoinDate": "加入社团日期",
+            "association": "所属社团",
+            "department": "所属社团部门",
+            "role": "角色",
+            "dutymemb": "值班时间"
         }
     }
 }

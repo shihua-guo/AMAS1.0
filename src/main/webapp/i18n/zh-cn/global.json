@@ -7,13 +7,13 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "数据",
-                "activity": "Activity",
-                "amember": "Amember",
-                "association": "Association",
-                "department": "Department",
-                "duty": "Duty",
-                "property": "Property",
-                "role": "Role",
+                "activity": "社团活动",
+                "amember": "社团成员",
+                "association": "社团列表",
+                "department": "部门",
+                "duty": "值班表",
+                "property": "社团物品",
+                "role": "成员角色",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

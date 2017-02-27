@@ -1,0 +1,73 @@
+entity Association {
+	assoId String required,
+    assoName String required,
+    assoFoundDate LocalDate required,
+    assoIntrodution TextBlob,
+	assoImage ImageBlob
+}
+
+entity Amember {
+	membName String  required,
+    membNO String required,
+	membClass String,
+    membPhone String required,
+    membQQ String required,
+    membEmail String ,
+    membJoinDate LocalDate
+}
+
+entity Department {
+	deptName String required,
+	deptIntrodution TextBlob,
+	deptImage ImageBlob
+}
+
+entity Role {
+	roleName String required
+}
+
+entity Activity {
+	actiName String required,
+    actiDate LocalDate required,
+    actiPlace String required,
+    actiContent String 
+}
+
+entity Property {
+	propName String required,
+    propPrice Double ,
+    propBuyDate LocalDate,
+    propNumber Long 
+}
+
+enum Weekday {
+    MON, TUS, WED, THUR, FRI, SAT, SUN
+}
+
+entity Duty {
+	weekday Weekday,
+	dutyIntrodution TextBlob
+}
+
+relationship OneToOne {
+	Duty{Department(deptName)} to Department{duty}
+}
+
+relationship ManyToMany {
+	Amember{Association(assoName)} to Association{membasso},
+	Amember{Department(deptName)} to Department{membdept},
+    Amember{Role(roleName)} to Role{membrole}
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Association{Department(deptName)} to Department{assodept(assoName)},
+    Association{Activity(actiName)} to Activity{assoacti(assoName)},
+	Association{Property(propName)} to Property{assoprop(assoName)},
+    Duty{Amember(membName)} to Amember{dutymemb(weekday)}
+}
+
+
+
+paginate Association, Amember, Department, Role, Activity, Property, Duty with pagination
+

@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="amasApp.duty.detail.title">Duty</span> {{vm.duty.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="amasApp.duty.weekday">Weekday</span></dt>
+        <dd>
+            <span data-translate="{{'amasApp.Weekday.' + vm.duty.weekday}}">{{vm.duty.weekday}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.duty.dutyIntrodution">Duty Introdution</span></dt>
+        <dd>
+            <span>{{vm.duty.dutyIntrodution}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.duty.department">Department</span></dt>
+        <dd>
+            <a ui-sref="department-detail({id:vm.duty.department.id})">{{vm.duty.department.deptName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="duty-detail.edit({id:vm.duty.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

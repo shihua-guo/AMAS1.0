@@ -1,0 +1,66 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPropertyLabel" data-translate="amasApp.property.home.createOrEditLabel">Create or edit a Property</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.property.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.property.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.property.propName" for="field_propName">Prop Name</label>
+            <input type="text" class="form-control" name="propName" id="field_propName"
+                    ng-model="vm.property.propName"
+                    required/>
+            <div ng-show="editForm.propName.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.propName.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.property.propPrice" for="field_propPrice">Prop Price</label>
+            <input type="number" class="form-control" name="propPrice" id="field_propPrice"
+                    ng-model="vm.property.propPrice"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.property.propBuyDate" for="field_propBuyDate">Prop Buy Date</label>
+                <div class="input-group">
+                    <input id="field_propBuyDate" type="text" class="form-control" name="propBuyDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.property.propBuyDate" is-open="vm.datePickerOpenStatus.propBuyDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('propBuyDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.property.propNumber" for="field_propNumber">Prop Number</label>
+            <input type="number" class="form-control" name="propNumber" id="field_propNumber"
+                    ng-model="vm.property.propNumber"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="amasApp.property.assoprop" for="field_assoprop">Assoprop</label>
+            <select class="form-control" id="field_assoprop" name="assoprop" ng-model="vm.property.assoprop" ng-options="association as association.assoName for association in vm.associations track by association.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

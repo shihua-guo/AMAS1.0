@@ -1,0 +1,90 @@
+<div>
+    <h2 data-translate="amasApp.association.home.title">Associations</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="association.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs-down"  data-translate="amasApp.association.home.createLabel">
+                        Create new Association
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'amasApp.association.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="assoId"><span data-translate="amasApp.association.assoId">Asso Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="assoName"><span data-translate="amasApp.association.assoName">Asso Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="assoFoundDate"><span data-translate="amasApp.association.assoFoundDate">Asso Found Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="assoIntrodution"><span data-translate="amasApp.association.assoIntrodution">Asso Introdution</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="assoImage"><span data-translate="amasApp.association.assoImage">Asso Image</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="association in vm.associations track by association.id">
+                    <td><a ui-sref="association-detail({id:association.id})">{{association.id}}</a></td>
+                    <td>{{association.assoId}}</td>
+                    <td>{{association.assoName}}</td>
+                        <td>{{association.assoFoundDate | date:'mediumDate'}}</td>
+                    <td>{{association.assoIntrodution}}</td>
+                    <td>
+                        <a ng-if="association.assoImage" ng-click="vm.openFile(association.assoImageContentType, association.assoImage)">
+                            <img data-ng-src="{{'data:' + association.assoImageContentType + ';base64,' + association.assoImage}}" style="max-height: 30px;" alt="association image"/>
+                        </a>
+                        <span ng-if="association.assoImage">{{association.assoImageContentType}}, {{vm.byteSize(association.assoImage)}}</span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="association-detail({id:association.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="association.edit({id:association.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="association.delete({id:association.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

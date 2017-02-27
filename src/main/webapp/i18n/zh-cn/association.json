@@ -1,0 +1,30 @@
+{
+    "amasApp": {
+        "association" : {
+            "home": {
+                "title": "Associations",
+                "createLabel": "Create a new Association",
+                "createOrEditLabel": "Create or edit a Association",
+                "search": "Search for Association"
+            },
+            "created": "A new Association is created with identifier {{ param }}",
+            "updated": "A Association is updated with identifier {{ param }}",
+            "deleted": "A Association is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Association {{ id }}?"
+            },
+            "detail": {
+                "title": "Association"
+            },
+            "assoId": "Asso Id",
+            "assoName": "Asso Name",
+            "assoFoundDate": "Asso Found Date",
+            "assoIntrodution": "Asso Introdution",
+            "assoImage": "Asso Image",
+            "department": "Department",
+            "activity": "Activity",
+            "property": "Property",
+            "membasso": "Membasso"
+        }
+    }
+}

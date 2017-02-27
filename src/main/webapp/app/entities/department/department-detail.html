@@ -1,0 +1,40 @@
+
+<div>
+    <h2><span data-translate="amasApp.department.detail.title">Department</span> {{vm.department.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="amasApp.department.deptName">Dept Name</span></dt>
+        <dd>
+            <span>{{vm.department.deptName}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.department.deptIntrodution">Dept Introdution</span></dt>
+        <dd>
+            <span>{{vm.department.deptIntrodution}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.department.deptImage">Dept Image</span></dt>
+        <dd>
+            <div ng-if="vm.department.deptImage">
+                <a ng-click="vm.openFile(vm.department.deptImageContentType, vm.department.deptImage)">
+                    <img data-ng-src="{{'data:' + vm.department.deptImageContentType + ';base64,' + vm.department.deptImage}}" style="max-width: 100%;" alt="department image"/>
+                </a>
+                {{vm.department.deptImageContentType}}, {{vm.byteSize(vm.department.deptImage)}}
+            </div>
+        </dd>
+        <dt><span data-translate="amasApp.department.assodept">Assodept</span></dt>
+        <dd>
+            <a ui-sref="association-detail({id:vm.department.assodept.id})">{{vm.department.assodept.assoName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="department-detail.edit({id:vm.department.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

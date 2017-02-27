@@ -1,0 +1,71 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myDepartmentLabel" data-translate="amasApp.department.home.createOrEditLabel">Create or edit a Department</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.department.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.department.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.department.deptName" for="field_deptName">Dept Name</label>
+            <input type="text" class="form-control" name="deptName" id="field_deptName"
+                    ng-model="vm.department.deptName"
+                    required/>
+            <div ng-show="editForm.deptName.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.deptName.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.department.deptIntrodution" for="field_deptIntrodution">Dept Introdution</label>
+                <textarea class="form-control" name="deptIntrodution" id="field_deptIntrodution"
+                    ng-model="vm.department.deptIntrodution" ></textarea>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setDeptImage($file, vm.department)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="amasApp.department.deptImage" for="field_deptImage">Dept Image</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.department.deptImageContentType + ';base64,' + vm.department.deptImage}}" style="max-height: 100px;" ng-if="vm.department.deptImage" alt="department image"/>
+                <div ng-if="vm.department.deptImage" class="help-block clearfix">
+                    <span class="pull-left">{{vm.department.deptImageContentType}}, {{vm.byteSize(vm.department.deptImage)}}</span>
+                    <button type="button" ng-click="vm.department.deptImage=null;vm.department.deptImageContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setDeptImage($file, vm.department)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="deptImage" id="field_deptImage"
+                    ng-model="vm.department.deptImage"
+                    />
+            <input type="hidden" class="form-control" name="deptImageContentType" id="field_deptImageContentType"
+                    ng-model="vm.department.deptImageContentType" />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="amasApp.department.assodept" for="field_assodept">Assodept</label>
+            <select class="form-control" id="field_assodept" name="assodept" ng-model="vm.department.assodept" ng-options="association as association.assoName for association in vm.associations track by association.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

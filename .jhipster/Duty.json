@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "department",
+            "otherEntityName": "department",
+            "otherEntityField": "deptName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "duty"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "amember",
+            "otherEntityName": "amember",
+            "otherEntityRelationshipName": "dutymemb"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "weekday",
+            "fieldType": "Weekday",
+            "fieldValues": "MON,TUS,WED,THUR,FRI,SAT,SUN"
+        },
+        {
+            "fieldName": "dutyIntrodution",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "changelogDate": "20170226131922",
+    "entityTableName": "duty",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no"
+}

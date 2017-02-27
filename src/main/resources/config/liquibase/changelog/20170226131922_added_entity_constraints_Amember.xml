@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Amember.
+    -->
+    <changeSet id="20170226131922-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="amembers_id"
+                                 baseTableName="amember_association"
+                                 constraintName="fk_amember_association_amembers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="amember"/>
+        <addForeignKeyConstraint baseColumnNames="associations_id"
+                                 baseTableName="amember_association"
+                                 constraintName="fk_amember_association_associations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="association"/>
+        
+        <addForeignKeyConstraint baseColumnNames="amembers_id"
+                                 baseTableName="amember_department"
+                                 constraintName="fk_amember_department_amembers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="amember"/>
+        <addForeignKeyConstraint baseColumnNames="departments_id"
+                                 baseTableName="amember_department"
+                                 constraintName="fk_amember_department_departments_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="department"/>
+        
+        <addForeignKeyConstraint baseColumnNames="amembers_id"
+                                 baseTableName="amember_role"
+                                 constraintName="fk_amember_role_amembers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="amember"/>
+        <addForeignKeyConstraint baseColumnNames="roles_id"
+                                 baseTableName="amember_role"
+                                 constraintName="fk_amember_role_roles_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role"/>
+        
+        <addForeignKeyConstraint baseColumnNames="dutymemb_id"
+                                 baseTableName="amember"
+                                 constraintName="fk_amember_dutymemb_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="duty"/>
+
+    </changeSet>
+</databaseChangeLog>

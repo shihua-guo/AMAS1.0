@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "assoprop",
+            "otherEntityName": "association",
+            "otherEntityField": "assoName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "propName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "propPrice",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "propBuyDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "propNumber",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20170226131922",
+    "entityTableName": "property",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no"
+}

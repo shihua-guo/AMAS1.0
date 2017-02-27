@@ -1,0 +1,49 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "duty",
+            "otherEntityName": "duty",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "department"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "assodept",
+            "otherEntityName": "association",
+            "otherEntityField": "assoName"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "membdept",
+            "otherEntityName": "amember",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "department"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "deptName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "deptIntrodution",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "deptImage",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20170226131922",
+    "entityTableName": "department",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no"
+}

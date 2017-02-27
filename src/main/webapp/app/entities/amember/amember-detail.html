@@ -1,0 +1,69 @@
+
+<div>
+    <h2><span data-translate="amasApp.amember.detail.title">Amember</span> {{vm.amember.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="amasApp.amember.membName">Memb Name</span></dt>
+        <dd>
+            <span>{{vm.amember.membName}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.membNO">Memb NO</span></dt>
+        <dd>
+            <span>{{vm.amember.membNO}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.membClass">Memb Class</span></dt>
+        <dd>
+            <span>{{vm.amember.membClass}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.membPhone">Memb Phone</span></dt>
+        <dd>
+            <span>{{vm.amember.membPhone}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.membQQ">Memb QQ</span></dt>
+        <dd>
+            <span>{{vm.amember.membQQ}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.membEmail">Memb Email</span></dt>
+        <dd>
+            <span>{{vm.amember.membEmail}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.membJoinDate">Memb Join Date</span></dt>
+        <dd>
+            <span>{{vm.amember.membJoinDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.association">Association</span></dt>
+        <dd>
+            <span ng-repeat="association in vm.amember.associations">
+                <a ui-sref="association-detail({id: association.id})">{{association.assoName}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.department">Department</span></dt>
+        <dd>
+            <span ng-repeat="department in vm.amember.departments">
+                <a ui-sref="department-detail({id: department.id})">{{department.deptName}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.role">Role</span></dt>
+        <dd>
+            <span ng-repeat="role in vm.amember.roles">
+                <a ui-sref="role-detail({id: role.id})">{{role.roleName}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.dutymemb">Dutymemb</span></dt>
+        <dd>
+            <a ui-sref="duty-detail({id:vm.amember.dutymemb.id})">{{vm.amember.dutymemb.weekday}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="amember-detail.edit({id:vm.amember.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

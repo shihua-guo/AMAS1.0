@@ -1,0 +1,93 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myAssociationLabel" data-translate="amasApp.association.home.createOrEditLabel">Create or edit a Association</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.association.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.association.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.association.assoId" for="field_assoId">Asso Id</label>
+            <input type="text" class="form-control" name="assoId" id="field_assoId"
+                    ng-model="vm.association.assoId"
+                    required/>
+            <div ng-show="editForm.assoId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.assoId.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.association.assoName" for="field_assoName">Asso Name</label>
+            <input type="text" class="form-control" name="assoName" id="field_assoName"
+                    ng-model="vm.association.assoName"
+                    required/>
+            <div ng-show="editForm.assoName.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.assoName.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.association.assoFoundDate" for="field_assoFoundDate">Asso Found Date</label>
+                <div class="input-group">
+                    <input id="field_assoFoundDate" type="text" class="form-control" name="assoFoundDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.association.assoFoundDate" is-open="vm.datePickerOpenStatus.assoFoundDate"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('assoFoundDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.assoFoundDate.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.assoFoundDate.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.association.assoIntrodution" for="field_assoIntrodution">Asso Introdution</label>
+                <textarea class="form-control" name="assoIntrodution" id="field_assoIntrodution"
+                    ng-model="vm.association.assoIntrodution" ></textarea>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setAssoImage($file, vm.association)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="amasApp.association.assoImage" for="field_assoImage">Asso Image</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.association.assoImageContentType + ';base64,' + vm.association.assoImage}}" style="max-height: 100px;" ng-if="vm.association.assoImage" alt="association image"/>
+                <div ng-if="vm.association.assoImage" class="help-block clearfix">
+                    <span class="pull-left">{{vm.association.assoImageContentType}}, {{vm.byteSize(vm.association.assoImage)}}</span>
+                    <button type="button" ng-click="vm.association.assoImage=null;vm.association.assoImageContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setAssoImage($file, vm.association)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="assoImage" id="field_assoImage"
+                    ng-model="vm.association.assoImage"
+                    />
+            <input type="hidden" class="form-control" name="assoImageContentType" id="field_assoImageContentType"
+                    ng-model="vm.association.assoImageContentType" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

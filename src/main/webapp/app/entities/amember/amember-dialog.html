@@ -1,0 +1,114 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myAmemberLabel" data-translate="amasApp.amember.home.createOrEditLabel">Create or edit a Amember</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.amember.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.amember.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.amember.membName" for="field_membName">Memb Name</label>
+            <input type="text" class="form-control" name="membName" id="field_membName"
+                    ng-model="vm.amember.membName"
+                    required/>
+            <div ng-show="editForm.membName.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.membName.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.amember.membNO" for="field_membNO">Memb NO</label>
+            <input type="text" class="form-control" name="membNO" id="field_membNO"
+                    ng-model="vm.amember.membNO"
+                    required/>
+            <div ng-show="editForm.membNO.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.membNO.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.amember.membClass" for="field_membClass">Memb Class</label>
+            <input type="text" class="form-control" name="membClass" id="field_membClass"
+                    ng-model="vm.amember.membClass"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.amember.membPhone" for="field_membPhone">Memb Phone</label>
+            <input type="text" class="form-control" name="membPhone" id="field_membPhone"
+                    ng-model="vm.amember.membPhone"
+                    required/>
+            <div ng-show="editForm.membPhone.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.membPhone.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.amember.membQQ" for="field_membQQ">Memb QQ</label>
+            <input type="text" class="form-control" name="membQQ" id="field_membQQ"
+                    ng-model="vm.amember.membQQ"
+                    required/>
+            <div ng-show="editForm.membQQ.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.membQQ.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.amember.membEmail" for="field_membEmail">Memb Email</label>
+            <input type="text" class="form-control" name="membEmail" id="field_membEmail"
+                    ng-model="vm.amember.membEmail"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.amember.membJoinDate" for="field_membJoinDate">Memb Join Date</label>
+                <div class="input-group">
+                    <input id="field_membJoinDate" type="text" class="form-control" name="membJoinDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.amember.membJoinDate" is-open="vm.datePickerOpenStatus.membJoinDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('membJoinDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="amasApp.amember.association" for="field_association">Association</label>
+            <select class="form-control" id="field_association" multiple name="association" ng-model="vm.amember.associations" ng-options="association as association.assoName for association in vm.associations track by association.id"></select>
+        </div>
+        <div class="form-group">
+            <label data-translate="amasApp.amember.department" for="field_department">Department</label>
+            <select class="form-control" id="field_department" multiple name="department" ng-model="vm.amember.departments" ng-options="department as department.deptName for department in vm.departments track by department.id"></select>
+        </div>
+        <div class="form-group">
+            <label data-translate="amasApp.amember.role" for="field_role">Role</label>
+            <select class="form-control" id="field_role" multiple name="role" ng-model="vm.amember.roles" ng-options="role as role.roleName for role in vm.roles track by role.id"></select>
+        </div>
+        <div class="form-group">
+            <label data-translate="amasApp.amember.dutymemb" for="field_dutymemb">Dutymemb</label>
+            <select class="form-control" id="field_dutymemb" name="dutymemb" ng-model="vm.amember.dutymemb" ng-options="duty as duty.weekday for duty in vm.duties track by duty.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

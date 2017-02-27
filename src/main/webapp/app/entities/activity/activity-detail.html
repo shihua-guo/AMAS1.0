@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="amasApp.activity.detail.title">Activity</span> {{vm.activity.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="amasApp.activity.actiName">Acti Name</span></dt>
+        <dd>
+            <span>{{vm.activity.actiName}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.activity.actiDate">Acti Date</span></dt>
+        <dd>
+            <span>{{vm.activity.actiDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.activity.actiPlace">Acti Place</span></dt>
+        <dd>
+            <span>{{vm.activity.actiPlace}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.activity.actiContent">Acti Content</span></dt>
+        <dd>
+            <span>{{vm.activity.actiContent}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.activity.assoacti">Assoacti</span></dt>
+        <dd>
+            <a ui-sref="association-detail({id:vm.activity.assoacti.id})">{{vm.activity.assoacti.assoName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="activity-detail.edit({id:vm.activity.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

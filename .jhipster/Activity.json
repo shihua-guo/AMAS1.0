@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "assoacti",
+            "otherEntityName": "association",
+            "otherEntityField": "assoName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "actiName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "actiDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "actiPlace",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "actiContent",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170226131922",
+    "entityTableName": "activity",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no"
+}

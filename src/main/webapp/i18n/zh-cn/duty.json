@@ -1,0 +1,25 @@
+{
+    "amasApp": {
+        "duty" : {
+            "home": {
+                "title": "Duties",
+                "createLabel": "Create a new Duty",
+                "createOrEditLabel": "Create or edit a Duty",
+                "search": "Search for Duty"
+            },
+            "created": "A new Duty is created with identifier {{ param }}",
+            "updated": "A Duty is updated with identifier {{ param }}",
+            "deleted": "A Duty is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Duty {{ id }}?"
+            },
+            "detail": {
+                "title": "Duty"
+            },
+            "weekday": "Weekday",
+            "dutyIntrodution": "Duty Introdution",
+            "department": "Department",
+            "amember": "Amember"
+        }
+    }
+}

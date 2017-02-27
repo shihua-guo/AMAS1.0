@@ -1,0 +1,14 @@
+{
+    "amasApp": {
+        "Weekday" : {
+            "null": "",
+            "MON": "MON",
+            "TUS": "TUS",
+            "WED": "WED",
+            "THUR": "THUR",
+            "FRI": "FRI",
+            "SAT": "SAT",
+            "SUN": "SUN"
+        }
+    }
+}

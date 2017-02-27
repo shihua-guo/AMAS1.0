@@ -1,0 +1,68 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "department",
+            "otherEntityName": "department",
+            "otherEntityRelationshipName": "assodept"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "activity",
+            "otherEntityName": "activity",
+            "otherEntityRelationshipName": "assoacti"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "property",
+            "otherEntityName": "property",
+            "otherEntityRelationshipName": "assoprop"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "membasso",
+            "otherEntityName": "amember",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "association"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "assoId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "assoName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "assoFoundDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "assoIntrodution",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "assoImage",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20170226131922",
+    "entityTableName": "association",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no"
+}

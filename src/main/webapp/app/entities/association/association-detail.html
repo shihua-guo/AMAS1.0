@@ -1,0 +1,44 @@
+
+<div>
+    <h2><span data-translate="amasApp.association.detail.title">Association</span> {{vm.association.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="amasApp.association.assoId">Asso Id</span></dt>
+        <dd>
+            <span>{{vm.association.assoId}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.association.assoName">Asso Name</span></dt>
+        <dd>
+            <span>{{vm.association.assoName}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.association.assoFoundDate">Asso Found Date</span></dt>
+        <dd>
+            <span>{{vm.association.assoFoundDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.association.assoIntrodution">Asso Introdution</span></dt>
+        <dd>
+            <span>{{vm.association.assoIntrodution}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.association.assoImage">Asso Image</span></dt>
+        <dd>
+            <div ng-if="vm.association.assoImage">
+                <a ng-click="vm.openFile(vm.association.assoImageContentType, vm.association.assoImage)">
+                    <img data-ng-src="{{'data:' + vm.association.assoImageContentType + ';base64,' + vm.association.assoImage}}" style="max-width: 100%;" alt="association image"/>
+                </a>
+                {{vm.association.assoImageContentType}}, {{vm.byteSize(vm.association.assoImage)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="association-detail.edit({id:vm.association.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

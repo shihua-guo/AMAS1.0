@@ -1,0 +1,78 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myActivityLabel" data-translate="amasApp.activity.home.createOrEditLabel">Create or edit a Activity</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.activity.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.activity.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.activity.actiName" for="field_actiName">Acti Name</label>
+            <input type="text" class="form-control" name="actiName" id="field_actiName"
+                    ng-model="vm.activity.actiName"
+                    required/>
+            <div ng-show="editForm.actiName.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.actiName.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.activity.actiDate" for="field_actiDate">Acti Date</label>
+                <div class="input-group">
+                    <input id="field_actiDate" type="text" class="form-control" name="actiDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.activity.actiDate" is-open="vm.datePickerOpenStatus.actiDate"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('actiDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.actiDate.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.actiDate.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.activity.actiPlace" for="field_actiPlace">Acti Place</label>
+            <input type="text" class="form-control" name="actiPlace" id="field_actiPlace"
+                    ng-model="vm.activity.actiPlace"
+                    required/>
+            <div ng-show="editForm.actiPlace.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.actiPlace.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.activity.actiContent" for="field_actiContent">Acti Content</label>
+            <input type="text" class="form-control" name="actiContent" id="field_actiContent"
+                    ng-model="vm.activity.actiContent"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="amasApp.activity.assoacti" for="field_assoacti">Assoacti</label>
+            <select class="form-control" id="field_assoacti" name="assoacti" ng-model="vm.activity.assoacti" ng-options="association as association.assoName for association in vm.associations track by association.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

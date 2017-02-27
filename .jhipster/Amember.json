@@ -1,0 +1,82 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "membasso",
+            "relationshipName": "association",
+            "otherEntityName": "association",
+            "otherEntityField": "assoName",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "membdept",
+            "relationshipName": "department",
+            "otherEntityName": "department",
+            "otherEntityField": "deptName",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "membrole",
+            "relationshipName": "role",
+            "otherEntityName": "role",
+            "otherEntityField": "roleName",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "dutymemb",
+            "otherEntityName": "duty",
+            "otherEntityField": "weekday"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "membName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "membNO",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "membClass",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "membPhone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "membQQ",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "membEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "membJoinDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170226131922",
+    "entityTableName": "amember",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no"
+}

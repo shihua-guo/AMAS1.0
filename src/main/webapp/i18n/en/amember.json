@@ -1,0 +1,32 @@
+{
+    "amasApp": {
+        "amember" : {
+            "home": {
+                "title": "Amembers",
+                "createLabel": "Create a new Amember",
+                "createOrEditLabel": "Create or edit a Amember",
+                "search": "Search for Amember"
+            },
+            "created": "A new Amember is created with identifier {{ param }}",
+            "updated": "A Amember is updated with identifier {{ param }}",
+            "deleted": "A Amember is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Amember {{ id }}?"
+            },
+            "detail": {
+                "title": "Amember"
+            },
+            "membName": "Memb Name",
+            "membNO": "Memb NO",
+            "membClass": "Memb Class",
+            "membPhone": "Memb Phone",
+            "membQQ": "Memb QQ",
+            "membEmail": "Memb Email",
+            "membJoinDate": "Memb Join Date",
+            "association": "Association",
+            "department": "Department",
+            "role": "Role",
+            "dutymemb": "Dutymemb"
+        }
+    }
+}

@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('PropertyController', PropertyController);
 
-    PropertyController.$inject = ['Property', 'PropertySearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    PropertyController.$inject = ['Property', 'PropertySearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function PropertyController(Property, PropertySearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function PropertyController(Property, PropertySearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 

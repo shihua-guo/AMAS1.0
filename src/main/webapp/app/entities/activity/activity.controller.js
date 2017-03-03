@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('ActivityController', ActivityController);
 
-    ActivityController.$inject = ['Activity', 'ActivitySearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    ActivityController.$inject = ['Activity', 'ActivitySearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function ActivityController(Activity, ActivitySearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function ActivityController(Activity, ActivitySearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 

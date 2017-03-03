@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('RoleController', RoleController);
 
-    RoleController.$inject = ['Role', 'RoleSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    RoleController.$inject = ['Role', 'RoleSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function RoleController(Role, RoleSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function RoleController(Role, RoleSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 

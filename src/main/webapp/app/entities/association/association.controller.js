@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('AssociationController', AssociationController);
 
-    AssociationController.$inject = ['DataUtils', 'Association', 'AssociationSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    AssociationController.$inject = ['DataUtils', 'Association', 'AssociationSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function AssociationController(DataUtils, Association, AssociationSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function AssociationController(DataUtils, Association, AssociationSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 

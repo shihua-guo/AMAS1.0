@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('DepartmentController', DepartmentController);
 
-    DepartmentController.$inject = ['DataUtils', 'Department', 'DepartmentSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    DepartmentController.$inject = ['DataUtils', 'Department', 'DepartmentSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function DepartmentController(DataUtils, Department, DepartmentSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function DepartmentController(DataUtils, Department, DepartmentSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 

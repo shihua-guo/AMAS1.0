@@ -38,7 +38,7 @@ public class AssociationResource {
     private final Logger log = LoggerFactory.getLogger(AssociationResource.class);
 
     private static final String ENTITY_NAME = "association";
-
+        
     private final AssociationRepository associationRepository;
 
     private final AssociationSearchRepository associationSearchRepository;
@@ -142,7 +142,7 @@ public class AssociationResource {
      * SEARCH  /_search/associations?query=:query : search for the association corresponding
      * to the query.
      *
-     * @param query the query of the association search
+     * @param query the query of the association search 
      * @param pageable the pagination information
      * @return the result of the search
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers

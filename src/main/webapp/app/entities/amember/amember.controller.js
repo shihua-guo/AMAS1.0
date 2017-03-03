@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('AmemberController', AmemberController);
 
-    AmemberController.$inject = ['Amember', 'AmemberSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    AmemberController.$inject = ['Amember', 'AmemberSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function AmemberController(Amember, AmemberSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function AmemberController(Amember, AmemberSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 

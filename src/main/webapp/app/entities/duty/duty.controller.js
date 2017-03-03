@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('DutyController', DutyController);
 
-    DutyController.$inject = ['DataUtils', 'Duty', 'DutySearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    DutyController.$inject = ['DataUtils', 'Duty', 'DutySearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function DutyController(DataUtils, Duty, DutySearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function DutyController(DataUtils, Duty, DutySearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 

@@ -37,6 +37,7 @@
     "languages": [
       "zh-cn",
       "en"
-    ]
+    ],
+    "herokuAppName": "secret-cove-32621"
   }
 }

@@ -2,25 +2,25 @@
     "amasApp": {
         "property" : {
             "home": {
-                "title": "Properties",
-                "createLabel": "Create a new Property",
-                "createOrEditLabel": "Create or edit a Property",
-                "search": "Search for Property"
+                "title": "物品表",
+                "createLabel": "新增一个值班",
+                "createOrEditLabel": "新增/编辑物品",
+                "search": "通过任意关键字查找物品"
             },
-            "created": "A new Property is created with identifier {{ param }}",
-            "updated": "A Property is updated with identifier {{ param }}",
-            "deleted": "A Property is deleted with identifier {{ param }}",
+            "created": "ID为 {{ param }}的值班表创建成功！",
+            "updated": "ID为 {{ param }}的值班表创建成功！",
+            "deleted": "ID为 {{ param }}的值班表创建成功！",
             "delete": {
-                "question": "Are you sure you want to delete Property {{ id }}?"
+                "question": "你确定要删除值班 {{ id }}?"
             },
             "detail": {
-                "title": "Property"
+                "title": "值班表详细信息"
             },
-            "propName": "Prop Name",
-            "propPrice": "Prop Price",
-            "propBuyDate": "Prop Buy Date",
-            "propNumber": "Prop Number",
-            "assoprop": "Assoprop"
+            "propName": "物品名称",
+            "propPrice": "物品价格",
+            "propBuyDate": "物品购买日期",
+            "propNumber": "物品数量",
+            "assoprop": "所属社团"
         }
     }
 }

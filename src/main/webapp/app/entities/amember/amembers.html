@@ -35,7 +35,6 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="membName"><span data-translate="amasApp.amember.membName">Memb Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="membNO"><span data-translate="amasApp.amember.membNO">Memb NO</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="membClass"><span data-translate="amasApp.amember.membClass">Memb Class</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -49,7 +48,6 @@
             </thead>
             <tbody>
                 <tr ng-repeat="amember in vm.amembers track by amember.id">
-                    <td><a ui-sref="amember-detail({id:amember.id})">{{amember.id}}</a></td>
                     <td>{{amember.membName}}</td>
                     <td>{{amember.membNO}}</td>
                     <td>{{amember.membClass}}</td>

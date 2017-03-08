@@ -1,24 +1,88 @@
+<link rel="stylesheet" href="content/css/entity-detail.css" type="text/css" />
 
-<div>
-    <h2><span data-translate="amasApp.association.detail.title">Association</span> {{vm.association.id}}</h2>
-    <hr>
-    <jhi-alert-error></jhi-alert-error>
-    <dl class="row jh-entity-details">
-        <dt><span data-translate="amasApp.association.assoId">Asso Id</span></dt>
+<div  align="center" >
+    <!--图片滑动部分-->
+    <div class="slider-wrapper theme-default ">
+        <div id="slider" class="nivoSlider" style="height: 350px; width: 800px;">
+
+            <img src="content/images/up.jpg" data-thumb="content/images/up.jpg" alt="" title="{{vm.association.assoId}} " /></a>
+            <img src="content/images/walle.jpg" data-thumb="content/images/walle.jpg" alt="" title="{{vm.association.assoIntrodution}}" data-transition="slideInLeft" />
+            <img src="content/images/nemo.jpg" data-thumb="content/images/nemo.jpg" alt="" title="{{vm.association.assoIntrodution}}" />
+            <img data-ng-src="{{'data:' + vm.association.assoImageContentType + ';base64,' + vm.association.assoImage}}" alt="" title="#htmlcaption" />
+        </div>
+        <div id="htmlcaption" class="nivo-html-caption">
+            <strong>This</strong> is {{vm.association.assoId}} <a href="#">a link</a>.
+        </div>
+    </div>
+    <script type="text/javascript" src="app/components/nivo-slider/jquery.nivo.slider.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function()  {
+            $('#slider').nivoSlider();
+        });
+    </script>
+    <!--图片滑动部分-->
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">{{vm.association.assoName}}<span data-translate="amasApp.association.detail.title">Association</span></div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">
+                                <span data-translate="amasApp.association.assoId">Asso Id</span>
+                            </label>
+                            <div class="col-md-10">
+                                <span>{{vm.association.assoId}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">
+                                <span data-translate="amasApp.association.assoFoundDate">Asso Found Date</span>
+                            </label>
+                            <div class="col-md-10">
+                                <span>{{vm.association.assoFoundDate | date:'mediumDate'}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">
+                                <span data-translate="amasApp.association.assoIntrodution">Asso Introdution</span>
+                            </label>
+                            <div class="col-md-10">
+                                <span>{{vm.association.assoIntrodution}}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10">
+                                <button ui-sref="{{ vm.previousState }}"
+                                        class="btn btn-info" ng-click="getFormData()">
+                                    <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+                                </button>
+                                <button  type="button" ui-sref="association-detail.edit({id:vm.association.id})" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    <!--<dl class="row jh-entity-details" >
+        <dt><span data-translate="amasApp.association.assoId">Asso Id</span><span>{{vm.association.assoId}}</span></dt>
+        <dd>   </dd>
+        <dt><span data-translate="amasApp.association.assoFoundDate">Asso Found Date</span> <span>{{vm.association.assoFoundDate | date:'mediumDate'}}</span></dt>
         <dd>
-            <span>{{vm.association.assoId}}</span>
+
         </dd>
-        <dt><span data-translate="amasApp.association.assoName">Asso Name</span></dt>
+        <dt><span data-translate="amasApp.association.assoIntrodution">Asso Introdution</span> <span>{{vm.association.assoIntrodution}}</span></dt>
         <dd>
-            <span>{{vm.association.assoName}}</span>
-        </dd>
-        <dt><span data-translate="amasApp.association.assoFoundDate">Asso Found Date</span></dt>
-        <dd>
-            <span>{{vm.association.assoFoundDate | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span data-translate="amasApp.association.assoIntrodution">Asso Introdution</span></dt>
-        <dd>
-            <span>{{vm.association.assoIntrodution}}</span>
+
         </dd>
         <dt><span data-translate="amasApp.association.assoImage">Asso Image</span></dt>
         <dd>
@@ -30,15 +94,8 @@
             </div>
         </dd>
     </dl>
+-->
 
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
-    </button>
 
-    <button type="button" ui-sref="association-detail.edit({id:vm.association.id})" class="btn btn-primary">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
-    </button>
+
 </div>

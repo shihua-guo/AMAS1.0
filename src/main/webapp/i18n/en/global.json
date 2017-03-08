@@ -127,5 +127,5 @@
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
     },
-    "footer": "This is your footer"
+    "footer": "<strong>AMAS1.0</strong> | By <a href='https://github.com/shihua-guo/AMAS1.0' target='_blank'>shihua-guo</a>"
 }

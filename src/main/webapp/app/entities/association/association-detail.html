@@ -6,8 +6,8 @@
         <div id="slider" class="nivoSlider" style="height: 350px; width: 800px;">
 
             <img src="content/images/up.jpg" data-thumb="content/images/up.jpg" alt="" title="{{vm.association.assoId}} " /></a>
-            <img src="content/images/walle.jpg" data-thumb="content/images/walle.jpg" alt="" title="{{vm.association.assoIntrodution}}" data-transition="slideInLeft" />
-            <img src="content/images/nemo.jpg" data-thumb="content/images/nemo.jpg" alt="" title="{{vm.association.assoIntrodution}}" />
+            <img src="content/images/walle.jpg" data-thumb="content/images/walle.jpg" alt="" title="{{vm.association.assoIntrodution | limitTo:100}} {{vm.association.assoIntrodution.length > 100 ? '...' : ''}}" data-transition="slideInLeft" />
+            <img src="content/images/nemo.jpg" data-thumb="content/images/nemo.jpg" alt="" title="{{vm.association.assoIntrodution | limitTo:100}} {{vm.association.assoIntrodution.length > 100 ? '...' : ''}}" />
             <img data-ng-src="{{'data:' + vm.association.assoImageContentType + ';base64,' + vm.association.assoImage}}" alt="" title="#htmlcaption" />
         </div>
         <div id="htmlcaption" class="nivo-html-caption">

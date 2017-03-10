@@ -48,7 +48,7 @@
                     <td>{{association.assoId}}</td>
                     <td>{{association.assoName}}</td>
                         <td>{{association.assoFoundDate | date:'mediumDate'}}</td>
-                    <td>{{association.assoIntrodution}}</td>
+                    <td>{{association.assoIntrodution | limitTo:80}} <span ng-if="association.assoIntrodution.length > 80">...</span></td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

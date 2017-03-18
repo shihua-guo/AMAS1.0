@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('AmemberController', AmemberController);
 
-    AmemberController.$inject = ['Amember', 'AmemberSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
+    AmemberController.$inject = ['assoAmemNumService','Amember', 'AmemberSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function AmemberController(Amember, AmemberSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
+    function AmemberController(assoAmemNumService,Amember, AmemberSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 
@@ -22,9 +22,11 @@
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
 
+
         loadAll();
 
         function loadAll () {
+            alert("获取社团的id"+assoAmemNumService.getAssoId());
             if (pagingParams.search) {
                 AmemberSearch.query({
                     query: pagingParams.search,
@@ -32,7 +34,23 @@
                     size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
-            } else {
+            }
+            
+            else if(assoAmemNumService.getAssoId() !=''){
+                Amember.queryAmemNum({
+                    page: pagingParams.page - 1,
+                    size: vm.itemsPerPage,
+                    sort: sort(),
+                    assoId: assoAmemNumService.getAssoId()
+                }, onSuccess, onError);
+                assoAmemNumService.setAssoId('');
+            }
+
+
+            else {
+                alert("查询所有的成员");
+                alert(pagingParams.numOfAmember);
+                alert(pagingParams);
                 Amember.query({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,

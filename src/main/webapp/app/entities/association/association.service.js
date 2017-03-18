@@ -5,6 +5,27 @@
         .factory('Association', Association);
 
     Association.$inject = ['$resource', 'DateUtils'];
+    //传递associationId
+    angular
+        .module('amasApp')
+        .service('assoAmemNumService', function() {
+          var assoId ='' ;
+
+          var setAssoId = function(num) {
+              assoId=num;
+          };
+
+          var getAssoId = function(){
+              return assoId;
+          };
+
+          return {
+            setAssoId: setAssoId,
+            getAssoId: getAssoId
+          };
+
+        });
+
 
     function Association ($resource, DateUtils) {
         var resourceUrl =  'api/associations/:id';

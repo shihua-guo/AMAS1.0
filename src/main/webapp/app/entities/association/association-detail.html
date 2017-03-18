@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="content/css/entity-detail.css" type="text/css" />
+<!-- <link rel="stylesheet" href="content/css/entity-detail.css" type="text/css" /> -->
 
 <div  align="center" >
     <!--图片滑动部分-->
@@ -22,6 +22,7 @@
     </script>
     <!--图片滑动部分-->
 
+    <!-- 详情列表 -->
     <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="panel-title">{{vm.association.assoName}}<span data-translate="amasApp.association.detail.title">Association</span></div>
@@ -53,8 +54,17 @@
                             <div class="col-md-10">
                                 <span>{{vm.association.assoIntrodution}}</span>
                             </div>
+                        <div class="form-group">
+                            </div><label class="col-md-2 control-label">
+                                <span data-translate="amasApp.association.membersNum">Asso Member</span>
+                            </label>
+                            <div class="col-md-10">
+                                <a ui-sref="amember">
+                                <span >
+                                    {{vm.amemberNum}}
+                                </span>
+                            </div>
                         </div>
-
                         <div class="form-group">
                             <div class="col-md-offset-1 col-md-10">
                                 <button ui-sref="{{ vm.previousState }}"
@@ -71,31 +81,4 @@
                 </div>
             </div>
         </div>
-
-
-    <!--<dl class="row jh-entity-details" >
-        <dt><span data-translate="amasApp.association.assoId">Asso Id</span><span>{{vm.association.assoId}}</span></dt>
-        <dd>   </dd>
-        <dt><span data-translate="amasApp.association.assoFoundDate">Asso Found Date</span> <span>{{vm.association.assoFoundDate | date:'mediumDate'}}</span></dt>
-        <dd>
-
-        </dd>
-        <dt><span data-translate="amasApp.association.assoIntrodution">Asso Introdution</span> <span>{{vm.association.assoIntrodution}}</span></dt>
-        <dd>
-
-        </dd>
-        <dt><span data-translate="amasApp.association.assoImage">Asso Image</span></dt>
-        <dd>
-            <div ng-if="vm.association.assoImage">
-                <a ng-click="vm.openFile(vm.association.assoImageContentType, vm.association.assoImage)">
-                    <img data-ng-src="{{'data:' + vm.association.assoImageContentType + ';base64,' + vm.association.assoImage}}" style="max-width: 100%;" alt="association image"/>
-                </a>
-                {{vm.association.assoImageContentType}}, {{vm.byteSize(vm.association.assoImage)}}
-            </div>
-        </dd>
-    </dl>
--->
-
-
-
 </div>

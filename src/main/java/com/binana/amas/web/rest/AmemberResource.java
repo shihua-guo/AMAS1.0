@@ -23,6 +23,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -48,6 +49,36 @@ public class AmemberResource {
         this.amemberSearchRepository = amemberSearchRepository;
     }
 
+    
+    /**
+     * Get 获取该社团的成员数量
+     * @param id
+     * @return
+     */
+    @GetMapping("/getAssoAmemberNum/{id}")
+    @Timed
+    public int getAssoAmemberNum(@PathVariable Long id) {
+    	log.debug("REST request to get getAssoAmemberNum : {}", id);
+    	int count = amemberRepository.countByAssociations_Id(id);
+    	return count;
+    }
+    
+    /**
+     * GET  /amembers/:id : get the "id" amember.
+     *
+     * @param id the id of the amember to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the amember, or with status 404 (Not Found)
+     */
+    @PostMapping("/amembers/{id}")
+    @Timed
+    public ResponseEntity<List<Amember>> getByAssoId(@PathVariable Long id,@ApiParam Pageable pageable) 
+    		 throws URISyntaxException{
+    	log.debug("REST request to get a page of Amembers by AssociationId");
+    	Page<Amember> page = amemberRepository.findByAssociations_Id(id,pageable);
+         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/amembers");
+         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
     /**
      * POST  /amembers : Create a new amember.
      *
@@ -122,7 +153,21 @@ public class AmemberResource {
         Amember amember = amemberRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(amember));
     }
-
+    
+    /**
+     * GET  /amembers/:id : get the "id" amember.
+     *
+     * @param id the id of the amember to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the amember, or with status 404 (Not Found)
+     */
+    @GetMapping("/getAmemberByAssoId/{assoId}")
+    @Timed
+    public ResponseEntity<Amember> getAmemberByAssoId(@PathVariable Long id) {
+        log.debug("REST request to get Amember : {}", id);
+        Amember amember = amemberRepository.findOneWithEagerRelationships(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(amember));
+    }
+    
     /**
      * DELETE  /amembers/:id : delete the "id" amember.
      *

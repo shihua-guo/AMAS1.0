@@ -51,6 +51,26 @@ public class AmemberResource {
 
     
     /**
+     * SEARCH  /_search/amembers?query=:query : search for the amember corresponding
+     * to the query.
+     *
+     * @param query the query of the amember search 
+     * @param pageable the pagination information
+     * @return the result of the search
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/_search/amembersOfAsso/{id}")
+    @Timed
+    public ResponseEntity<List<Amember>> searchAmembersOfAsso(@PathVariable Long id,@RequestParam String query, @ApiParam Pageable pageable)
+        throws URISyntaxException {
+        log.debug("REST request to search for a page of Amembers for query {}", query);
+        Page<Amember> page = amemberSearchRepository.search(queryStringQuery(query), pageable);
+        Page<Amember> pageOfAsso = amemberRepository.findByAssociations_Id(id,pageable);
+        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/amembers");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    /**
      * Get 获取该社团的成员数量
      * @param id
      * @return
@@ -69,13 +89,13 @@ public class AmemberResource {
      * @param id the id of the amember to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the amember, or with status 404 (Not Found)
      */
-    @PostMapping("/amembers/{id}")
+    @PostMapping("/amembersOfAsso/{id}")
     @Timed
     public ResponseEntity<List<Amember>> getByAssoId(@PathVariable Long id,@ApiParam Pageable pageable) 
     		 throws URISyntaxException{
     	log.debug("REST request to get a page of Amembers by AssociationId");
     	Page<Amember> page = amemberRepository.findByAssociations_Id(id,pageable);
-         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/amembers");
+         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/amembersOfAsso");
          return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     

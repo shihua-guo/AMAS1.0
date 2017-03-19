@@ -9,9 +9,8 @@
     function Amember ($resource, DateUtils) {
         var resourceUrl =  'api/amembers/:id';
 
-        return $resource(resourceUrl, {id:'@assoId'}, {
+        return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
-            'queryAmemNum': { method: 'POST', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('AmemberController', AmemberController);
 
-    AmemberController.$inject = ['assoAmemNumService','Amember', 'AmemberSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
+    AmemberController.$inject = ['$scope','assoAmemNumService','Amember', 'AmemberSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function AmemberController(assoAmemNumService,Amember, AmemberSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
+    function AmemberController($scope,assoAmemNumService,Amember, AmemberSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 
@@ -24,10 +24,27 @@
 
 
         loadAll();
+        // $rootScope.previousState;
+        // $rootScope.currentState;
+        $scope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+            $scope.previousState = from.name;
+            $scope.currentState = to.name;
+            alert('Previous state:'+$scope.previousState)
+            alert('Current state:'+$scope.currentState)
+            if ($scope.previousState == 'association-detail') {
+
+            }else if($scope.previousState == 'amember' && $scope.currentState == 'amember'){
+
+            }else{
+                assoAmemNumService.setAssoId('');
+            }
+           /* if ($scope.previousState != $scope.currentState) {
+            }*/
+        });
 
         function loadAll () {
-            alert("获取社团的id"+assoAmemNumService.getAssoId());
             if (pagingParams.search) {
+                alert("按照关键字查询");
                 AmemberSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
@@ -37,20 +54,23 @@
             }
             
             else if(assoAmemNumService.getAssoId() !=''){
+                alert("查询社团对应的成员");
                 Amember.queryAmemNum({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort(),
                     assoId: assoAmemNumService.getAssoId()
                 }, onSuccess, onError);
-                assoAmemNumService.setAssoId('');
+                //assoAmemNumService.setAssoId('');
+                /*$rootScope.$on('$stateChangeStart',
+                function(){
+                    assoAmemNumService.setAssoId('');
+                });*/
             }
 
 
             else {
                 alert("查询所有的成员");
-                alert(pagingParams.numOfAmember);
-                alert(pagingParams);
                 Amember.query({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,

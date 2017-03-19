@@ -10,7 +10,7 @@
         var resourceUrl =  'api/amembersOfAsso/:id';
 
         return $resource(resourceUrl, {id:'@assoId'}, {
-            'queryAmemNum': { method: 'POST', isArray: true}
+            'queryAmemNum': { method: 'GET', isArray: true}
         })
     }
 })();

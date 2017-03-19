@@ -75,7 +75,7 @@ public class AmemberResource {
         throws URISyntaxException {
         log.debug("REST request to search for a page of Amembers for query {}", query);
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery()
-        		.must(QueryBuilders.termQuery("associations.id","2"))
+        		.must(QueryBuilders.termQuery("associations.id",id))
         		.must(queryStringQuery(query));
         Page<Amember> page = amemberSearchRepository.search(boolQueryBuilder, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/amembers");
@@ -101,9 +101,9 @@ public class AmemberResource {
      * @param id the id of the amember to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the amember, or with status 404 (Not Found)
      */
-    @PostMapping("/amembersOfAsso/{id}")
+    @GetMapping("/amembersOfAsso")
     @Timed
-    public ResponseEntity<List<Amember>> getByAssoId(@PathVariable Long id,@ApiParam Pageable pageable) 
+    public ResponseEntity<List<Amember>> getByAssoId(@RequestParam(value="assoId") Long id,@ApiParam Pageable pageable) 
     		 throws URISyntaxException{
     	log.debug("REST request to get a page of Amembers by AssociationId");
     	Page<Amember> page = amemberRepository.findByAssociations_Id(id,pageable);

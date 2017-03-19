@@ -22,6 +22,7 @@
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
 
+        alert(vm.reverse);
 
         loadAll();
 

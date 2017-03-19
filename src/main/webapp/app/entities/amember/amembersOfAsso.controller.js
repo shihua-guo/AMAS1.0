@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('AmembersOfAssoController', AmembersOfAssoController);
 
-    AmembersOfAssoController.$inject = ['$scope','assoAmemNumService','AmembersOfAsso', 'AmemberSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
+    AmembersOfAssoController.$inject = ['$scope','assoAmemNumService','AmembersOfAsso', 'AmembersOfAssoSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function AmembersOfAssoController($scope,assoAmemNumService,AmembersOfAsso, AmemberSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
+    function AmembersOfAssoController($scope,assoAmemNumService,AmembersOfAsso, AmembersOfAssoSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 

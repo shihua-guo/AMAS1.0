@@ -25,13 +25,18 @@
     <link rel="stylesheet" href="app/components/nivo-slider/nivo-slider.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="app/components/nivo-slider/style.css" type="text/css" media="screen" />
 
+    <!-- 测试侧边栏 -->
+    <link rel="stylesheet" href="content/css/slide.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="content/css/style.css" type="text/css" media="screen" />
+
+
 </head>
 <body ng-app="amasApp" ng-strict-di>
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <page-ribbon></page-ribbon>
-    <div ui-view="navbar" ng-cloak></div>
+    <!-- <page-ribbon></page-ribbon> -->
+    <div ui-view="navbar" ng-cloak ></div>
     <div class="container">
         <div class="well" ui-view="content">
             <!-- Angular views -->
@@ -138,6 +143,10 @@
     <script src="app/entities/association/association.service.js"></script>
     <script src="app/entities/association/association.search.service.js"></script>
     <script src="app/entities/association/association.controller.js"></script>
+    <script src="app/entities/amember/amembersOfAsso.state.js"></script>
+    <script src="app/entities/amember/amembersOfAsso.service.js"></script>
+    <script src="app/entities/amember/amembersOfAsso.search.service.js"></script>
+    <script src="app/entities/amember/amembersOfAsso.controller.js"></script>
     <script src="app/entities/amember/amember-dialog.controller.js"></script>
     <script src="app/entities/amember/amember-detail.controller.js"></script>
     <script src="app/entities/amember/amember-delete-dialog.controller.js"></script>
@@ -145,12 +154,6 @@
     <script src="app/entities/amember/amember.service.js"></script>
     <script src="app/entities/amember/amember.search.service.js"></script>
     <script src="app/entities/amember/amember.controller.js"></script>
-    
-    <script src="app/entities/amember/amembersOfAsso.state.js"></script>
-    <script src="app/entities/amember/amembersOfAsso.service.js"></script>
-    <script src="app/entities/amember/amembersOfAsso.search.service.js"></script>
-    <script src="app/entities/amember/amembersOfAsso.controller.js"></script>
-
     <script src="app/entities/activity/activity-dialog.controller.js"></script>
     <script src="app/entities/activity/activity-detail.controller.js"></script>
     <script src="app/entities/activity/activity-delete-dialog.controller.js"></script>
@@ -169,6 +172,9 @@
     <script src="app/components/util/data-util.service.js"></script>
     <script src="app/components/util/capitalize.filter.js"></script>
     <script src="app/components/util/base64.service.js"></script>
+    <script src="app/components/nivo-slider/jquery-1.9.0.min.js"></script>
+    <script src="app/components/nivo-slider/jquery.nivo.slider.pack.js"></script>
+    <script src="app/components/nivo-slider/jquery.nivo.slider.js"></script>
     <script src="app/components/login/login.service.js"></script>
     <script src="app/components/login/login.controller.js"></script>
     <script src="app/components/language/language.service.js"></script>

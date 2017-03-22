@@ -1,7 +1,7 @@
 <!-- <link rel="stylesheet" href="content/css/entity-detail.css" type="text/css" /> -->
 
 <div  align="center" >
-    <!--图片滑动部分-->
+    <!--图片滑动部分 -->
     <div class="slider-wrapper theme-default ">
         <div id="slider" class="nivoSlider" style="height: 350px; width: 800px;">
 
@@ -20,12 +20,14 @@
             $('#slider').nivoSlider();
         });
     </script>
-    <!--图片滑动部分-->
+    <!--鍥剧墖婊戝姩閮ㄥ垎-->
 
-    <!-- 详情列表 -->
-    <div class="panel panel-primary">
+    <!-- 璇︽儏鍒楄〃 -->
+<div class="panel panel-primary">
         <div class="panel-heading">
-            <div class="panel-title">{{vm.association.assoName}}<span data-translate="amasApp.association.detail.title">Association</span></div>
+            <div class="panel-title">{{vm.association.assoName}}
+                <span data-translate="amasApp.association.detail.title">Association</span>
+            </div>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -54,15 +56,42 @@
                             <div class="col-md-10">
                                 <span>{{vm.association.assoIntrodution}}</span>
                             </div>
+                        </div>
+                        <!-- 社团成员数量 -->
                         <div class="form-group">
-                            </div><label class="col-md-2 control-label">
+                            <label class="col-md-2 control-label">
                                 <span data-translate="amasApp.association.membersNum">Asso Member</span>
                             </label>
                             <div class="col-md-10">
-                                <a ui-sref="amembersOfAsso">
-                                <span >
+                                <a >
+                                <span ui-sref="amembersOfAsso">
                                     {{vm.amemberNum}}
                                 </span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 社团的部门 -->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">
+                                <span data-translate="amasApp.association.departments">Asso Departments</span>
+                            </label>
+                            <div class="col-md-10">
+                                <a   ng-repeat="assoDeptName in vm.assoDeptNames">
+                                    <span ui-sref="departmentsOfAsso" >{{assoDeptName}} 
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 社团近期活动 -->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">
+                                <span data-translate="amasApp.association.activities">Asso Departments</span>
+                            </label>
+                            <div class="col-md-10">
+                                <a   ng-repeat="assoDeptName in vm.assoDeptNames">
+                                    <span ui-sref="departmentsOfAsso" >{{assoDeptName}} 
+                                    </span>
+                                </a>
                             </div>
                         </div>
                         <div class="form-group">

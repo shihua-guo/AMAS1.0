@@ -9,19 +9,30 @@
     angular
         .module('amasApp')
         .service('assoAmemNumService', function() {
+          //获取社团的id
           var assoId ='' ;
-
           var setAssoId = function(num) {
               assoId=num;
           };
-
           var getAssoId = function(){
               return assoId;
           };
 
+          //获取社团的名称
+          var assoName ='' ;
+          var setAssoName = function(name) {
+              assoName=name;
+          };
+
+          var getAssoName = function(){
+              return assoName;
+          };
+
           return {
             setAssoId: setAssoId,
-            getAssoId: getAssoId
+            getAssoId: getAssoId,
+            setAssoName: setAssoName,
+            getAssoName: getAssoName
           };
 
         });

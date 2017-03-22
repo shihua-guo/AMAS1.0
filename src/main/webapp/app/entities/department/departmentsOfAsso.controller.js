@@ -3,11 +3,11 @@
 
     angular
         .module('amasApp')
-        .controller('AmembersOfAssoController', AmembersOfAssoController);
+        .controller('DepartmentsOfAssoController', DepartmentsOfAssoController);
 
-    AmembersOfAssoController.$inject = ['$scope','assoAmemNumService','AmembersOfAsso', 'AmembersOfAssoSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
+    DepartmentsOfAssoController.$inject = ['assoAmemNumService','DataUtils', 'DepartmentsOfAsso', 'DepartmentsOfAssoSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function AmembersOfAssoController($scope,assoAmemNumService,AmembersOfAsso, AmembersOfAssoSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
+    function DepartmentsOfAssoController(assoAmemNumService,DataUtils, DepartmentsOfAsso, DepartmentsOfAssoSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 
@@ -21,55 +21,28 @@
         vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
+        vm.openFile = DataUtils.openFile;
+        vm.byteSize = DataUtils.byteSize;
 
-        vm.assoName = assoAmemNumService.getAssoName();
         loadAll();
-        // $rootScope.previousState;
-        // $rootScope.currentState;
-        /* 判断前后state
-        $scope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
-            $scope.previousState = from.name;
-            $scope.currentState = to.name;
-            alert('Previous state:'+$scope.previousState)
-            alert('Current state:'+$scope.currentState)
-            if ($scope.previousState == 'association-detail') {
-
-            }else if($scope.previousState == 'amember' && $scope.currentState == 'amember'){
-
-            }else{
-                assoAmemNumService.setAssoId('');
-            }
-        });
-        */
 
         function loadAll () {
             if (pagingParams.search) {
-                alert("按照关键字查询");
-                AmembersOfAssoSearch.query({
+                DepartmentsOfAssoSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort(),
                     assoId: assoAmemNumService.getAssoId()
                 }, onSuccess, onError);
-            }
-            
-            else if(assoAmemNumService.getAssoId() !=''){
-                alert("查询社团对应的成员"+assoAmemNumService.getAssoId());
-                AmembersOfAsso.queryAmemNum({
+            } else {
+                DepartmentsOfAsso.queryDeptsOfAsso({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort(),
                     assoId: assoAmemNumService.getAssoId()
                 }, onSuccess, onError);
-                alert('查询！！！了')
-                //assoAmemNumService.setAssoId('');
-                /*$rootScope.$on('$stateChangeStart',
-                function(){
-                    assoAmemNumService.setAssoId('');
-                });*/
             }
-
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {
@@ -81,7 +54,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.amembers = data;
+                vm.departments = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {

@@ -25,7 +25,9 @@
             "activity": "活动",
             "property": "物品",
             "membasso": "成员",
-            "membersNum": "成员数量"
+            "membersNum": "成员数量",
+            "departments": "部门构成",
+            "activities": "近期活动",
         }
     }
 }

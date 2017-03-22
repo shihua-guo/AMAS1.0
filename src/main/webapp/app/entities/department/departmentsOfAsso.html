@@ -1,20 +1,20 @@
 <div>
-    <h2>{{vm.assoName}} 社团<span data-translate="amasApp.amember.home.title">Amembers</span></h2>
+    <h2 data-translate="amasApp.department.home.title">Departments</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="amember.new" >
+                <button class="btn btn-primary" ui-sref="department.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs-down"  data-translate="amasApp.amember.home.createLabel">
-                        Create new Amember
+                    <span class="hidden-xs-down"  data-translate="amasApp.department.home.createLabel">
+                        Create new Department
                     </span>
                 </button>
             </div>
             <div class="col-xs-8 no-padding-right">
                 <form name="searchForm" class="form-inline">
                     <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'amasApp.amember.home.search' | translate }}">
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'amasApp.department.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
                             <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -35,45 +35,44 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="membName"><span data-translate="amasApp.amember.membName">Memb Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="membNO"><span data-translate="amasApp.amember.membNO">Memb NO</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="membClass"><span data-translate="amasApp.amember.membClass">Memb Class</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="membPhone"><span data-translate="amasApp.amember.membPhone">Memb Phone</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="membQQ"><span data-translate="amasApp.amember.membQQ">Memb QQ</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="membEmail"><span data-translate="amasApp.amember.membEmail">Memb Email</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="membJoinDate"><span data-translate="amasApp.amember.membJoinDate">Memb Join Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="dutymemb.weekday"><span data-translate="amasApp.amember.dutymemb">Dutymemb</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="deptName"><span data-translate="amasApp.department.deptName">Dept Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="deptIntrodution"><span data-translate="amasApp.department.deptIntrodution">Dept Introdution</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="deptImage"><span data-translate="amasApp.department.deptImage">Dept Image</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="assodept.assoName"><span data-translate="amasApp.department.assodept">Assodept</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="amember in vm.amembers track by amember.id">
-                    <td>{{amember.membName}}</td>
-                    <td>{{amember.membNO}}</td>
-                    <td>{{amember.membClass}}</td>
-                    <td>{{amember.membPhone}}</td>
-                    <td>{{amember.membQQ}}</td>
-                    <td>{{amember.membEmail}}</td>
-                        <td>{{amember.membJoinDate | date:'mediumDate'}}</td>
+                <tr ng-repeat="department in vm.departments track by department.id">
+                    <td><a ui-sref="department-detail({id:department.id})">{{department.id}}</a></td>
+                    <td>{{department.deptName}}</td>
+                    <td>{{department.deptIntrodution}}</td>
                     <td>
-                        <a ui-sref="duty-detail({id:amember.dutymemb.id})">{{amember.dutymemb.weekday}}</a>
+                        <a ng-if="department.deptImage" ng-click="vm.openFile(department.deptImageContentType, department.deptImage)">
+                            <img data-ng-src="{{'data:' + department.deptImageContentType + ';base64,' + department.deptImage}}" style="max-height: 30px;" alt="department image"/>
+                        </a>
+                        <span ng-if="department.deptImage">{{department.deptImageContentType}}, {{vm.byteSize(department.deptImage)}}</span>
+                    </td>
+                    <td>
+                        <a ui-sref="association-detail({id:department.assodept.id})">{{department.assodept.assoName}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="amember-detail({id:amember.id})"
+                                    ui-sref="department-detail({id:department.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="amember.edit({id:amember.id})"
+                                    ui-sref="department.edit({id:department.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="amember.delete({id:amember.id})"
+                                    ui-sref="department.delete({id:department.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.delete"></span>

@@ -73,7 +73,7 @@ public class AmemberResource {
     @Timed
     public ResponseEntity<List<Amember>> searchAmembersOfAsso(@RequestParam(value="assoId") Long id,@RequestParam String query, @ApiParam Pageable pageable)
         throws URISyntaxException {
-        log.debug("REST request to search for a page of Amembers for query {}", query);
+        log.debug("REST request to search for a page of Amembers Of Association for query {} and Association is {}", query,id);
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery()
         		.must(QueryBuilders.termQuery("associations.id",id))
         		.must(queryStringQuery(query));
@@ -90,7 +90,7 @@ public class AmemberResource {
     @GetMapping("/getAssoAmemberNum/{id}")
     @Timed
     public int getAssoAmemberNum(@PathVariable Long id) {
-    	log.debug("REST request to get getAssoAmemberNum : {}", id);
+    	log.debug("REST request to get Number of Amembers of Association id : {}", id);
     	int count = amemberRepository.countByAssociations_Id(id);
     	return count;
     }
@@ -105,7 +105,7 @@ public class AmemberResource {
     @Timed
     public ResponseEntity<List<Amember>> getByAssoId(@RequestParam(value="assoId") Long id,@ApiParam Pageable pageable) 
     		 throws URISyntaxException{
-    	log.debug("REST request to get a page of Amembers by AssociationId");
+    	log.debug("REST request to get a page of Amembers by AssociationId {}",id);
     	Page<Amember> page = amemberRepository.findByAssociations_Id(id,pageable);
          HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/amembersOfAsso");
          return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
@@ -192,13 +192,14 @@ public class AmemberResource {
      * @param id the id of the amember to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the amember, or with status 404 (Not Found)
      */
+    /*
     @GetMapping("/getAmemberByAssoId/{assoId}")
     @Timed
     public ResponseEntity<Amember> getAmemberByAssoId(@PathVariable Long id) {
         log.debug("REST request to get Amember : {}", id);
         Amember amember = amemberRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(amember));
-    }
+    }*/
     
     /**
      * DELETE  /amembers/:id : delete the "id" amember.

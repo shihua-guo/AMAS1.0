@@ -1,6 +1,7 @@
 package com.binana.amas.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.binana.amas.domain.Amember;
 import com.binana.amas.domain.Department;
 
 import com.binana.amas.repository.DepartmentRepository;
@@ -9,6 +10,9 @@ import com.binana.amas.web.rest.util.HeaderUtil;
 import com.binana.amas.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -47,7 +51,60 @@ public class DepartmentResource {
         this.departmentRepository = departmentRepository;
         this.departmentSearchRepository = departmentSearchRepository;
     }
+    
+    /**
+     * SEARCH  /_search/amembers?query=:query : search for the amember corresponding
+     * to the query.
+     *
+     * @param query the query of the amember search 
+     * @param pageable the pagination information
+     * @return the result of the search
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/_search/departmentsOfAsso")
+    @Timed
+    public ResponseEntity<List<Department>> searchDepartmentsOfAsso(@RequestParam(value="assoId") Long id,@RequestParam String query, @ApiParam Pageable pageable)
+        throws URISyntaxException {
+        log.debug("REST request to search for a page of Departments Of Association for query {} and Association is {}", query,id);
+        //查找社团的部门，匹配所有字段
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery()
+        		.must(QueryBuilders.termQuery("assodept.id",id))
+        		.must(queryStringQuery(query));
+        Page<Department> page = departmentSearchRepository.search(boolQueryBuilder, pageable);
+        for(Department deptTmp:page){
+        	System.out.println(deptTmp.toString());
+        }
+        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/amembers");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
+    /**
+     * GET  /departmentsOfAsso/:id : get the "id" departments.
+     *
+     * @param id the id of the departments to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the amember, or with status 404 (Not Found)
+     */
+    @GetMapping("/departmentsOfAsso")
+    @Timed
+    public ResponseEntity<List<Department>> getDeptsByAssoId(@RequestParam(value="assoId") Long id,@ApiParam Pageable pageable) 
+    		 throws URISyntaxException{
+    	log.debug("REST request to get a page of Departments by AssociationId {}",id);
+    	Page<Department> page = departmentRepository.findDepartmentByAssodept_Id(id,pageable);
+         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/departmentsOfAsso");
+         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    /**
+     * Get 获取该社团的部门名称
+     * @param id
+     * @return
+     */
+    @GetMapping("/getAssoDeptNameByAssoId/{id}")
+    @Timed
+    public List<String> getAssoDeptNameByAssoId(@PathVariable Long id) {
+    	log.debug("REST request to get Number of Amembers of Association id : {}", id);
+    	List<String> deptName = departmentRepository.getAssoDeptNameByAssoId(id);
+    	return deptName;
+    }
     /**
      * POST  /departments : Create a new department.
      *

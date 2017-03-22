@@ -22,13 +22,13 @@
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
 
-        alert(vm.reverse);
+        //alert(vm.reverse);
 
         loadAll();
 
         function loadAll () {
             if (pagingParams.search) {
-                alert("按照关键字查询");
+                //alert("按照关键字查询");
                 AmemberSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
@@ -37,7 +37,7 @@
                 }, onSuccess, onError);
             }
             else {
-                alert("查询所有的成员");
+                //alert("查询所有的成员");
                 Amember.query({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,

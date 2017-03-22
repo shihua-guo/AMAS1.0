@@ -8,7 +8,7 @@
     //传递associationId
     angular
         .module('amasApp')
-        .service('assoAmemNumService', function() {
+        .service('assoService', function() {
           //获取社团的id
           var assoId ='' ;
           var setAssoId = function(num) {

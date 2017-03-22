@@ -3,11 +3,11 @@
 
     angular
         .module('amasApp')
-        .controller('DepartmentsOfAssoController', DepartmentsOfAssoController);
+        .controller('ActivitysOfAssoController', ActivitysOfAssoController);
 
-    DepartmentsOfAssoController.$inject = ['assoService','DataUtils', 'DepartmentsOfAsso', 'DepartmentsOfAssoSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
+    ActivitysOfAssoController.$inject = ['assoService','ActivitysOfAsso', 'ActivitysOfAssoSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function DepartmentsOfAssoController(assoService,DataUtils, DepartmentsOfAsso, DepartmentsOfAssoSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
+    function ActivitysOfAssoController(assoService,ActivitysOfAsso, ActivitysOfAssoSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 
@@ -21,14 +21,12 @@
         vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
-        vm.openFile = DataUtils.openFile;
-        vm.byteSize = DataUtils.byteSize;
 
         loadAll();
 
         function loadAll () {
             if (pagingParams.search) {
-                DepartmentsOfAssoSearch.query({
+                ActivitysOfAssoSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
@@ -36,7 +34,8 @@
                     assoId: assoService.getAssoId()
                 }, onSuccess, onError);
             } else {
-                DepartmentsOfAsso.queryDeptsOfAsso({
+                alert("查询社团对应的活动"+assoService.getAssoId());
+                ActivitysOfAsso.queryActivitysOfAsso({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort(),
@@ -54,7 +53,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.departments = data;
+                vm.activities = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {

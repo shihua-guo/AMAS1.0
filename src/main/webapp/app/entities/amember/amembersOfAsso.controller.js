@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('AmembersOfAssoController', AmembersOfAssoController);
 
-    AmembersOfAssoController.$inject = ['$scope','assoAmemNumService','AmembersOfAsso', 'AmembersOfAssoSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
+    AmembersOfAssoController.$inject = ['$scope','assoService','AmembersOfAsso', 'AmembersOfAssoSearch', 'ParseLinks', 'AlertService', 'paginationConstants', '$state', 'pagingParams'];
 
-    function AmembersOfAssoController($scope,assoAmemNumService,AmembersOfAsso, AmembersOfAssoSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
+    function AmembersOfAssoController($scope,assoService,AmembersOfAsso, AmembersOfAssoSearch, ParseLinks, AlertService, paginationConstants, $state, pagingParams) {
 
         var vm = this;
 
@@ -22,7 +22,7 @@
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
 
-        vm.assoName = assoAmemNumService.getAssoName();
+        vm.assoName = assoService.getAssoName();
         loadAll();
         // $rootScope.previousState;
         // $rootScope.currentState;
@@ -37,36 +37,36 @@
             }else if($scope.previousState == 'amember' && $scope.currentState == 'amember'){
 
             }else{
-                assoAmemNumService.setAssoId('');
+                assoService.setAssoId('');
             }
         });
         */
 
         function loadAll () {
             if (pagingParams.search) {
-                alert("按照关键字查询");
+                //alert("按照关键字查询");
                 AmembersOfAssoSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort(),
-                    assoId: assoAmemNumService.getAssoId()
+                    assoId: assoService.getAssoId()
                 }, onSuccess, onError);
             }
             
-            else if(assoAmemNumService.getAssoId() !=''){
-                alert("查询社团对应的成员"+assoAmemNumService.getAssoId());
-                AmembersOfAsso.queryAmemNum({
+            else if(assoService.getAssoId() !=''){
+                //alert("查询社团对应的成员"+assoService.getAssoId());
+                AmembersOfAsso.queryAmembersOfAsso({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort(),
-                    assoId: assoAmemNumService.getAssoId()
+                    assoId: assoService.getAssoId()
                 }, onSuccess, onError);
-                alert('查询！！！了')
-                //assoAmemNumService.setAssoId('');
+                //alert('查询！！！了')
+                //assoService.setAssoId('');
                 /*$rootScope.$on('$stateChangeStart',
                 function(){
-                    assoAmemNumService.setAssoId('');
+                    assoService.setAssoId('');
                 });*/
             }
 

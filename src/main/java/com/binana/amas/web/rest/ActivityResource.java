@@ -2,13 +2,16 @@ package com.binana.amas.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.binana.amas.domain.Activity;
-
+import com.binana.amas.domain.Department;
 import com.binana.amas.repository.ActivityRepository;
 import com.binana.amas.repository.search.ActivitySearchRepository;
 import com.binana.amas.web.rest.util.HeaderUtil;
 import com.binana.amas.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -48,6 +51,60 @@ public class ActivityResource {
         this.activitySearchRepository = activitySearchRepository;
     }
 
+    /**
+     * SEARCH  /_search/amembers?query=:query : search for the amember corresponding
+     * to the query.
+     *
+     * @param query the query of the amember search 
+     * @param pageable the pagination information
+     * @return the result of the search
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/_search/activitiesOfAsso")
+    @Timed
+    public ResponseEntity<List<Activity>> searchActivitiesOfAsso(@RequestParam(value="assoId") Long id,@RequestParam String query, @ApiParam Pageable pageable)
+        throws URISyntaxException {
+        log.debug("REST request to search for a page of Activities Of Association for query {} and Association is {}", query,id);
+        //查找社团的部门，匹配所有字段
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery()
+        		.must(QueryBuilders.termQuery("assoacti.id",id))
+        		.must(queryStringQuery(query));
+        Page<Activity> page = activitySearchRepository.search(boolQueryBuilder, pageable);
+        for(Activity deptTmp:page.getContent()){
+        	System.out.println(deptTmp.toString());
+        }
+        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/activitiesOfAsso");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    /**
+     * GET  /getActivitiesByAssoId/:id : get the "id" Association.
+     *
+     * @param id the id of the departments to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the Activities, or with status 404 (Not Found)
+     */
+    @GetMapping("/activitiesOfAsso")
+    @Timed
+    public ResponseEntity<List<Activity>> getActivitiesByAssoId(@RequestParam(value="assoId") Long id,@ApiParam Pageable pageable) 
+    		 throws URISyntaxException{
+    	log.debug("REST request to get a page of Activities by AssociationId {}",id);
+    	Page<Activity> page = activityRepository.findActivityByAssoacti_Id(id,pageable);
+         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/getActivitiesByAssoId");
+         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    /**
+     * GET  /activities/:id : get the "id" activity.
+     *
+     * @param id the id of the activity to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the activity, or with status 404 (Not Found)
+     */
+    @GetMapping("/getRecentActivitiesByAssoId/{id}")
+    @Timed
+    public ResponseEntity<Activity> getRecentActivitiesByAssoId(@PathVariable Long id) {
+        log.debug("REST request to get Activity By AssoId: {}", id);
+        Activity activity = activityRepository.findTopByAssoacti_idOrderByActiDateDesc(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(activity));
+    }
+    
     /**
      * POST  /activities : Create a new activity.
      *

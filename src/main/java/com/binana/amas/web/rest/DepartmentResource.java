@@ -71,10 +71,10 @@ public class DepartmentResource {
         		.must(QueryBuilders.termQuery("assodept.id",id))
         		.must(queryStringQuery(query));
         Page<Department> page = departmentSearchRepository.search(boolQueryBuilder, pageable);
-        for(Department deptTmp:page){
+        for(Department deptTmp:page.getContent()){
         	System.out.println(deptTmp.toString());
         }
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/amembers");
+        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/departmentsOfAsso");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

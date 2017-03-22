@@ -16,8 +16,8 @@
                 </li>
                
                <li class="dropdown" ng-switch-when="true" >
-                    <a class="dropdown-toggle" id="entity-menu" data-toggle="dropdown">
-                        <span>
+                    <a id="entity-menu" data-toggle="dropdown" >
+                        <span >
                             <span class="glyphicon glyphicon-th-list"></span>
                             <span class="hidden-sm" data-translate="global.menu.entities.main">
                                 Entities
@@ -25,8 +25,7 @@
                             <b class="caret"></b>
                         </span>
                     </a>
-
-                    <ul class="dropdown-menu" role="menu">
+                    <ul class="dropdown-menu" role="menu" >
                       <li class="dropdown-header">Dropdown heading</li>
                       <li  ui-sref-active="active">
                         <a ui-sref="association" >
@@ -75,7 +74,7 @@
                 </li>
 
                 <li class="dropdown" ng-class="{active: vm.$state.includes('account')}">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="" id="account-menu">
+                    <a class="dropdown-toggle" data-toggle="dropdown" id="account-menu">
                         <span>
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="hidden-sm" data-translate="global.menu.account.main">
@@ -105,13 +104,13 @@
                           </a>
                       </li>
                       <li ui-sref-active="active" ng-switch-when="true">
-                          <a href="" ng-click="vm.logout()" id="logout">
+                          <a ng-click="vm.logout()" id="logout">
                               <span class="glyphicon glyphicon-log-out"></span>&nbsp;
                               <span data-translate="global.menu.account.logout">Sign out</span>
                           </a>
                       </li>
                       <li ui-sref-active="active" ng-switch-when="false">
-                          <a href="" ng-click="vm.login()" id="login">
+                          <a ng-click="vm.login()" id="login">
                               <span class="glyphicon glyphicon-log-in"></span>&nbsp;
                               <span data-translate="global.menu.account.login">Sign in</span>
                           </a>
@@ -126,7 +125,7 @@
                 </li>
 
                 <li ng-class="{active: vm.$state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="" id="admin-menu">
+                    <a class="dropdown-toggle" data-toggle="dropdown"  id="admin-menu">
                         <span>
                             <span class="glyphicon glyphicon-tower"></span>
                             <span class="hidden-sm" data-translate="global.menu.admin.main">Administration</span>
@@ -192,17 +191,16 @@
 
 
                 <li ui-sref-active="active" class="dropdown" ng-controller="JhiLanguageController as languageVm">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="" ng-if="languageVm.languages.length > 1">
+                    <a data-toggle="dropdown"  class="dropdown-toggle" ng-if="languageVm.languages.length > 1">
                         <span>
                             <span class="glyphicon glyphicon-flag"></span>
                             <span class="hidden-sm" data-translate="global.menu.language">Language</span>
                             <b class="caret"></b>
                         </span>
                     </a>
-                    <ul class="dropdown-menu" uib-dropdown-menu ng-if="languageVm.languages.length > 1">
-                        <li class="dropdown-header">Dropdown heading</li>
+                    <ul class="dropdown-menu" ng-if="languageVm.languages.length > 1">
                         <li active-menu="{{language}}" ng-repeat="language in languageVm.languages">
-                            <a href="" ng-click="languageVm.changeLanguage(language);vm.collapseNavbar();">{{language | findLanguageFromKey}}</a>
+                            <a ng-click="languageVm.changeLanguage(language);vm.collapseNavbar();">{{language | findLanguageFromKey}}</a>
                         </li>
                     </ul>
                 </li>
@@ -221,12 +219,10 @@
         <!-- /#page-content-wrapper -->
 
     </div>
-    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
-    <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
         <script type="text/javascript">
             $(document).ready(function () {
               var trigger = $('.hamburger'),
-                  overlay = $('.overlay'),
+                 // overlay = $('.overlay'),
                  isClosed = false;
 
                 trigger.click(function () {
@@ -251,11 +247,17 @@
                     //$(".container").animate({"margin-left":"230px"},300);
                   }
               }
-              
+              /*$('.dropdown-menu').click(function(e) {
+                     e.stopPropagation();
+                 });*/
               $('[data-toggle="offcanvas"]').click(function () {
                     //打开侧边栏
                     $('#wrapper').toggleClass('toggled');
                     $('.container').toggleClass('toggled');
+                    $('.dropdown-menu li').click(function(e) {
+                        e.stopPropagation();
+                    });
+
               });  
             });
         </script>

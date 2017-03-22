@@ -140,3 +140,5 @@ Desktop.ini
 ######################
 .eslintcache
 /.apt_generated/
+/sublime-web.sublime-project
+/sublime-web.sublime-workspace

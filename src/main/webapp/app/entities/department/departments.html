@@ -35,7 +35,9 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <!-- 
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                     -->
                     <th jh-sort-by="deptName"><span data-translate="amasApp.department.deptName">Dept Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="deptIntrodution"><span data-translate="amasApp.department.deptIntrodution">Dept Introdution</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="deptImage"><span data-translate="amasApp.department.deptImage">Dept Image</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -45,7 +47,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat="department in vm.departments track by department.id">
+                    <!-- 
                     <td><a ui-sref="department-detail({id:department.id})">{{department.id}}</a></td>
+                     -->
                     <td>{{department.deptName}}</td>
                     <td>{{department.deptIntrodution}}</td>
                     <td>
@@ -63,19 +67,25 @@
                                     ui-sref="department-detail({id:department.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
+                                <!-- 
                                 <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                                 -->
                             </button>
                             <button type="submit"
                                     ui-sref="department.edit({id:department.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
+                                <!-- 
                                 <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                                -->
                             </button>
                             <button type="submit"
                                     ui-sref="department.delete({id:department.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
+                                <!-- 
                                 <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                                -->
                             </button>
                         </div>
                     </td>

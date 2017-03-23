@@ -31,6 +31,8 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.binana.amas.domain.enumeration.GENDER;
+import com.binana.amas.domain.enumeration.POLITICSSTATUS;
 /**
  * Test class for the AmemberResource REST controller.
  *
@@ -60,6 +62,15 @@ public class AmemberResourceIntTest {
 
     private static final LocalDate DEFAULT_MEMB_JOIN_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_MEMB_JOIN_DATE = LocalDate.now(ZoneId.systemDefault());
+
+    private static final GENDER DEFAULT_GENDER = GENDER.M;
+    private static final GENDER UPDATED_GENDER = GENDER.F;
+
+    private static final String DEFAULT_DORM_NUM = "AAAAAAAAAA";
+    private static final String UPDATED_DORM_NUM = "BBBBBBBBBB";
+
+    private static final POLITICSSTATUS DEFAULT_POLITICS_STATUS = POLITICSSTATUS.PARTY;
+    private static final POLITICSSTATUS UPDATED_POLITICS_STATUS = POLITICSSTATUS.LEAGUE;
 
     @Autowired
     private AmemberRepository amemberRepository;
@@ -107,7 +118,10 @@ public class AmemberResourceIntTest {
                 .membPhone(DEFAULT_MEMB_PHONE)
                 .membQQ(DEFAULT_MEMB_QQ)
                 .membEmail(DEFAULT_MEMB_EMAIL)
-                .membJoinDate(DEFAULT_MEMB_JOIN_DATE);
+                .membJoinDate(DEFAULT_MEMB_JOIN_DATE)
+                .gender(DEFAULT_GENDER)
+                .dormNum(DEFAULT_DORM_NUM)
+                .politicsStatus(DEFAULT_POLITICS_STATUS);
         return amember;
     }
 
@@ -140,6 +154,9 @@ public class AmemberResourceIntTest {
         assertThat(testAmember.getMembQQ()).isEqualTo(DEFAULT_MEMB_QQ);
         assertThat(testAmember.getMembEmail()).isEqualTo(DEFAULT_MEMB_EMAIL);
         assertThat(testAmember.getMembJoinDate()).isEqualTo(DEFAULT_MEMB_JOIN_DATE);
+        assertThat(testAmember.getGender()).isEqualTo(DEFAULT_GENDER);
+        assertThat(testAmember.getDormNum()).isEqualTo(DEFAULT_DORM_NUM);
+        assertThat(testAmember.getPoliticsStatus()).isEqualTo(DEFAULT_POLITICS_STATUS);
 
         // Validate the Amember in Elasticsearch
         Amember amemberEs = amemberSearchRepository.findOne(testAmember.getId());
@@ -255,7 +272,10 @@ public class AmemberResourceIntTest {
             .andExpect(jsonPath("$.[*].membPhone").value(hasItem(DEFAULT_MEMB_PHONE.toString())))
             .andExpect(jsonPath("$.[*].membQQ").value(hasItem(DEFAULT_MEMB_QQ.toString())))
             .andExpect(jsonPath("$.[*].membEmail").value(hasItem(DEFAULT_MEMB_EMAIL.toString())))
-            .andExpect(jsonPath("$.[*].membJoinDate").value(hasItem(DEFAULT_MEMB_JOIN_DATE.toString())));
+            .andExpect(jsonPath("$.[*].membJoinDate").value(hasItem(DEFAULT_MEMB_JOIN_DATE.toString())))
+            .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
+            .andExpect(jsonPath("$.[*].dormNum").value(hasItem(DEFAULT_DORM_NUM.toString())))
+            .andExpect(jsonPath("$.[*].politicsStatus").value(hasItem(DEFAULT_POLITICS_STATUS.toString())));
     }
 
     @Test
@@ -275,7 +295,10 @@ public class AmemberResourceIntTest {
             .andExpect(jsonPath("$.membPhone").value(DEFAULT_MEMB_PHONE.toString()))
             .andExpect(jsonPath("$.membQQ").value(DEFAULT_MEMB_QQ.toString()))
             .andExpect(jsonPath("$.membEmail").value(DEFAULT_MEMB_EMAIL.toString()))
-            .andExpect(jsonPath("$.membJoinDate").value(DEFAULT_MEMB_JOIN_DATE.toString()));
+            .andExpect(jsonPath("$.membJoinDate").value(DEFAULT_MEMB_JOIN_DATE.toString()))
+            .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()))
+            .andExpect(jsonPath("$.dormNum").value(DEFAULT_DORM_NUM.toString()))
+            .andExpect(jsonPath("$.politicsStatus").value(DEFAULT_POLITICS_STATUS.toString()));
     }
 
     @Test
@@ -303,7 +326,10 @@ public class AmemberResourceIntTest {
                 .membPhone(UPDATED_MEMB_PHONE)
                 .membQQ(UPDATED_MEMB_QQ)
                 .membEmail(UPDATED_MEMB_EMAIL)
-                .membJoinDate(UPDATED_MEMB_JOIN_DATE);
+                .membJoinDate(UPDATED_MEMB_JOIN_DATE)
+                .gender(UPDATED_GENDER)
+                .dormNum(UPDATED_DORM_NUM)
+                .politicsStatus(UPDATED_POLITICS_STATUS);
 
         restAmemberMockMvc.perform(put("/api/amembers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -321,6 +347,9 @@ public class AmemberResourceIntTest {
         assertThat(testAmember.getMembQQ()).isEqualTo(UPDATED_MEMB_QQ);
         assertThat(testAmember.getMembEmail()).isEqualTo(UPDATED_MEMB_EMAIL);
         assertThat(testAmember.getMembJoinDate()).isEqualTo(UPDATED_MEMB_JOIN_DATE);
+        assertThat(testAmember.getGender()).isEqualTo(UPDATED_GENDER);
+        assertThat(testAmember.getDormNum()).isEqualTo(UPDATED_DORM_NUM);
+        assertThat(testAmember.getPoliticsStatus()).isEqualTo(UPDATED_POLITICS_STATUS);
 
         // Validate the Amember in Elasticsearch
         Amember amemberEs = amemberSearchRepository.findOne(testAmember.getId());
@@ -385,7 +414,10 @@ public class AmemberResourceIntTest {
             .andExpect(jsonPath("$.[*].membPhone").value(hasItem(DEFAULT_MEMB_PHONE.toString())))
             .andExpect(jsonPath("$.[*].membQQ").value(hasItem(DEFAULT_MEMB_QQ.toString())))
             .andExpect(jsonPath("$.[*].membEmail").value(hasItem(DEFAULT_MEMB_EMAIL.toString())))
-            .andExpect(jsonPath("$.[*].membJoinDate").value(hasItem(DEFAULT_MEMB_JOIN_DATE.toString())));
+            .andExpect(jsonPath("$.[*].membJoinDate").value(hasItem(DEFAULT_MEMB_JOIN_DATE.toString())))
+            .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
+            .andExpect(jsonPath("$.[*].dormNum").value(hasItem(DEFAULT_DORM_NUM.toString())))
+            .andExpect(jsonPath("$.[*].politicsStatus").value(hasItem(DEFAULT_POLITICS_STATUS.toString())));
     }
 
     @Test

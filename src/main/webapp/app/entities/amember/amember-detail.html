@@ -32,6 +32,18 @@
         <dd>
             <span>{{vm.amember.membJoinDate | date:'mediumDate'}}</span>
         </dd>
+        <dt><span data-translate="amasApp.amember.gender">Gender</span></dt>
+        <dd>
+            <span data-translate="{{'amasApp.GENDER.' + vm.amember.gender}}">{{vm.amember.gender}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.dormNum">Dorm Num</span></dt>
+        <dd>
+            <span>{{vm.amember.dormNum}}</span>
+        </dd>
+        <dt><span data-translate="amasApp.amember.politicsStatus">Politics Status</span></dt>
+        <dd>
+            <span data-translate="{{'amasApp.POLITICSSTATUS.' + vm.amember.politicsStatus}}">{{vm.amember.politicsStatus}}</span>
+        </dd>
         <dt><span data-translate="amasApp.amember.association">Association</span></dt>
         <dd>
             <span ng-repeat="association in vm.amember.associations">

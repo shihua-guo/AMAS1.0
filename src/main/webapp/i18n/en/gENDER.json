@@ -1,0 +1,9 @@
+{
+    "amasApp": {
+        "GENDER" : {
+            "null": "Secrecy",
+            "M": "Male",
+            "F": "Female"
+        }
+    }
+}

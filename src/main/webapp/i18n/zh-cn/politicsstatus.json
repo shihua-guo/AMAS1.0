@@ -1,0 +1,11 @@
+{
+    "amasApp": {
+        "POLITICSSTATUS" : {
+            "null": "",
+            "PARTY": "中共党员",
+            "LEAGUE": "共青团员",
+            "PUBLIC": "群众",
+            "NON": "无党派人士"
+        }
+    }
+}

@@ -186,20 +186,6 @@ public class AmemberResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(amember));
     }
     
-    /**
-     * GET  /amembers/:id : get the "id" amember.
-     *
-     * @param id the id of the amember to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the amember, or with status 404 (Not Found)
-     */
-    /*
-    @GetMapping("/getAmemberByAssoId/{assoId}")
-    @Timed
-    public ResponseEntity<Amember> getAmemberByAssoId(@PathVariable Long id) {
-        log.debug("REST request to get Amember : {}", id);
-        Amember amember = amemberRepository.findOneWithEagerRelationships(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(amember));
-    }*/
     
     /**
      * DELETE  /amembers/:id : delete the "id" amember.

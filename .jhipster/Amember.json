@@ -72,11 +72,25 @@
         {
             "fieldName": "membJoinDate",
             "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "gender",
+            "fieldType": "GENDER",
+            "fieldValues": "M,F"
+        },
+        {
+            "fieldName": "dormNum",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "politicsStatus",
+            "fieldType": "POLITICSSTATUS",
+            "fieldValues": "PARTY,LEAGUE,PUBLIC,NON"
         }
     ],
     "changelogDate": "20170226131922",
-    "entityTableName": "amember",
     "dto": "no",
-    "pagination": "pagination",
-    "service": "no"
+    "service": "no",
+    "entityTableName": "amember",
+    "pagination": "pagination"
 }

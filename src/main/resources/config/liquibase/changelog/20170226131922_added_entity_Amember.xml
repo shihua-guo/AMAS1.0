@@ -50,6 +50,18 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="gender" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="dorm_num" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="politics_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="dutymemb_id" type="bigint">
                 <constraints nullable="true" />
             </column>

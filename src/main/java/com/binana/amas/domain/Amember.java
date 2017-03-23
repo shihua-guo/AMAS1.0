@@ -12,6 +12,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.binana.amas.domain.enumeration.GENDER;
+
+import com.binana.amas.domain.enumeration.POLITICSSTATUS;
+
 /**
  * A Amember.
  */
@@ -51,6 +55,17 @@ public class Amember implements Serializable {
 
     @Column(name = "memb_join_date")
     private LocalDate membJoinDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender")
+    private GENDER gender;
+
+    @Column(name = "dorm_num")
+    private String dormNum;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "politics_status")
+    private POLITICSSTATUS politicsStatus;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -175,6 +190,45 @@ public class Amember implements Serializable {
         this.membJoinDate = membJoinDate;
     }
 
+    public GENDER getGender() {
+        return gender;
+    }
+
+    public Amember gender(GENDER gender) {
+        this.gender = gender;
+        return this;
+    }
+
+    public void setGender(GENDER gender) {
+        this.gender = gender;
+    }
+
+    public String getDormNum() {
+        return dormNum;
+    }
+
+    public Amember dormNum(String dormNum) {
+        this.dormNum = dormNum;
+        return this;
+    }
+
+    public void setDormNum(String dormNum) {
+        this.dormNum = dormNum;
+    }
+
+    public POLITICSSTATUS getPoliticsStatus() {
+        return politicsStatus;
+    }
+
+    public Amember politicsStatus(POLITICSSTATUS politicsStatus) {
+        this.politicsStatus = politicsStatus;
+        return this;
+    }
+
+    public void setPoliticsStatus(POLITICSSTATUS politicsStatus) {
+        this.politicsStatus = politicsStatus;
+    }
+
     public Set<Association> getAssociations() {
         return associations;
     }
@@ -294,6 +348,9 @@ public class Amember implements Serializable {
             ", membQQ='" + membQQ + "'" +
             ", membEmail='" + membEmail + "'" +
             ", membJoinDate='" + membJoinDate + "'" +
+            ", gender='" + gender + "'" +
+            ", dormNum='" + dormNum + "'" +
+            ", politicsStatus='" + politicsStatus + "'" +
             '}';
     }
 }

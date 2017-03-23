@@ -1,0 +1,11 @@
+{
+    "amasApp": {
+        "POLITICSSTATUS" : {
+            "null": "",
+            "PARTY": "PARTY",
+            "LEAGUE": "LEAGUE",
+            "PUBLIC": "PUBLIC",
+            "NON": "NON"
+        }
+    }
+}

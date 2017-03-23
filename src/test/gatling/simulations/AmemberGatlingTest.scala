@@ -67,7 +67,7 @@ class AmemberGatlingTest extends Simulation {
             .exec(http("Create new amember")
             .post("/api/amembers")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "membName":"SAMPLE_TEXT", "membNO":"SAMPLE_TEXT", "membClass":"SAMPLE_TEXT", "membPhone":"SAMPLE_TEXT", "membQQ":"SAMPLE_TEXT", "membEmail":"SAMPLE_TEXT", "membJoinDate":"2020-01-01T00:00:00.000Z"}""")).asJSON
+            .body(StringBody("""{"id":null, "membName":"SAMPLE_TEXT", "membNO":"SAMPLE_TEXT", "membClass":"SAMPLE_TEXT", "membPhone":"SAMPLE_TEXT", "membQQ":"SAMPLE_TEXT", "membEmail":"SAMPLE_TEXT", "membJoinDate":"2020-01-01T00:00:00.000Z", "gender":null, "dormNum":"SAMPLE_TEXT", "politicsStatus":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_amember_url"))).exitHereIfFailed
             .pause(10)

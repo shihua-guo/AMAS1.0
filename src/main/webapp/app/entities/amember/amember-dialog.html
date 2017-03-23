@@ -83,6 +83,28 @@
                     </span>
                 </div>
         </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.amember.gender" for="field_gender">Gender</label>
+            <select class="form-control" name="gender" ng-model="vm.amember.gender" id="field_gender">
+                <option value="M" data-translate="amasApp.Gender.M">M</option>
+                <option value="F" data-translate="amasApp.Gender.F">F</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.amember.dormNum" for="field_dormNum">Dorm Num</label>
+            <input type="text" class="form-control" name="dormNum" id="field_dormNum"
+                    ng-model="vm.amember.dormNum"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="amasApp.amember.politicsStatus" for="field_politicsStatus">Politics Status</label>
+            <select class="form-control" name="politicsStatus" ng-model="vm.amember.politicsStatus" id="field_politicsStatus">
+                <option value="PARTY" data-translate="amasApp.POLITICSSTATUS.PARTY">PARTY</option>
+                <option value="LEAGUE" data-translate="amasApp.POLITICSSTATUS.LEAGUE">LEAGUE</option>
+                <option value="PUBLIC" data-translate="amasApp.POLITICSSTATUS.PUBLIC">PUBLIC</option>
+                <option value="NON" data-translate="amasApp.POLITICSSTATUS.NON">NON</option>
+            </select>
+        </div>
 
         <div class="form-group">
             <label data-translate="amasApp.amember.association" for="field_association">Association</label>

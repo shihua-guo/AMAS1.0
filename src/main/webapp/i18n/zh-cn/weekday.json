@@ -2,13 +2,13 @@
     "amasApp": {
         "Weekday" : {
             "null": "",
-            "MON": "MON",
-            "TUS": "TUS",
-            "WED": "WED",
-            "THUR": "THUR",
-            "FRI": "FRI",
-            "SAT": "SAT",
-            "SUN": "SUN"
+            "MON": "星期一",
+            "TUS": "星期二",
+            "WED": "星期三",
+            "THUR": "星期四",
+            "FRI": "星期五",
+            "SAT": "星期六",
+            "SUN": "星期天"
         }
     }
 }

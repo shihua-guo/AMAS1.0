@@ -47,6 +47,8 @@
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('amember');
                     $translatePartialLoader.addPart('global');
+                    $translatePartialLoader.addPart('gender');
+                    $translatePartialLoader.addPart('politicsstatus');
                     return $translate.refresh();
                 }]
             }
@@ -68,6 +70,8 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('amember');
+                    $translatePartialLoader.addPart('gender');
+                    $translatePartialLoader.addPart('politicsstatus');
                     return $translate.refresh();
                 }],
                 entity: ['$stateParams', 'Amember', function($stateParams, Amember) {

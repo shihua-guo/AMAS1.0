@@ -4,7 +4,7 @@
             "home": {
                 "title": "成员列表",
                 "createLabel": "新增一个成员",
-                "createOrEditLabel": "新增/编辑活动",
+                "createOrEditLabel": "新增/编辑成员",
                 "search": "通过任意关键字查找社团成员"
             },
             "created": "ID为 {{ param }}的成员创建成功！",
@@ -26,7 +26,10 @@
             "association": "所属社团",
             "department": "所属社团部门",
             "role": "角色",
-            "dutymemb": "值班时间"
+            "dutymemb": "值班时间",
+            "politicsStatus": "政治面貌",
+            "gender": "性别",
+            "dormNum": "宿舍号"
         }
     }
 }

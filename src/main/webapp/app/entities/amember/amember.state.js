@@ -194,6 +194,24 @@
                     $state.go('^');
                 });
             }]
+        })
+        // 批量导入
+        .state('amember.newByExcel', {
+            parent: 'amember',
+            url: '/newByExcel',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/amember/amember-newByExcel.html',
+                    controller: 'fileUploadController'
+                }).result.then(function() {
+                    $state.go('amember', null, { reload: 'amember' });
+                }, function() {
+                    $state.go('amember');
+                });
+            }]
         });
     }
 

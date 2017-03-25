@@ -7,6 +7,9 @@
     <meta name="description" content="">
     <meta name="google" value="notranslate">
     <meta name="viewport" content="width=device-width">
+    <meta name="_csrf" content="${_csrf.token}"/>
+       <!-- default header name is X-CSRF-TOKEN -->
+       <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css content/css/vendor.css -->
     <!-- bower:css -->
@@ -60,7 +63,9 @@
 
     <!-- build:js app/vendor.js -->
     <!-- bower:js -->
+    
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/messageformat/messageformat.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
@@ -81,15 +86,21 @@
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
-    <script src="jquery.min"></script>
 
+    <script src="app/components/file-upload/es5-shim.min.js"></script>
+    <script src="app/components/file-upload/es5-sham.min.js"></script>
+    <script src="app/components/file-upload/console-sham.min.js"></script>
+    <script src="app/components/file-upload/angular-file-upload.min.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
 
     <!-- build:js app/app.js  -->
     <!-- inject:js -->
+
     <script src="app/app.module.js"></script>
+    <script src="app/entities/amember/amember-file-upload.controllers.js"></script>
     <script src="app/services/user/user.service.js"></script>
     <script src="app/services/profiles/profile.service.js"></script>
     <script src="app/services/profiles/page-ribbon.directive.js"></script>
@@ -157,7 +168,10 @@
     <script src="app/entities/amember/amember-dialog.controller.js"></script>
     <script src="app/entities/amember/amember-detail.controller.js"></script>
     <script src="app/entities/amember/amember-delete-dialog.controller.js"></script>
+
+
     <script src="app/entities/amember/amember.state.js"></script>
+
     <script src="app/entities/amember/amember.service.js"></script>
     <script src="app/entities/amember/amember.search.service.js"></script>
     <script src="app/entities/amember/amember.controller.js"></script>
@@ -254,6 +268,10 @@
     <script src="app/account/activate/activate.state.js"></script>
     <script src="app/account/activate/activate.controller.js"></script>
     <script src="app/account/account.state.js"></script>
+    
+    
+
+
     <!-- endinject -->
     <!-- endbuild -->
 

@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-
+    
     angular
         .module('amasApp', [
             'ngStorage',
@@ -16,7 +16,8 @@
             'ui.router',
             'infinite-scroll',
             // jhipster-needle-angularjs-add-module JHipster will add new module here
-            'angular-loading-bar'
+            'angular-loading-bar',
+            'angularFileUpload'
         ])
         .run(run);
 
@@ -26,4 +27,6 @@
         stateHandler.initialize();
         translationHandler.initialize();
     }
+
+
 })();

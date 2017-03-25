@@ -9,24 +9,25 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
             ng-click="clearUpload()">&times;</button>
-    <h4 class="modal-title" id="myAmemberLabel" data-translate="amasApp.amember.home.createOrEditLabel">Create or edit a Amember</h4>
+    <h4 class="modal-title" id="myAmemberLabel" data-translate="amasApp.amember.home.addByExcel">Create or edit a Amember</h4>
 </div>
 <div  class="container"  nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter,xlsxFilter">
 	
     <div class="row">
 
         <div class="col-md-6">
-			<div class="form-group" >
+        	<h3 data-translate="amasApp.amember.home.selectAssoName">Select Association</h3>
+			<div   class="form-group" >
 			    <select class="form-control" ng-model="selectAsso" ng-options="association.assoName for association in getAssoIdAndName track by association.id" > 
 				      <option >{{association.id}}</option> 
 			    </select>
 			 </div>
-            <h3>Select files</h3>
+            <h3 data-translate="amasApp.amember.home.selectFiles">Select files</h3>
 			<div ></div>
             <div ng-show="uploader.isHTML5">
                 <!-- 3. nv-file-over uploader="link" over-class="className" -->
-                <div class="well my-drop-zone" nv-file-over="" uploader="uploader" filters="xlsxFilter">
-                    Base drop zone
+                <div class="well my-drop-zone" nv-file-over="" uploader="uploader" filters="xlsxFilter" data-translate="amasApp.amember.home.dropZone">
+                    Drop zone
                 </div>
 
                 <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
@@ -39,7 +40,6 @@
             </div>
 
             <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-            Multiple
             <input type="file" nv-file-select="" uploader="uploader"  filters="xlsxFilter" multiple  /><br/>
 
            <!--  Single
@@ -48,17 +48,17 @@
 
         <div class="col-md-9" style="margin-bottom: 40px">
 
-            <h3>Upload queue</h3>
-            <p>Queue length: {{ uploader.queue.length }}</p>
+            <h3 data-translate="amasApp.amember.home.uploadQueue">Upload queue</h3>
+            <p data-translate="amasApp.amember.home.queueLength">Queue length: {{ uploader.queue.length }}</p>
 
             <table class="table">
                 <thead>
                     <tr>
-                        <th width="50%" >Name</th>
-                        <th ng-show="uploader.isHTML5">Size</th>
-                        <th ng-show="uploader.isHTML5">Progress</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                        <th width="50%" data-translate="amasApp.amember.home.fileName">Name</th>
+                        <th ng-show="uploader.isHTML5" data-translate="amasApp.amember.home.fileSize">Size</th>
+                        <th ng-show="uploader.isHTML5" data-translate="amasApp.amember.home.fileProgress">Progress</th>
+                        <th data-translate="amasApp.amember.home.fileStatus">Status</th>
+                        <th data-translate="amasApp.amember.home.fileActions">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -92,19 +92,20 @@
 
             <div>
                 <div>
-                    Queue progress:
+                	<span data-translate="amasApp.amember.home.queueProgress">Queue progress:</span>
+                    
                     <div class="progress" style="">
                         <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                     </div>
                 </div>
                 <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length || selectAsso==''">
-                    <span class="glyphicon glyphicon-upload"></span> Upload all
+                    <span class="glyphicon glyphicon-upload"></span><span data-translate="amasApp.amember.home.uploadAll">Upload all</span> 
                 </button>
                 <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                    <span class="glyphicon glyphicon-ban-circle"></span><span data-translate="amasApp.amember.home.cancelAll">Cancel all</span> 
                 </button>
                 <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                    <span class="glyphicon glyphicon-trash"></span> <span data-translate="amasApp.amember.home.removeAll">Remove all</span>
                 </button>
             </div>
 

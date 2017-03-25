@@ -6,7 +6,7 @@
 	/*.another-file-over-class { border: dotted 3px green; }*/
 </style>
 <div ><!-- id="ng-app" IE<8 -->
-<div  class="container"  ng-controller="fileUploadController" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+<div  class="container"  ng-controller="fileUploadController" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter,xlsxFilter">
 
     <div class="row">
 
@@ -16,7 +16,7 @@
 
             <div ng-show="uploader.isHTML5">
                 <!-- 3. nv-file-over uploader="link" over-class="className" -->
-                <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
+                <div class="well my-drop-zone" nv-file-over="" uploader="uploader" filters="xlsxFilter">
                     Base drop zone
                 </div>
 
@@ -31,7 +31,7 @@
 
             <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
             Multiple
-            <input type="file" nv-file-select="" uploader="uploader" multiple  /><br/>
+            <input type="file" nv-file-select="" uploader="uploader"  filters="xlsxFilter" multiple  /><br/>
 
            <!--  Single
             <input type="file" nv-file-select="" uploader="uploader" /> -->

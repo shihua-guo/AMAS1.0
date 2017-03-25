@@ -23,6 +23,9 @@ public final class HeaderUtil {
         return headers;
     }
 
+    public static HttpHeaders exportEntitesAlert(String param) {
+    	return createAlert(APPLICATION_NAME + "." + ".created", param+"批量导入成功");
+    }
     public static HttpHeaders createEntityCreationAlert(String entityName, String param) {
         return createAlert(APPLICATION_NAME + "." + entityName + ".created", param);
     }

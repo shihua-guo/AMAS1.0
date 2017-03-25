@@ -2,6 +2,8 @@ package com.binana.amas.web.rest;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -9,17 +11,16 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.apache.lucene.search.TermQuery;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.binana.amas.domain.Amember;
 import com.binana.amas.repository.AmemberRepository;
 import com.binana.amas.repository.search.AmemberSearchRepository;
+import com.binana.amas.web.rest.util.ExcelUtil;
 import com.binana.amas.web.rest.util.HeaderUtil;
 import com.binana.amas.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
@@ -55,6 +57,9 @@ public class AmemberResource {
     private final AmemberRepository amemberRepository;
 
     private final AmemberSearchRepository amemberSearchRepository;
+    
+    @Autowired
+    private  ExcelUtil excelUtil;
 
     public AmemberResource(AmemberRepository amemberRepository, AmemberSearchRepository amemberSearchRepository) {
         this.amemberRepository = amemberRepository;
@@ -63,9 +68,20 @@ public class AmemberResource {
 
     @PostMapping("/fileUpload")
     @Timed
-    public String fileUpload(@RequestParam("file") MultipartFile[] file) {
+    public String fileUpload(@RequestParam("file") MultipartFile[] exportFiles) {
         log.debug("REST request to save Amember : {}");
-        System.out.println(file[0].getName());
+        System.out.println(exportFiles[0].getName());
+        
+        try {
+        	for(MultipartFile file:exportFiles ){
+        		List<Amember> amemberList = excelUtil.parseExcel(file.getInputStream());
+        		amemberRepository.save(amemberList);
+        		amemberSearchRepository.save(amemberList);
+        	}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return "hello";
     }
     /**
@@ -224,10 +240,6 @@ public class AmemberResource {
     public ResponseEntity<List<Amember>> searchAmembers(@RequestParam String query, @ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to search for a page of Amembers for query {}", query);
-        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery().filter(QueryBuilders.termQuery("associations.id","2"));
-        BoolQueryBuilder boolQueryBuilder2 = QueryBuilders.boolQuery()
-        		.must(QueryBuilders.termQuery("associations.id","2"))
-        		.must(queryStringQuery(query));
         Page<Amember> page = amemberSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/amembers");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);

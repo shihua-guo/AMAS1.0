@@ -38,7 +38,15 @@ angular
             setTimeout(deferred.resolve, 1e3);
         }
     });
-
+    uploader.filters.push({
+        name: 'xlsxFilter',
+        fn: function(item /*{File|FileLikeObject}*/, options) {
+            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+            alert(type);
+            alert(item.type);
+            return '|vnd.openxmlformats-officedocument.spreadsheetml.sheet|vnd.ms-excel|'.indexOf(type) !== -1;
+        }
+    });
     // CALLBACKS
 
     uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {

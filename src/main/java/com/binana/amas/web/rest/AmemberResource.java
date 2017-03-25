@@ -66,15 +66,15 @@ public class AmemberResource {
         this.amemberSearchRepository = amemberSearchRepository;
     }
 
-    @PostMapping("/fileUpload")
+    @PostMapping("/fileUpload/{id}")
     @Timed
-    public String fileUpload(@RequestParam("file") MultipartFile[] exportFiles) {
+    public String fileUpload(@PathVariable Long id,@RequestParam("file") MultipartFile[] exportFiles) {
         log.debug("REST request to save Amember : {}");
-        System.out.println(exportFiles[0].getName());
+        System.out.println(exportFiles[0].getName()+"---------"+id);
         
         try {
         	for(MultipartFile file:exportFiles ){
-        		List<Amember> amemberList = excelUtil.parseExcel(file.getInputStream());
+        		List<Amember> amemberList = excelUtil.parseExcel(file.getInputStream(),id);
         		amemberRepository.save(amemberList);
         		amemberSearchRepository.save(amemberList);
         	}

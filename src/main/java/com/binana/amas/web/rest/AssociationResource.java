@@ -11,6 +11,8 @@ import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,12 +45,35 @@ public class AssociationResource {
     private final AssociationRepository associationRepository;
 
     private final AssociationSearchRepository associationSearchRepository;
-
+    
     public AssociationResource(AssociationRepository associationRepository, AssociationSearchRepository associationSearchRepository) {
         this.associationRepository = associationRepository;
         this.associationSearchRepository = associationSearchRepository;
     }
-
+    /**
+     * GET  /associations : 获取所有社团的id和名字.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of associations in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/getAssoIdAndName")
+    @Timed
+    public List<Association> getAssoIdAndName()
+        throws URISyntaxException {
+        log.debug("REST request to get a page of Associations");
+        List<Object[]> findAll = associationRepository.findAssoIdAndAssoName();
+        List<Association> associationList = new ArrayList<Association>();
+        for(Object[] ass:findAll){
+        	Association association = new Association();
+        	association.setId( ((long)ass[0]) );
+        	association.setAssoName( (String)ass[1] );
+        	associationList.add(association);
+        	//System.out.println(association.toString());
+        }
+        return associationList;
+        
+    }
+    
     /**
      * POST  /associations : Create a new association.
      *

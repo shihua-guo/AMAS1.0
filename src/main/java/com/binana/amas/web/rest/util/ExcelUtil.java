@@ -5,7 +5,9 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -16,11 +18,16 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.stereotype.Component;
 
 import com.binana.amas.domain.Amember;
+import com.binana.amas.domain.Association;
 import com.binana.amas.domain.enumeration.GENDER;
 import com.binana.amas.domain.enumeration.POLITICSSTATUS;
 @Component
 public class ExcelUtil {
-	public List<Amember> parseExcel(InputStream excelFile){
+	public List<Amember> parseExcel(InputStream excelFile,long id){
+			Association assocation = new Association();
+			assocation.setId(id);
+			Set<Association> assoSet = new HashSet<Association>();
+			assoSet.add(assocation);
 		 	Workbook  wb = null; 
 			try {
 				wb = WorkbookFactory.create(excelFile);
@@ -100,6 +107,7 @@ public class ExcelUtil {
 	        		cellNum++;
 	        	}
 	            if(amember!=null){
+	            	amember.setAssociations(assoSet);
 	            	amemberList.add(amember);
 	            }
 	        }

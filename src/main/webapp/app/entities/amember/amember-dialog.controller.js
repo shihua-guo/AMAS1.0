@@ -11,7 +11,6 @@
         var vm = this;
 
         vm.amember = entity;
-        alert(vm.amember.membName);
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;

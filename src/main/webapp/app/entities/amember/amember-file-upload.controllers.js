@@ -6,11 +6,17 @@ angular
         .module('amasApp')
         .controller('fileUploadController', fileUploadController);
 
-    fileUploadController.$inject = ['$scope', 'FileUploader','$cookies'];
+    fileUploadController.$inject = ['$scope', 'FileUploader','$cookies','$http','$uibModalInstance'];
 
-    function fileUploadController($scope, FileUploader,$cookies) {
+    function fileUploadController($scope, FileUploader,$cookies,$http,$uibModalInstance) {
+        $scope.selectAsso = '';
+        var url = '';
+        //获取社团的名称
+        $http.get('/api/getAssoIdAndName').success(function(data, status) {
+            $scope.getAssoIdAndName = data;
+        });
         var uploader = $scope.uploader = new FileUploader({
-            url: '/api/fileUpload',
+            url: url,
             headers: {
                'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN')
              }
@@ -19,8 +25,11 @@ angular
         // item.headers = {'X-XSRF-TOKEN': $cookies['XSRF-TOKEN']};
         // };
 
-    // FILTERS
-  
+        // FILTERS
+         $scope.clearUpload = function clear () {
+              $uibModalInstance.dismiss('cancel');
+          };
+
     // a sync filter
     uploader.filters.push({
         name: 'syncFilter',
@@ -38,37 +47,38 @@ angular
             setTimeout(deferred.resolve, 1e3);
         }
     });
+    // 文件类型过滤器
     uploader.filters.push({
         name: 'xlsxFilter',
         fn: function(item /*{File|FileLikeObject}*/, options) {
             var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-            alert(type);
-            alert(item.type);
             return '|vnd.openxmlformats-officedocument.spreadsheetml.sheet|vnd.ms-excel|'.indexOf(type) !== -1;
         }
     });
     // CALLBACKS
-
     uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
         console.info('onWhenAddingFileFailed', item, filter, options);
     };
     uploader.onAfterAddingFile = function(fileItem) {
         console.info('onAfterAddingFile', fileItem);
+        // fileItem.url  = '/api/fileUpload/'+$scope.selectAsso.id;
     };
     uploader.onAfterAddingAll = function(addedFileItems) {
         console.info('onAfterAddingAll', addedFileItems);
     };
     uploader.onBeforeUploadItem = function(item) {
-        console.info('onBeforeUploadItem', item);
+        item.url  = '/api/fileUpload/'+$scope.selectAsso.id;
     };
     uploader.onProgressItem = function(fileItem, progress) {
         console.info('onProgressItem', fileItem, progress);
+        // fileItem.url  = '/api/fileUpload/'+$scope.selectAsso.id;
     };
     uploader.onProgressAll = function(progress) {
         console.info('onProgressAll', progress);
     };
     uploader.onSuccessItem = function(fileItem, response, status, headers) {
         console.info('onSuccessItem', fileItem, response, status, headers);
+        alert($scope.selectAsso.assoName+"社团批量添加成功");
     };
     uploader.onErrorItem = function(fileItem, response, status, headers) {
         console.info('onErrorItem', fileItem, response, status, headers);
@@ -81,6 +91,7 @@ angular
     };
     uploader.onCompleteAll = function() {
         console.info('onCompleteAll');
+        
     };
 
     console.info('uploader', uploader);

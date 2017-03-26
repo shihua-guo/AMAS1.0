@@ -45,7 +45,8 @@
             "dutymemb": "值班时间",
             "politicsStatus": "政治面貌",
             "gender": "性别",
-            "dormNum": "宿舍号"
+            "dormNum": "宿舍号",
+            "college":"学院"
         }
     }
 }

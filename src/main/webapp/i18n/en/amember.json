@@ -29,7 +29,12 @@
             "association": "Association",
             "department": "Department",
             "role": "Role",
-            "dutymemb": "Dutymemb"
+            "dutymemb": "Dutymemb",
+            "politicsStatus": "Politics Status",
+            "gender": "Gender",
+            "dormNum": "Dormitory Number",
+            "college":"college"
+
         }
     }
 }

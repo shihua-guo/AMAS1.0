@@ -33,6 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.binana.amas.domain.enumeration.GENDER;
 import com.binana.amas.domain.enumeration.POLITICSSTATUS;
+import com.binana.amas.domain.enumeration.College;
 /**
  * Test class for the AmemberResource REST controller.
  *
@@ -71,6 +72,9 @@ public class AmemberResourceIntTest {
 
     private static final POLITICSSTATUS DEFAULT_POLITICS_STATUS = POLITICSSTATUS.PARTY;
     private static final POLITICSSTATUS UPDATED_POLITICS_STATUS = POLITICSSTATUS.LEAGUE;
+
+    private static final College DEFAULT_COLLEGE = College.FINANCE;
+    private static final College UPDATED_COLLEGE = College.ELECTRICAL;
 
     @Autowired
     private AmemberRepository amemberRepository;
@@ -121,7 +125,8 @@ public class AmemberResourceIntTest {
                 .membJoinDate(DEFAULT_MEMB_JOIN_DATE)
                 .gender(DEFAULT_GENDER)
                 .dormNum(DEFAULT_DORM_NUM)
-                .politicsStatus(DEFAULT_POLITICS_STATUS);
+                .politicsStatus(DEFAULT_POLITICS_STATUS)
+                .college(DEFAULT_COLLEGE);
         return amember;
     }
 
@@ -157,6 +162,7 @@ public class AmemberResourceIntTest {
         assertThat(testAmember.getGender()).isEqualTo(DEFAULT_GENDER);
         assertThat(testAmember.getDormNum()).isEqualTo(DEFAULT_DORM_NUM);
         assertThat(testAmember.getPoliticsStatus()).isEqualTo(DEFAULT_POLITICS_STATUS);
+        assertThat(testAmember.getCollege()).isEqualTo(DEFAULT_COLLEGE);
 
         // Validate the Amember in Elasticsearch
         Amember amemberEs = amemberSearchRepository.findOne(testAmember.getId());
@@ -275,7 +281,8 @@ public class AmemberResourceIntTest {
             .andExpect(jsonPath("$.[*].membJoinDate").value(hasItem(DEFAULT_MEMB_JOIN_DATE.toString())))
             .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
             .andExpect(jsonPath("$.[*].dormNum").value(hasItem(DEFAULT_DORM_NUM.toString())))
-            .andExpect(jsonPath("$.[*].politicsStatus").value(hasItem(DEFAULT_POLITICS_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].politicsStatus").value(hasItem(DEFAULT_POLITICS_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].college").value(hasItem(DEFAULT_COLLEGE.toString())));
     }
 
     @Test
@@ -298,7 +305,8 @@ public class AmemberResourceIntTest {
             .andExpect(jsonPath("$.membJoinDate").value(DEFAULT_MEMB_JOIN_DATE.toString()))
             .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()))
             .andExpect(jsonPath("$.dormNum").value(DEFAULT_DORM_NUM.toString()))
-            .andExpect(jsonPath("$.politicsStatus").value(DEFAULT_POLITICS_STATUS.toString()));
+            .andExpect(jsonPath("$.politicsStatus").value(DEFAULT_POLITICS_STATUS.toString()))
+            .andExpect(jsonPath("$.college").value(DEFAULT_COLLEGE.toString()));
     }
 
     @Test
@@ -329,7 +337,8 @@ public class AmemberResourceIntTest {
                 .membJoinDate(UPDATED_MEMB_JOIN_DATE)
                 .gender(UPDATED_GENDER)
                 .dormNum(UPDATED_DORM_NUM)
-                .politicsStatus(UPDATED_POLITICS_STATUS);
+                .politicsStatus(UPDATED_POLITICS_STATUS)
+                .college(UPDATED_COLLEGE);
 
         restAmemberMockMvc.perform(put("/api/amembers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -350,6 +359,7 @@ public class AmemberResourceIntTest {
         assertThat(testAmember.getGender()).isEqualTo(UPDATED_GENDER);
         assertThat(testAmember.getDormNum()).isEqualTo(UPDATED_DORM_NUM);
         assertThat(testAmember.getPoliticsStatus()).isEqualTo(UPDATED_POLITICS_STATUS);
+        assertThat(testAmember.getCollege()).isEqualTo(UPDATED_COLLEGE);
 
         // Validate the Amember in Elasticsearch
         Amember amemberEs = amemberSearchRepository.findOne(testAmember.getId());
@@ -417,7 +427,8 @@ public class AmemberResourceIntTest {
             .andExpect(jsonPath("$.[*].membJoinDate").value(hasItem(DEFAULT_MEMB_JOIN_DATE.toString())))
             .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
             .andExpect(jsonPath("$.[*].dormNum").value(hasItem(DEFAULT_DORM_NUM.toString())))
-            .andExpect(jsonPath("$.[*].politicsStatus").value(hasItem(DEFAULT_POLITICS_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].politicsStatus").value(hasItem(DEFAULT_POLITICS_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].college").value(hasItem(DEFAULT_COLLEGE.toString())));
     }
 
     @Test

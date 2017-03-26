@@ -1,6 +1,6 @@
 {
     "amasApp": {
-        "POLITICSSTATUS" : {
+        "PoliticsStatus" : {
             "null": "",
             "PARTY": "中共党员",
             "LEAGUE": "共青团员",

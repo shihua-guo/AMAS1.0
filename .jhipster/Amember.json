@@ -86,6 +86,11 @@
             "fieldName": "politicsStatus",
             "fieldType": "POLITICSSTATUS",
             "fieldValues": "PARTY,LEAGUE,PUBLIC,NON"
+        },
+        {
+            "fieldName": "college",
+            "fieldType": "College",
+            "fieldValues": "FINANCE,ELECTRICAL,MANAGEMENT,MECHANICAL,COMPUTER,SCIENCE,AUTOMOTIVE,SOCIAL,BIOCHEMISTRY,PHYSICAL,CIVIL,FOREIGN,MEDICAL,ART,VOCATIONAL"
         }
     ],
     "changelogDate": "20170226131922",

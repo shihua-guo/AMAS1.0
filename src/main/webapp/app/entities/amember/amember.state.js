@@ -49,6 +49,7 @@
                     $translatePartialLoader.addPart('global');
                     $translatePartialLoader.addPart('gender');
                     $translatePartialLoader.addPart('politicsstatus');
+                    $translatePartialLoader.addPart('college');
                     return $translate.refresh();
                 }]
             }
@@ -72,6 +73,7 @@
                     $translatePartialLoader.addPart('amember');
                     $translatePartialLoader.addPart('gender');
                     $translatePartialLoader.addPart('politicsstatus');
+                    $translatePartialLoader.addPart('college');
                     return $translate.refresh();
                 }],
                 entity: ['$stateParams', 'Amember', function($stateParams, Amember) {

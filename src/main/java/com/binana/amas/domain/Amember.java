@@ -3,7 +3,6 @@ package com.binana.amas.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -16,6 +15,8 @@ import java.util.Objects;
 import com.binana.amas.domain.enumeration.GENDER;
 
 import com.binana.amas.domain.enumeration.POLITICSSTATUS;
+
+import com.binana.amas.domain.enumeration.College;
 
 /**
  * A Amember.
@@ -67,6 +68,10 @@ public class Amember implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "politics_status")
     private POLITICSSTATUS politicsStatus;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "college")
+    private College college;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -230,6 +235,19 @@ public class Amember implements Serializable {
         this.politicsStatus = politicsStatus;
     }
 
+    public College getCollege() {
+        return college;
+    }
+
+    public Amember college(College college) {
+        this.college = college;
+        return this;
+    }
+
+    public void setCollege(College college) {
+        this.college = college;
+    }
+
     public Set<Association> getAssociations() {
         return associations;
     }
@@ -352,6 +370,7 @@ public class Amember implements Serializable {
             ", gender='" + gender + "'" +
             ", dormNum='" + dormNum + "'" +
             ", politicsStatus='" + politicsStatus + "'" +
+            ", college='" + college + "'" +
             '}';
     }
 }

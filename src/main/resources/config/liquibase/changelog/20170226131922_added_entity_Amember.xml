@@ -62,6 +62,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="college" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="dutymemb_id" type="bigint">
                 <constraints nullable="true" />
             </column>

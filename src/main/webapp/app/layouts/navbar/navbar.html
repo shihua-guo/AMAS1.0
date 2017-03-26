@@ -210,12 +210,34 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+          <!-- <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
             <span class="hamb-top"></span>
             <span class="hamb-middle"></span>
             <span class="hamb-bottom"></span>
-          </button>
+          </button> -->
         </div>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navtop">
+            <div class="navbar-header">
+              <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+              </button>
+              <!-- <a class="navbar-brand" data-toggle="offcanvas">Project name</a> -->
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+
+              <form class="navbar-form navbar-right"  ui-sref-active="active" ng-switch="vm.isAuthenticated()" >
+                <div><span ng-switch-when="true">{{vm.account.login}}</span></div>
+                <button type="submit" class="btn btn-success" ng-click="vm.login()" ng-switch-when="false" >
+                  <span class="glyphicon glyphicon-log-in"></span>&nbsp;
+                  <span data-translate="global.menu.account.login">Sign in</span>
+                </button>
+              </form>
+            </div><!--/.navbar-collapse -->
+          </div>
+        </nav>
         <!-- /#page-content-wrapper -->
 
     </div>

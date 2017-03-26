@@ -19,6 +19,9 @@
                     templateUrl: 'app/home/home.html',
                     controller: 'HomeController',
                     controllerAs: 'vm'
+                },
+                'chart@':{
+                    templateUrl: 'app/layouts/navbar/top-nav.html'
                 }
             },
             resolve: {

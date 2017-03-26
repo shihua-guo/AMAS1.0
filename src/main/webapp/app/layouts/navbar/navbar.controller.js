@@ -25,7 +25,7 @@
         vm.$state = $state;
 
         function login() {
-            collapseNavbar();
+            // collapseNavbar();
             LoginService.open();
         }
 

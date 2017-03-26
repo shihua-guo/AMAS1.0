@@ -9,6 +9,9 @@ body,
 html {
   height: 100%;
 }
+.navbar-header{
+  background-color: #2236962;
+}
 .nav .open > a {
   background-color: transparent;
 }
@@ -162,19 +165,20 @@ html {
 }
 .sidebar-nav > .sidebar-brand {
   font-size: 20px;
-  height: 65px;
+  height: 50px;
   line-height: 44px;
 }
 /*-------------------------------*/
 /*       Hamburger-Cross         */
 /*-------------------------------*/
 .hamburger {
+  background-color: transparent;
   border: none;
   display: block;
   height: 32px;
-  margin-left: 15px;
+  margin-left: 20px;
   position: fixed;
-  top: 20px;
+  top: 10px;
   width: 32px;
   z-index: 999;
 }

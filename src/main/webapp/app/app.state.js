@@ -8,11 +8,12 @@
     stateConfig.$inject = ['$stateProvider'];
 
     function stateConfig($stateProvider) {
-        $stateProvider.state('app', {
+        $stateProvider
+        .state('app', {
             abstract: true,
             views: {
                 'navbar@': {
-                    templateUrl: 'app/layouts/navbar/navbar.html',
+                    templateUrl: 'app/layouts/navbar/dash-nav.html',
                     controller: 'NavbarController',
                     controllerAs: 'vm'
                 }
@@ -26,6 +27,17 @@
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('global');
                 }]
+            }
+        })
+        .state('appTop', {
+            parent: 'app',
+            abstract: true,
+            views: {
+                'topnavbar@': {
+                    templateUrl: 'app/layouts/navbar/top-nav.html',
+                    controller: 'NavbarController',
+                    controllerAs: 'vm'
+                }
             }
         });
     }

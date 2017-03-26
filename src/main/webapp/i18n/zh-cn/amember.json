@@ -2,7 +2,7 @@
     "amasApp": {
         "amember" : {
             "home": {
-                "title": "成员列表",
+                "title": "全体成员列表",
                 "createLabel": "新增一个成员",
                 "createOrEditLabel": "新增/编辑成员",
                 "search": "通过任意关键字查找社团成员",
@@ -20,7 +20,8 @@
                 "queueProgress":"队列处理进度",
                 "uploadAll":"上传全部",
                 "cancelAll":"取消全部",
-                "removeAll":"移除全部"
+                "removeAll":"移除全部",
+                "createByExcel":"批量导入"
             },
             "created": "ID为 {{ param }}的成员创建成功！",
             "updated": "ID为 {{ param }}的成员修改成功！",

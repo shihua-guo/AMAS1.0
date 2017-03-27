@@ -9,11 +9,13 @@ angular
     fileUploadController.$inject = ['$scope', 'FileUploader','$cookies','$http','$uibModalInstance'];
 
     function fileUploadController($scope, FileUploader,$cookies,$http,$uibModalInstance) {
+        //和前台页面绑定的ngmodel！！
         $scope.selectAsso = '';
         var url = '';
         //获取社团的名称
         $http.get('/api/getAssoIdAndName').success(function(data, status) {
             $scope.getAssoIdAndName = data;
+            
         });
         var uploader = $scope.uploader = new FileUploader({
             url: url,

@@ -2,10 +2,10 @@ package com.binana.amas.web.rest;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +16,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -33,6 +34,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.binana.amas.domain.Amember;
+import com.binana.amas.domain.CollegePie;
+import com.binana.amas.domain.CommBean;
 import com.binana.amas.repository.AmemberRepository;
 import com.binana.amas.repository.search.AmemberSearchRepository;
 import com.binana.amas.web.rest.util.ExcelUtil;
@@ -65,7 +68,58 @@ public class AmemberResource {
         this.amemberRepository = amemberRepository;
         this.amemberSearchRepository = amemberSearchRepository;
     }
-
+    /**
+     * 获取某一社团会员学院分布分析饼图
+     * @return
+     * @throws URISyntaxException
+     */
+    @GetMapping("/allAmembersCollegePie/{id}")
+    @Timed
+    public List<CommBean> getAssoAmembersCollegePie(@PathVariable Long id) 
+    		throws URISyntaxException{
+    	log.debug("REST request 获取全体会员学院分布分析饼图 ");
+    	/*
+    	List<CommBean> cmList = new ArrayList<CommBean>();
+    	long value ;
+    	for(College college:College.values()){
+    		//如果该学院的人数为0就跳过
+    		if( (value =amemberRepository.countByCollegeAndAssociations_Id(college,id)) ==0){
+    			continue;
+    		}
+    		CommBean cm = new CommBean();
+    		cm.setName(college.toChinese());
+    		cm.setValue(value);
+    		cmList.add(cm); 
+    	}
+    	*/
+    	List<CommBean> cpList = new ArrayList<CommBean>();
+    	cpList = amemberRepository.countCollegeByAssoId(id);
+    	return cpList;
+    }
+    /**
+     * 获取全体会员学院分布分析饼图
+     * @return
+     * @throws URISyntaxException
+     */
+    @GetMapping("/allAmembersCollegePie")
+    @Timed
+    public List<CollegePie> getAllAmembersCollegePie() 
+    		 throws URISyntaxException{
+    	log.debug("REST request 获取全体会员学院分布分析饼图 ");
+    	List<CollegePie> cpList = new ArrayList<CollegePie>();
+    	cpList = amemberRepository.countCollegeMapResult();
+    	for(int i=0;i<cpList.size();i++){
+    		cpList.get(i).setChineseName();
+    	}
+    	return cpList;
+    }
+    
+    /**
+     * 通过Excel文件批量导入会员
+     * @param id
+     * @param exportFiles
+     * @return
+     */
     @PostMapping("/fileUpload/{id}")
     @Timed
     public String fileUpload(@PathVariable Long id,@RequestParam("file") MultipartFile[] exportFiles) {

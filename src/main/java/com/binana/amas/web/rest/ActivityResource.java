@@ -82,7 +82,7 @@ public class ActivityResource {
      * @param id the id of the departments to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the Activities, or with status 404 (Not Found)
      */
-    @GetMapping("/activitiesOfAsso")
+    @GetMapping("/getRecentActivitiesByAssoId")
     @Timed
     public ResponseEntity<List<Activity>> getActivitiesByAssoId(@RequestParam(value="assoId") Long id,@ApiParam Pageable pageable) 
     		 throws URISyntaxException{

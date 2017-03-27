@@ -21,7 +21,9 @@
                 "uploadAll":"上传全部",
                 "cancelAll":"取消全部",
                 "removeAll":"移除全部",
-                "createByExcel":"批量导入"
+                "createByExcel":"批量导入",
+                "okay":"确定",
+                "selectAssoCharts":"选择社团"
             },
             "created": "ID为 {{ param }}的成员创建成功！",
             "updated": "ID为 {{ param }}的成员修改成功！",

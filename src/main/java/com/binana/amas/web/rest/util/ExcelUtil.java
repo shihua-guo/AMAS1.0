@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import com.binana.amas.domain.Amember;
 import com.binana.amas.domain.Association;
+import com.binana.amas.domain.enumeration.College;
 import com.binana.amas.domain.enumeration.GENDER;
 import com.binana.amas.domain.enumeration.POLITICSSTATUS;
 @Component
@@ -100,6 +101,58 @@ public class ExcelUtil {
 							amember.setPoliticsStatus(POLITICSSTATUS.NON);
 						}
 						break;
+					case 10:
+						switch (cell.getStringCellValue()) {
+						case "财经学院":
+							amember.setCollege(College.FINANCE);
+							break;
+						case "电气学院":
+							amember.setCollege(College.ELECTRICAL);
+							break;
+						case "管理学院":
+							amember.setCollege(College.MANAGEMENT);
+							break;
+						case "机械学院":
+							amember.setCollege(College.MECHANICAL);
+							break;
+						case "计通学院":
+							amember.setCollege(College.COMPUTER);
+							break;
+						case "理学院":
+							amember.setCollege(College.SCIENCE);
+							break;
+						case "汽车学院":
+							amember.setCollege(College.AUTOMOTIVE);
+							break;
+						case "社科学院":
+							amember.setCollege(College.SOCIAL);
+							break;
+						case "生化学院":
+							amember.setCollege(College.BIOCHEMISTRY);
+							break;
+						case "体育学院":
+							amember.setCollege(College.PHYSICAL);
+							break;
+						case "土建学院":
+							amember.setCollege(College.CIVIL);
+							break;
+						case "外语学院":
+							amember.setCollege(College.FOREIGN);
+							break;
+						case "医学院":
+							amember.setCollege(College.MEDICAL);
+							break;
+						case "艺术学院":
+							amember.setCollege(College.ART);
+							break;
+						case "职教学院":
+							amember.setCollege(College.VOCATIONAL);
+							break;
+
+						default:
+							break;
+						}
+						break;
 						
 					default:
 						break;
@@ -120,7 +173,10 @@ public class ExcelUtil {
 	       return amemberList;
 	    }
 	public static void main(String[] args) {
-		ExcelUtil eu = new ExcelUtil();
-		File excelFile = new File("src/main/java/com/binana/amas/web/rest/util/社团成员.xls");
+//		ExcelUtil eu = new ExcelUtil();
+//		File excelFile = new File("src/main/java/com/binana/amas/web/rest/util/社团成员.xls");
+		for(College coll:College.values()){
+			System.out.println(coll);
+		}
 	}
 }

@@ -75,25 +75,14 @@ public class AmemberResource {
      */
     @GetMapping("/allAmembersCollegePie/{id}")
     @Timed
-    public List<CommBean> getAssoAmembersCollegePie(@PathVariable Long id) 
+    public List<CollegePie> getAssoAmembersCollegePie(@PathVariable Long id) 
     		throws URISyntaxException{
     	log.debug("REST request 获取全体会员学院分布分析饼图 ");
-    	/*
-    	List<CommBean> cmList = new ArrayList<CommBean>();
-    	long value ;
-    	for(College college:College.values()){
-    		//如果该学院的人数为0就跳过
-    		if( (value =amemberRepository.countByCollegeAndAssociations_Id(college,id)) ==0){
-    			continue;
-    		}
-    		CommBean cm = new CommBean();
-    		cm.setName(college.toChinese());
-    		cm.setValue(value);
-    		cmList.add(cm); 
-    	}
-    	*/
-    	List<CommBean> cpList = new ArrayList<CommBean>();
+    	List<CollegePie> cpList = new ArrayList<CollegePie>();
     	cpList = amemberRepository.countCollegeByAssoId(id);
+    	for(int i=0;i<cpList.size();i++){
+    		cpList.get(i).setChineseName();
+    	}
     	return cpList;
     }
     /**

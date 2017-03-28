@@ -36,16 +36,20 @@ public interface AmemberRepository extends JpaRepository<Amember,Long> {
     */
     
     //获取全体会员各个学院数量
-    @Query("select new com.binana.amas.domain.CollegePie(amember.college, count(*)) from  Amember amember where amember.college is not null GROUP by amember.college order by count(*) DESC")
+    @Query("select new com.binana.amas.domain.CollegePie(amember.college, count(*))"
+    	 + " from  Amember amember "
+    	 + " where amember.college is not null"
+    	 + " GROUP by amember.college order by count(*) DESC")
     List<CollegePie> countCollegeMapResult();
     
     //获取某协会会员的各个学院数量
     long countByCollegeAndAssociations_Id(College college,Long id);
     
     
-    
-    @Query( name="collegePieMapping",value = "SELECT COLLEGE AS NAME,COUNT(*) AS VALUE "
-    			 + "FROM AMEMBER A LEFT JOIN AMEMBER_ASSOCIATION AA ON A.ID = AA.AMEMBERS_ID "
-    			 + "WHERE COLLEGE IS NOT NULL AND AA.ASSOCIATIONS_ID =:id GROUP BY COLLEGE",nativeQuery = true)
-    List<CommBean> countCollegeByAssoId(@Param("id") Long id);
+    @Query("select new com.binana.amas.domain.CollegePie(amember.college, count(*)) "
+    	 + "from Amember amember join amember.associations b "
+    	 + "where amember.college is not null and b.id =:id "
+    	 + " GROUP by amember.college "
+    	 + " ORDER by count(*) DESC") 
+    List<CollegePie> countCollegeByAssoId(@Param("id") Long id);
 }

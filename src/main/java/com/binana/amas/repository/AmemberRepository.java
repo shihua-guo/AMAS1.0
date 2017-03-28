@@ -30,6 +30,7 @@ public interface AmemberRepository extends JpaRepository<Amember,Long> {
     
     //通过社团id获取会员数量
     int countByAssociations_Id(@Param("id") Long id);
+    
     /*
     //获取全体会员各个学院数量
     long countByCollege(College college);

@@ -61,25 +61,32 @@ public class ExcelUtil {
 					case 0:
 						amember.setMembName(cell.getStringCellValue());
 						break;
+					//学号
 					case 1:
 //						new BigDecimal(cell.getNumericCellValue()).toPlainString();
 						amember.setMembNO(new BigDecimal(cell.getNumericCellValue()).toPlainString() );
 						break;
+					//班级
 					case 2:
 						amember.setMembClass(cell.getStringCellValue());
 						break;
+					//手机号
 					case 3:
 						amember.setMembPhone(new BigDecimal(cell.getNumericCellValue()).toPlainString());
 						break;
+					//QQ
 					case 4:
 						amember.setMembQQ(new BigDecimal(cell.getNumericCellValue()).toPlainString());
 						break;
+					//邮箱
 					case 5:
 						amember.setMembEmail(cell.getStringCellValue());
 						break;
+					//加入日期
 					case 6:
 						amember.setMembJoinDate(cell.getDateCellValue().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 						break;
+					//性别
 					case 7:
 						if("男".equals(cell.getStringCellValue()) || "男生".equals(cell.getStringCellValue()) || "M".equals(cell.getStringCellValue())){
 							amember.setGender(GENDER.M);
@@ -87,6 +94,7 @@ public class ExcelUtil {
 							amember.setGender(GENDER.F);
 						}
 						break;
+					//宿舍号	
 					case 8:
 						amember.setDormNum(cell.getStringCellValue());
 						break;

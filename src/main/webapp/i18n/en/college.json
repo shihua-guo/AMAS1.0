@@ -1,0 +1,22 @@
+{
+    "amasApp": {
+        "College" : {
+            "null": "",
+            "FINANCE": "FINANCE",
+            "ELECTRICAL": "ELECTRICAL",
+            "MANAGEMENT": "MANAGEMENT",
+            "MECHANICAL": "MECHANICAL",
+            "COMPUTER": "COMPUTER",
+            "SCIENCE": "SCIENCE",
+            "AUTOMOTIVE": "AUTOMOTIVE",
+            "SOCIAL": "SOCIAL",
+            "BIOCHEMISTRY": "BIOCHEMISTRY",
+            "PHYSICAL": "PHYSICAL",
+            "CIVIL": "CIVIL",
+            "FOREIGN": "FOREIGN",
+            "MEDICAL": "MEDICAL",
+            "ART": "ART",
+            "VOCATIONAL": "VOCATIONAL"
+        }
+    }
+}

@@ -3,6 +3,11 @@
         "title": "Amas",
         "browsehappy": "您目前使用<strong>过于老旧</strong>的浏览器, 建议您<a href=\"http://browsehappy.com/?locale=en\">升级浏览器</a>让您有更佳的上网体验.",
         "menu": {
+            "chart":"分析图表",
+            "charts":{
+                "assoCharts":"社团分析",
+                "amemCharts":"会员分析"
+            },
             "home": "首页",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
@@ -38,8 +43,7 @@
                 "database": "数据库",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
-            "language": "语言",
-            "charts":"分析图表"
+            "language": "语言"
         },
         "form": {
             "username": "账号",

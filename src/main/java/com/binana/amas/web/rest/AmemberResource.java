@@ -16,7 +16,6 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -36,6 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.binana.amas.domain.Amember;
 import com.binana.amas.domain.CollegePie;
 import com.binana.amas.domain.CommBean;
+import com.binana.amas.domain.GenderPie;
 import com.binana.amas.repository.AmemberRepository;
 import com.binana.amas.repository.search.AmemberSearchRepository;
 import com.binana.amas.web.rest.util.ExcelUtil;
@@ -68,6 +68,105 @@ public class AmemberResource {
         this.amemberRepository = amemberRepository;
         this.amemberSearchRepository = amemberSearchRepository;
     }
+    
+    /**
+     * 获取某一社团会员性别比例分析饼图
+     * @return
+     * @throws URISyntaxException
+     */
+    @GetMapping("/allAmembersGradePie/{id}")
+    @Timed
+    public List<CommBean> getAssoAmembersGradePie(@PathVariable Long id) 
+    		throws URISyntaxException{
+    	log.debug("REST request 获取某一社团会员各个年级分析饼图 ");
+    	List<CommBean> cpList = new ArrayList<CommBean>();
+    	cpList = amemberRepository.countGradeByAssoId(id);
+    	return cpList;
+    }
+    
+    /**
+     * 获取全体会员各个年级分布分析饼图
+     * @return
+     * @throws URISyntaxException
+     */
+    @GetMapping("/allAmembersGradePie")
+    @Timed
+    public List<CommBean> getAllAmembersGradePie() 
+    		 throws URISyntaxException{
+    	log.debug("REST request 获取全体会员专业分布分析饼图 ");
+    	List<CommBean> cpList = new ArrayList<CommBean>();
+    	cpList = amemberRepository.countGradeMapResult();
+    	return cpList;
+    }
+    
+    /**
+     * 获取某一社团会员性别比例分析饼图
+     * @return
+     * @throws URISyntaxException
+     */
+    @GetMapping("/allAmembersGenderPie/{id}")
+    @Timed
+    public List<GenderPie> getAssoAmembersGenderPie(@PathVariable Long id) 
+    		throws URISyntaxException{
+    	log.debug("REST request 获取某一社团会员性别比例分析饼图 ");
+    	List<GenderPie> cpList = new ArrayList<GenderPie>();
+    	cpList = amemberRepository.countGenderByAssoId(id);
+    	//汉化
+    	for(int i=0;i<cpList.size();i++){
+    		cpList.get(i).setChinese();
+    	}
+    	return cpList;
+    }
+    
+    /**
+     * 获取全体会员性别比例分析饼图
+     * @return
+     * @throws URISyntaxException
+     */
+    @GetMapping("/allAmembersGenderPie")
+    @Timed
+    public List<GenderPie> getAllAmembersGenderPie() 
+    		 throws URISyntaxException{
+    	log.debug("REST request 获取全体会员专业分布分析饼图 ");
+    	List<GenderPie> cpList = new ArrayList<GenderPie>();
+    	cpList = amemberRepository.countGenderMapResult();
+    	//汉化
+    	for(int i=0;i<cpList.size();i++){
+    		cpList.get(i).setChinese();
+    	}
+    	return cpList;
+    }
+    
+    /**
+     * 获取某一社团会员专业分布分析饼图
+     * @return
+     * @throws URISyntaxException
+     */
+    @GetMapping("/allAmembersMajorPie/{id}")
+    @Timed
+    public List<CommBean> getAssoAmembersMajorPie(@PathVariable Long id) 
+    		throws URISyntaxException{
+    	log.debug("REST request 获取全体会员专业分布分析饼图 ");
+    	List<CommBean> cpList = new ArrayList<CommBean>();
+    	cpList = amemberRepository.countMajorByAssoId(id);
+    	return cpList;
+    }
+    
+    /**
+     * 获取全体会员前10专业分布分析饼图
+     * @return
+     * @throws URISyntaxException
+     */
+    @GetMapping("/allAmembersMajorPie")
+    @Timed
+    public List<CommBean> getAllAmembersMajorPie() 
+    		 throws URISyntaxException{
+    	log.debug("REST request 获取全体会员专业分布分析饼图 ");
+    	List<CommBean> cpList = new ArrayList<CommBean>();
+    	cpList = amemberRepository.countMajorMapResult();
+    	return cpList;
+    }
+    
     /**
      * 获取某一社团会员学院分布分析饼图
      * @return

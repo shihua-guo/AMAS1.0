@@ -73,6 +73,9 @@ public class Amember implements Serializable {
     @Column(name = "college")
     private College college;
 
+    @Column(name = "major")
+    private String major;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "amember_association",
@@ -248,6 +251,19 @@ public class Amember implements Serializable {
         this.college = college;
     }
 
+    public String getMajor() {
+        return major;
+    }
+
+    public Amember major(String major) {
+        this.major = major;
+        return this;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
     public Set<Association> getAssociations() {
         return associations;
     }
@@ -371,6 +387,7 @@ public class Amember implements Serializable {
             ", dormNum='" + dormNum + "'" +
             ", politicsStatus='" + politicsStatus + "'" +
             ", college='" + college + "'" +
+            ", major='" + major + "'" +
             '}';
     }
 }

@@ -1,0 +1,22 @@
+{
+    "amasApp": {
+        "College" : {
+            "null": "",
+            "FINANCE": "财经学院",
+            "ELECTRICAL": "电气学院",
+            "MANAGEMENT": "管理学院",
+            "MECHANICAL": "机械学院",
+            "COMPUTER": "计通学院",
+            "SCIENCE": "理学院",
+            "AUTOMOTIVE": "汽车学院",
+            "SOCIAL": "社科学院",
+            "BIOCHEMISTRY": "生化学院",
+            "PHYSICAL": "体育学院",
+            "CIVIL": "土建学院",
+            "FOREIGN": "外语学院",
+            "MEDICAL": "医学院",
+            "ART": "艺术学院",
+            "VOCATIONAL": "职教学院"
+        }
+    }
+}

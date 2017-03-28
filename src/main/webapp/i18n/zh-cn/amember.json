@@ -48,7 +48,8 @@
             "politicsStatus": "政治面貌",
             "gender": "性别",
             "dormNum": "宿舍号",
-            "college":"学院"
+            "college":"学院",
+            "major":"专业"
         }
     }
 }

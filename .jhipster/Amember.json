@@ -91,6 +91,10 @@
             "fieldName": "college",
             "fieldType": "College",
             "fieldValues": "FINANCE,ELECTRICAL,MANAGEMENT,MECHANICAL,COMPUTER,SCIENCE,AUTOMOTIVE,SOCIAL,BIOCHEMISTRY,PHYSICAL,CIVIL,FOREIGN,MEDICAL,ART,VOCATIONAL"
+        },
+        {
+            "fieldName": "major",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20170226131922",

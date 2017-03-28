@@ -98,6 +98,7 @@ public class ExcelUtil {
 					case 8:
 						amember.setDormNum(cell.getStringCellValue());
 						break;
+					//政治面貌
 					case 9:
 						if("团员".equals(cell.getStringCellValue())||"共青团员".equals(cell.getStringCellValue()) ){
 							amember.setPoliticsStatus(POLITICSSTATUS.LEAGUE);
@@ -109,6 +110,7 @@ public class ExcelUtil {
 							amember.setPoliticsStatus(POLITICSSTATUS.NON);
 						}
 						break;
+					//学院
 					case 10:
 						switch (cell.getStringCellValue()) {
 						case "财经学院":
@@ -161,7 +163,10 @@ public class ExcelUtil {
 							break;
 						}
 						break;
-						
+					//专业
+					case 11:
+						amember.setMajor(cell.getStringCellValue());
+						break;
 					default:
 						break;
 					}

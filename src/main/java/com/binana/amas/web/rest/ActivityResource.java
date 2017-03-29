@@ -99,10 +99,10 @@ public class ActivityResource {
      */
     @GetMapping("/getRecentActivitiesByAssoId/{id}")
     @Timed
-    public ResponseEntity<Activity> getRecentActivitiesByAssoId(@PathVariable Long id) {
+    public Activity getRecentActivitiesByAssoId(@PathVariable Long id) {
         log.debug("REST request to get Activity By AssoId: {}", id);
         Activity activity = activityRepository.findTopByAssoacti_idOrderByActiDateDesc(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(activity));
+        return activity;
     }
     
     /**

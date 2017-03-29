@@ -185,11 +185,11 @@ public class ExcelUtil {
 	        */
 	       return amemberList;
 	    }
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 //		ExcelUtil eu = new ExcelUtil();
 //		File excelFile = new File("src/main/java/com/binana/amas/web/rest/util/社团成员.xls");
 		for(College coll:College.values()){
 			System.out.println(coll);
 		}
-	}
+	}*/
 }

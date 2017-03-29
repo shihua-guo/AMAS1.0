@@ -1,0 +1,45 @@
+<!-- 性别饼图 -->
+<h3 data-translate="amasApp.amember.home.selectAssoCharts">Select Association</h3>
+<!-- 性别饼图的选择按钮 -->
+<div class="col-md-5 input-group">
+    <select class="form-control" ng-model="selectAsso.selected3" ng-options="association3.assoName for association3 in selectAsso.allAssoIdAndName track by association3.id" > 
+    </select>
+    <span>  </span>
+    <span class="input-group-btn">
+        <button id="assoChartBtn3" class="btn btn-primary" type="button" tabindex="-1">
+            <span ></span>
+            <span data-translate="amasApp.amember.home.okay">Submit</span>
+        </button>
+    </span>
+</div>
+<!-- 性别获取选择的社团 -->
+<div style="display: none" id="getSelectedAssoId3">{{selectAsso.selected3.id}}</div>
+<div style="display: none" id="getSelectedAssoName3">{{selectAsso.selected3.assoName}}</div>
+<div id="genderPieContainer" ></div>
+
+<!-- 年级饼图 -->
+<h3 data-translate="amasApp.amember.home.selectAssoCharts">Select Association</h3>
+<!-- 年级饼图的选择按钮 -->
+<div class="col-md-5 input-group">
+    <select class="form-control" ng-model="selectAsso.selected4" ng-options="association4.assoName for association4 in selectAsso.allAssoIdAndName track by association4.id" > 
+    </select>
+    <span>  </span>
+    <span class="input-group-btn">
+        <button id="assoChartBtn4" class="btn btn-primary" type="button" tabindex="-1">
+            <span ></span>
+            <span data-translate="amasApp.amember.home.okay">Submit</span>
+        </button>
+    </span>
+</div>
+<!-- 年级获取选择的社团 -->
+<div style="display: none" id="getSelectedAssoId4">{{selectAsso.selected4.id}}</div>
+<div style="display: none" id="getSelectedAssoName4">{{selectAsso.selected4.assoName}}</div>
+<div id="gradePieContainer" ></div>
+
+<script type="text/javascript" src="app/entities/amember/amember-charts.js"></script>
+<style type="text/css">
+    .container{height: 500px;}
+    .well{height: 1300px;}
+    #genderPieContainer{height:500px;}
+    #gradePieContainer{height:500px;}
+</style>

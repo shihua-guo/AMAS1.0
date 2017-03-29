@@ -207,7 +207,8 @@
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
                     templateUrl: 'app/entities/amember/amember-newByExcel.html',
-                    controller: 'fileUploadController'
+                    controller: 'fileUploadController',
+                    controllerAs: 'vm',
                 }).result.then(function() {
                     $state.go('amember', null, { reload: 'amember' });
                 }, function() {

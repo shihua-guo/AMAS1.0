@@ -9,6 +9,8 @@ angular
     fileUploadController.$inject = ['$scope', 'FileUploader','$cookies','$http','$uibModalInstance'];
 
     function fileUploadController($scope, FileUploader,$cookies,$http,$uibModalInstance) {
+        var vm = this;
+        vm.clear = clear;
         //和前台页面绑定的ngmodel！！
         $scope.selectAsso = '';
         var url = '';
@@ -28,7 +30,7 @@ angular
         // };
 
         // FILTERS
-         $scope.clearUpload = function clear () {
+        function clear () {
               $uibModalInstance.dismiss('cancel');
           };
 

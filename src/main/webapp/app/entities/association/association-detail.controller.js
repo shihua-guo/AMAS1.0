@@ -5,9 +5,9 @@
         .module('amasApp')
         .controller('AssociationDetailController', AssociationDetailController);
 
-    AssociationDetailController.$inject = ['assoService','$http','$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Association', 'Department', 'Activity', 'Property', 'Amember'];
+    AssociationDetailController.$inject = ['assoService','$http','$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Association', 'Department', 'Activity', 'Property', 'Amember','$uibModalInstance'];
 
-    function AssociationDetailController(assoService,$http,$scope, $rootScope, $stateParams, previousState, DataUtils, entity, Association, Department, Activity, Property, Amember) {
+    function AssociationDetailController(assoService,$http,$scope, $rootScope, $stateParams, previousState, DataUtils, entity, Association, Department, Activity, Property, Amember,$uibModalInstance) {
         var vm = this;
 
         vm.association = entity;
@@ -16,6 +16,7 @@
         vm.openFile = DataUtils.openFile;
         vm.amemberNum = '';
         vm.assoDeptNames = [];
+        vm.clear = clear;
         //获取该社团的成员数量
        $http.get('/api/getAssoAmemberNum/'+entity.id).then(function (response) {
                 vm.amemberNum = response.data;
@@ -35,6 +36,10 @@
         var unsubscribe = $rootScope.$on('amasApp:associationUpdate', function(event, result) {
             vm.association = result;
         });
+
+        function clear () { 
+            $uibModalInstance.dismiss('cancel');
+        }
         $scope.$on('$destroy', unsubscribe);
     }
 })();

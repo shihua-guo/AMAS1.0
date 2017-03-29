@@ -1,32 +1,9 @@
-<!-- <link rel="stylesheet" href="content/css/entity-detail.css" type="text/css" /> -->
-
-<div  align="center" >
-    <!--图片滑动部分 -->
-    <div class="slider-wrapper theme-default ">
-        <div id="slider" class="nivoSlider" style="height: 350px; width: 800px;">
-
-            <img src="content/images/up.jpg" data-thumb="content/images/up.jpg" alt="" title="{{vm.association.assoId}} " /></a>
-            <img src="content/images/walle.jpg" data-thumb="content/images/walle.jpg" alt="" title="{{vm.association.assoIntrodution | limitTo:100}} {{vm.association.assoIntrodution.length > 100 ? '...' : ''}}" data-transition="slideInLeft" />
-            <img src="content/images/nemo.jpg" data-thumb="content/images/nemo.jpg" alt="" title="{{vm.association.assoIntrodution | limitTo:100}} {{vm.association.assoIntrodution.length > 100 ? '...' : ''}}" />
-            <img data-ng-src="{{'data:' + vm.association.assoImageContentType + ';base64,' + vm.association.assoImage}}" alt="" title="#htmlcaption" />
-        </div>
-        <div id="htmlcaption" class="nivo-html-caption">
-            <strong>This</strong> is {{vm.association.assoId}} <a href="#">a link</a>.
-        </div>
-    </div>
-    <script type="text/javascript" src="app/components/nivo-slider/jquery.nivo.slider.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function()  {
-            $('#slider').nivoSlider();
-        });
-    </script>
-    <!--鍥剧墖婊戝姩閮ㄥ垎-->
-
-    <!-- 璇︽儏鍒楄〃 -->
 <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="panel-title">{{vm.association.assoName}}
                 <span data-translate="amasApp.association.detail.title">Association</span>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        ng-click="vm.clear()">&times;</button>
             </div>
         </div>
         <div class="panel-body">
@@ -62,9 +39,9 @@
                             <label class="col-md-2 control-label">
                                 <span data-translate="amasApp.association.membersNum">Asso Member</span>
                             </label>
-                            <div class="col-md-10">
+                            <div class="col-md-10" >
                                 <a >
-                                <span ui-sref="amembersOfAsso">
+                                <span ui-sref="amembersOfAsso" ng-click="vm.clear()">
                                     {{vm.amemberNum}}
                                 </span>
                                 </a>

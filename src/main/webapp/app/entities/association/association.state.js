@@ -58,14 +58,42 @@
                 authorities: ['ROLE_USER'],
                 pageTitle: 'amasApp.association.detail.title'
             },
-            views: {
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/association/association-detail.html',
+                    controller: 'AssociationDetailController',
+                    controllerAs: 'vm',
+                    resolve: {
+                        translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                            $translatePartialLoader.addPart('association');
+                            return $translate.refresh();
+                        }],
+                        entity: [ 'Association', function( Association) {
+                            return Association.get({id : $stateParams.id}).$promise;
+                        }],
+                        previousState: ["$state", function ($state) {
+                            var currentStateData = {
+                                name: $state.current.name || 'association',
+                                params: $state.params,
+                                url: $state.href($state.current.name, $state.params)
+                            };
+                            return currentStateData;
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('^', {}, { reload: false });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
+            /*views: {
                 'content@': {
                     templateUrl: 'app/entities/association/association-detail.html',
                     controller: 'AssociationDetailController',
                     controllerAs: 'vm'
                 }
-            },
-            resolve: {
+            },*/
+            /*resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('association');
                     return $translate.refresh();
@@ -81,7 +109,7 @@
                     };
                     return currentStateData;
                 }]
-            }
+            }*/
         })
         .state('association-detail.edit', {
             parent: 'association-detail',

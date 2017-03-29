@@ -23,7 +23,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/amas?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password:
+        password: 
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -78,7 +78,7 @@ liquibase:
 #        keyAlias: amas
 # ===================================================================
 server:
-    port: 8080
+    port: 8124
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json

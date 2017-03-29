@@ -1,0 +1,49 @@
+<!-- 学院饼图 -->
+<h3 data-translate="amasApp.amember.home.selectAssoCharts">Select Association</h3>
+<!-- 学院分布的社团选择按钮 -->
+<div class="col-md-5 input-group">
+    <select class="form-control" ng-model="selectAsso.selected" ng-options="association.assoName for association in selectAsso.allAssoIdAndName track by association.id" > 
+    </select>
+    <span>  </span>
+    <span class="input-group-btn">
+        <button id="assoChartBtn" class="btn btn-primary" type="button" tabindex="-1">
+            <span ></span>
+            <span data-translate="amasApp.amember.home.okay">Submit</span>
+        </button>
+    </span>
+
+</div>
+<!-- 学院获取选择的社团 -->
+<div style="display: none" id="getSelectedAssoId">{{selectAsso.selected.id}}</div>
+<div style="display: none" id="getSelectedAssoName">{{selectAsso.selected.assoName}}</div>
+<!-- 学院饼图 -->
+<div id="collegePieContainer" ></div> <hr size=1 color=cyan />
+
+
+<!-- 专业饼图 -->
+<h3 data-translate="amasApp.amember.home.selectAssoCharts">Select Association</h3>
+<!-- 专业饼图的选择按钮 -->
+<div class="col-md-5 input-group">
+    <select class="form-control" ng-model="selectAsso.selected2" ng-options="association2.assoName for association2 in selectAsso.allAssoIdAndName track by association2.id" > 
+    </select>
+    <span>  </span>
+    <span class="input-group-btn">
+        <button id="assoChartBtn2" class="btn btn-primary" type="button" tabindex="-1">
+            <span ></span>
+            <span data-translate="amasApp.amember.home.okay">Submit</span>
+        </button>
+    </span>
+</div>
+<!-- 专业获取选择的社团 -->
+<div style="display: none" id="getSelectedAssoId2">{{selectAsso.selected2.id}}</div>
+<div style="display: none" id="getSelectedAssoName2">{{selectAsso.selected2.assoName}}</div>
+<div id="majorPieContainer" ></div>
+
+<!-- <script type="text/javascript" src="app/entities/amember/echarts/echarts2.js"></script> -->
+<script type="text/javascript" src="app/entities/amember/amember-association-charts.js"></script>
+<style type="text/css">
+    .container{height: 500px;}
+    .well{height: 1300px;}
+    #collegePieContainer{height:500px;}
+    #majorPieContainer{height:500px;}
+</style>

@@ -68,6 +68,27 @@
                     copy.assoFoundDate = DateUtils.convertLocalDateToServer(copy.assoFoundDate);
                     return angular.toJson(copy);
                 }
+            },
+            'getAssoAmemberNum':{
+                method: 'GET',
+                url:'/api/getAssoAmemberNum/:id',
+                isArray: false,
+                transformResponse: function (data) {
+                  return {list: angular.fromJson(data)};
+                }
+            },
+            'getAssoDeptNameByAssoId':{
+              method: 'GET',
+              url:'/api/getAssoDeptNameByAssoId/:id',
+              isArray:true,
+              transformResponse: function (data) {
+                return angular.fromJson(data);
+              }
+            },
+            'getRecentActivitiesByAssoId':{
+              method: 'GET',
+              url:'/api/getRecentActivitiesByAssoId/:id',
+              isArray:false
             }
         });
     }

@@ -18,17 +18,24 @@
         vm.assoDeptNames = [];
         vm.clear = clear;
         //获取该社团的成员数量
-       $http.get('/api/getAssoAmemberNum/'+entity.id).then(function (response) {
+       /*$http.get('/api/getAssoAmemberNum/'+entity.id).then(function (response) {
                 vm.amemberNum = response.data;
+        });*/
+        Association.getAssoAmemberNum({id:entity.id},function(data) {
+            // body...
+            vm.amemberNum = data.list;
         });
         //获取该社团的部门名称
-       $http.get('/api/getAssoDeptNameByAssoId/'+entity.id).then(function (response) {
+       /*$http.get('/api/getAssoDeptNameByAssoId/'+entity.id).then(function (response) {
                 vm.assoDeptNames = response.data;
         });
+       */
+       vm.assoDeptNames = Association.getAssoDeptNameByAssoId({id:entity.id});
         //获取该社团的近期活动
-       $http.get('/api/getRecentActivitiesByAssoId/'+entity.id).then(function (response) {
+       /*$http.get('/api/getRecentActivitiesByAssoId/'+entity.id).then(function (response) {
                 vm.activitie = response.data;
-        });
+        });*/
+       vm.activitie = Association.getRecentActivitiesByAssoId({id:entity.id});
        //设置社团的id和name，在各个controller种共享
        assoService.setAssoId(entity.id);
        

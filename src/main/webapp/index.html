@@ -7,9 +7,6 @@
     <meta name="description" content="">
     <meta name="google" value="notranslate">
     <meta name="viewport" content="width=device-width">
-    <meta name="_csrf" content="${_csrf.token}"/>
-       <!-- default header name is X-CSRF-TOKEN -->
-       <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css content/css/vendor.css -->
     <!-- bower:css -->
@@ -19,6 +16,8 @@
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
+    <link href="app/layouts/navbar/css/sb-admin.css" rel="stylesheet">
+    <link href="app/layouts/navbar/css/plugins/morris.css" rel="stylesheet">
     <!-- endbuild -->
 
 
@@ -54,43 +53,62 @@
     <!-- build:js app/vendor.js -->
     <!-- bower:js -->
     
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/messageformat/messageformat.js"></script>
+    
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    
     <script src="bower_components/json3/lib/json3.js"></script>
+    
+    <script src="bower_components/es5-shim.min/es5-shim.js"></script>
+    
+    <script src="bower_components/es5-sham.min/es5-shim.js"></script>
+    
     <script src="bower_components/angular/angular.js"></script>
+    
     <script src="bower_components/angular-aria/angular-aria.js"></script>
+    
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    
     <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+    
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    
     <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+    
     <script src="bower_components/ngstorage/ngStorage.js"></script>
+    
     <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    
     <script src="bower_components/angular-resource/angular-resource.js"></script>
+    
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    
     <script src="bower_components/angular-translate/angular-translate.js"></script>
+    
     <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+    
     <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+    
     <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    
     <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
+    
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-    <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
-
-    <script src="app/components/file-upload/es5-shim.min.js"></script>
-    <script src="app/components/file-upload/es5-sham.min.js"></script>
-    <script src="app/components/file-upload/console-sham.min.js"></script>
-    <script src="app/components/file-upload/angular-file-upload.min.js"></script>
+    
+    <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    
     <!-- endinject -->
     <!-- endbuild -->
 
     <!-- build:js app/app.js  -->
     <!-- inject:js -->
-
     <script src="app/app.module.js"></script>
-    <script src="app/entities/amember/amember-file-upload.controllers.js"></script>
     <script src="app/services/user/user.service.js"></script>
     <script src="app/services/profiles/profile.service.js"></script>
     <script src="app/services/profiles/page-ribbon.directive.js"></script>
@@ -151,19 +169,18 @@
     <script src="app/entities/association/association.service.js"></script>
     <script src="app/entities/association/association.search.service.js"></script>
     <script src="app/entities/association/association.controller.js"></script>
+    <script src="app/entities/amember/echarts/echarts2.js"></script>
     <script src="app/entities/amember/amembersOfAsso.state.js"></script>
     <script src="app/entities/amember/amembersOfAsso.service.js"></script>
     <script src="app/entities/amember/amembersOfAsso.search.service.js"></script>
     <script src="app/entities/amember/amembersOfAsso.controller.js"></script>
+    <script src="app/entities/amember/amember-file-upload.controllers.js"></script>
     <script src="app/entities/amember/amember-dialog.controller.js"></script>
     <script src="app/entities/amember/amember-detail.controller.js"></script>
     <script src="app/entities/amember/amember-delete-dialog.controller.js"></script>
-
-
-    <script src="app/entities/amember/amember.state.js"></script>
     <script src="app/entities/amember/amember-charts.state.js"></script>
     <script src="app/entities/amember/amember-charts.controller.js"></script>
-
+    <script src="app/entities/amember/amember.state.js"></script>
     <script src="app/entities/amember/amember.service.js"></script>
     <script src="app/entities/amember/amember.search.service.js"></script>
     <script src="app/entities/amember/amember.controller.js"></script>
@@ -257,11 +274,6 @@
     <script src="app/account/activate/activate.state.js"></script>
     <script src="app/account/activate/activate.controller.js"></script>
     <script src="app/account/account.state.js"></script>
-    
-    <script type="text/javascript" src="app/entities/amember/echarts/echarts2.js"></script>
-    
-
-
     <!-- endinject -->
     <!-- endbuild -->
 

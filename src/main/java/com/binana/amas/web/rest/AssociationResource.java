@@ -62,15 +62,6 @@ public class AssociationResource {
     public List<Association> getAssoIdAndName()
         throws URISyntaxException {
         log.debug("REST request to get a page of Associations");
-        /*List<Object[]> findAll = associationRepository.findAssoIdAndAssoName();
-        List<Association> associationList = new ArrayList<Association>();
-        for(Object[] ass:findAll){
-        	Association association = new Association();
-        	association.setId( ((long)ass[0]) );
-        	association.setAssoName( (String)ass[1] );
-        	associationList.add(association);
-        	//System.out.println(association.toString());
-        }*/
         List<Association> findAll = associationRepository.findAssoIdAndAssoName();
         return findAll;
         

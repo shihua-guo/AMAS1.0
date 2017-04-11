@@ -267,9 +267,9 @@ public class AmemberResource {
      * @param id the id of the amember to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the amember, or with status 404 (Not Found)
      */
-    @GetMapping("/amembersOfAsso")
+    @GetMapping("/amembersOfAsso/{id}")
     @Timed
-    public ResponseEntity<List<Amember>> getByAssoId(@RequestParam(value="assoId") Long id,@ApiParam Pageable pageable) 
+    public ResponseEntity<List<Amember>> getByAssoId(@PathVariable Long id,@ApiParam Pageable pageable) 
     		 throws URISyntaxException{
     	log.debug("REST request to get a page of Amembers by AssociationId {}",id);
     	Page<Amember> page = amemberRepository.findByAssociations_Id(id,pageable);

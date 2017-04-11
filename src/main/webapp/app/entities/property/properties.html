@@ -35,7 +35,9 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                <!-- 
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                -->
                     <th jh-sort-by="propName"><span data-translate="amasApp.property.propName">Prop Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="propPrice"><span data-translate="amasApp.property.propPrice">Prop Price</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="propBuyDate"><span data-translate="amasApp.property.propBuyDate">Prop Buy Date</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -46,7 +48,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat="property in vm.properties track by property.id">
+                <!-- 
                     <td><a ui-sref="property-detail({id:property.id})">{{property.id}}</a></td>
+                -->
                     <td>{{property.propName}}</td>
                     <td>{{property.propPrice}}</td>
                         <td>{{property.propBuyDate | date:'mediumDate'}}</td>

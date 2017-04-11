@@ -1,7 +1,7 @@
 <div ng-cloak>
     <div class="row">
         <div class="col-md-12">
-            <h1 data-translate="home.title" class="jumbotron text-center">Welcome, Java Hipster!</h1>
+            <h1 data-translate="home.title" class="jumbotron text-center">你好!</h1>
 
             <div ng-switch="vm.isAuthenticated()">
                 <!-- 
@@ -16,8 +16,6 @@
                 <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>
                     You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
                 </div>
-                <a ui-sref=".list" class="btn btn-primary">List</a>
-                <a ui-sref=".paragraph" class="btn btn-danger">Paragraph</a>
             </div>
             <div ng-switch-when="true" >
                 <div ui-view="chart"></div>

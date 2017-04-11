@@ -35,7 +35,9 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <!-- 
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                     -->
                     <th jh-sort-by="weekday"><span data-translate="amasApp.duty.weekday">Weekday</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="dutyIntrodution"><span data-translate="amasApp.duty.dutyIntrodution">Duty Introdution</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="department.deptName"><span data-translate="amasApp.duty.department">Department</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -44,7 +46,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat="duty in vm.duties track by duty.id">
+                    <!-- 
                     <td><a ui-sref="duty-detail({id:duty.id})">{{duty.id}}</a></td>
+                    -->
                     <td data-translate="{{'amasApp.Weekday.' + duty.weekday}}">{{duty.weekday}}</td>
                     <td>{{duty.dutyIntrodution}}</td>
                     <td>

@@ -29,10 +29,12 @@ public interface AssociationRepository extends JpaRepository<Association,Long> {
 	
 	/*@Query("select amember from Amember amember where amember.id=:id")
 	Set<Amember> findByMembassos_(@Param("id") Long id);*/
-	@Query("select id,assoName from Association association")
-	List<Object[]> findAssoIdAndAssoName();
+//	@Query("select id,assoName from Association association")
+//	List<Object[]> findAssoIdAndAssoName();
 	
-	
-	
+	//获取某个社团各个年级数量
+    @Query("select new com.binana.amas.domain.Association(id,assoId,assoName) "
+       	 + "from Association association") 
+    List<Association> findAssoIdAndAssoName(); 
 	
 }

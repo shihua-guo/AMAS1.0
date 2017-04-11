@@ -9,7 +9,7 @@
     function AmembersOfAsso ($resource, DateUtils) {
         var resourceUrl =  'api/amembersOfAsso/:id';
 
-        return $resource(resourceUrl, {id:'@assoId'}, {
+        return $resource(resourceUrl, {}, {
             'queryAmembersOfAsso': { method: 'GET', isArray: true}
         })
     }

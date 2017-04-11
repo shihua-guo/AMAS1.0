@@ -35,14 +35,18 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                <!-- 
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                -->
                     <th jh-sort-by="roleName"><span data-translate="amasApp.role.roleName">Role Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="role in vm.roles track by role.id">
+                <!-- 
                     <td><a ui-sref="role-detail({id:role.id})">{{role.id}}</a></td>
+                -->
                     <td>{{role.roleName}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

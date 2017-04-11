@@ -7,6 +7,22 @@
         <h4 class="modal-title" id="myAssociationLabel" data-translate="amasApp.association.home.createOrEditLabel">Create or edit a Association</h4>
     </div>
     <div class="modal-body">
+        <form name="myForm">
+             <input type="text" 
+                   name="username"
+                   ng-model="username" 
+                   assoName-available 
+                   required
+                   ng-model-options="{ updateOn: 'blur' }">
+             <div ng-if="myForm.name.$pending.usernameExists">checking....</div>
+             <div ng-if="myForm.$error.usernameExists">username exists already</div>
+        </form>
+        <div ng-show="myForm.$error.usernameExists">
+            <p class="help-block"
+                ng-show="myForm.$error.usernameExists" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" ng-show="vm.association.id">
             <label for="id" data-translate="global.field.id">ID</label>

@@ -41,7 +41,7 @@
                             </label>
                             <div class="col-md-10" >
                                 <a >
-                                <span ui-sref="amembersOfAsso" ng-click="vm.clear()">
+                                <span ui-sref="amembersOfAsso({id:vm.association.id})" ng-click="vm.clear()">
                                     {{vm.amemberNum}}
                                 </span>
                                 </a>
@@ -73,10 +73,11 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-1 col-md-10">
+                            <!-- 
                                 <button ui-sref="{{ vm.previousState }}"
                                         class="btn btn-info" ng-click="getFormData()">
                                     <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
-                                </button>
+                                </button> -->
                                 <button  type="button" ui-sref="association-detail.edit({id:vm.association.id})" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                     <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>

@@ -31,11 +31,11 @@ public class Association implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "asso_id", nullable = false)
+    @Column(name = "asso_id", nullable = false, unique=true)
     private String assoId;
 
     @NotNull
-    @Column(name = "asso_name", nullable = false)
+    @Column(name = "asso_name", nullable = false, unique=true)
     private String assoName;
 
     @NotNull
@@ -72,8 +72,21 @@ public class Association implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Amember> membassos = new HashSet<>();
+    
+    
+    public Association() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    public Long getId() {
+	public Association(Long id, String assoId, String assoName) {
+		super();
+		this.id = id;
+		this.assoId = assoId;
+		this.assoName = assoName;
+	}
+
+	public Long getId() {
         return id;
     }
 

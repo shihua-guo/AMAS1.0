@@ -10,8 +10,8 @@
     function stateConfig($stateProvider) {
         $stateProvider
         .state('amembersOfAsso', {
-            parent: 'entity',
-            url: '/amembersOfAsso?page&sort&search',
+            parent: 'amember',
+            url: '/amembersOfAsso/:id?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'amasApp.amember.home.title'
@@ -32,7 +32,11 @@
                     value: 'id,asc',
                     squash: true
                 },
-                search: null
+                search: null,
+                id:{
+                    value:'2',
+                    squash:false
+                }
             },
             resolve: {
                 pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
@@ -48,6 +52,14 @@
                     $translatePartialLoader.addPart('amember');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'amember',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
                 }]
             }
         });

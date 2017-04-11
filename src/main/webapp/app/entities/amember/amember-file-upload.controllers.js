@@ -68,7 +68,7 @@ angular
         console.info('onAfterAddingAll', addedFileItems);
     };
     uploader.onBeforeUploadItem = function(item) {
-        item.url  = '/api/fileUpload/'+$scope.selectAsso.id;
+        item.url  = 'api/fileUpload/'+$scope.selectAsso.id;
     };
     uploader.onProgressItem = function(fileItem, progress) {
         console.info('onProgressItem', fileItem, progress);

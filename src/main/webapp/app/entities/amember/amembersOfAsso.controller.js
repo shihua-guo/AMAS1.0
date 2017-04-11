@@ -60,7 +60,7 @@
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort(),
-                    assoId: assoService.getAssoId()
+                    id: assoService.getAssoId()
                 }, onSuccess, onError);
                 //alert('查询！！！了')
                 //assoService.setAssoId('');

@@ -16,9 +16,9 @@
             "detail": {
                 "title": "社团详情"
             },
-            "assoId": "社团编号",
-            "assoName": "社团名称",
-            "assoFoundDate": "社团成立时间",
+            "assoId": "编号",
+            "assoName": "名称",
+            "assoFoundDate": "成立时间",
             "assoIntrodution": "社团简介",
             "assoImage": "图片",
             "department": "部门",

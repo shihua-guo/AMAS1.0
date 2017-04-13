@@ -1,9 +1,9 @@
 <div ng-cloak>
     <div class="row">
-        <div class="col-md-12">
-            <h1 data-translate="home.title" class="jumbotron text-center">你好!</h1>
-
-            <div ng-switch="vm.isAuthenticated()">
+        <div class="col-md-12" ng-switch="vm.isAuthenticated()">
+            <h1 class="jumbotron text-center"><span data-translate="home.title" >你好! </span><span ng-switch-when="false"><a href="/join">加入我们</a></span></h1>
+            
+            <div >
                 <!-- 
                 <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
                     You are logged in as user "{{vm.account.login}}".

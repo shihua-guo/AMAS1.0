@@ -61,6 +61,33 @@
                 authorities: ['ROLE_USER'],
                 pageTitle: 'amasApp.amember.detail.title'
             },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/amember/amember-detail.html',
+                    controller: 'AmemberDetailController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                            $translatePartialLoader.addPart('amember');
+                            $translatePartialLoader.addPart('gender');
+                            $translatePartialLoader.addPart('politicsstatus');
+                            $translatePartialLoader.addPart('college');
+                            return $translate.refresh();
+                        }],
+                        entity: ['Amember', function( Amember) {
+                            console.log($stateParams.id);
+                            return Amember.get({id : $stateParams.id}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('^', {}, { reload: false });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
+            /*
             views: {
                 'content@': {
                     templateUrl: 'app/entities/amember/amember-detail.html',
@@ -87,7 +114,7 @@
                     };
                     return currentStateData;
                 }]
-            }
+            }*/
         })
         .state('amember-detail.edit', {
             parent: 'amember-detail',

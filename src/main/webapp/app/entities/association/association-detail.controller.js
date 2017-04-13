@@ -5,13 +5,13 @@
         .module('amasApp')
         .controller('AssociationDetailController', AssociationDetailController);
 
-    AssociationDetailController.$inject = ['assoService','$http','$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Association', 'Department', 'Activity', 'Property', 'Amember','$uibModalInstance'];
+    AssociationDetailController.$inject = ['assoService','$http','$scope', '$rootScope', '$stateParams', /*'previousState', */'DataUtils', 'entity', 'Association', 'Department', 'Activity', 'Property', 'Amember','$uibModalInstance'];
 
-    function AssociationDetailController(assoService,$http,$scope, $rootScope, $stateParams, previousState, DataUtils, entity, Association, Department, Activity, Property, Amember,$uibModalInstance) {
+    function AssociationDetailController(assoService,$http,$scope, $rootScope, $stateParams, /*previousState,*/ DataUtils, entity, Association, Department, Activity, Property, Amember,$uibModalInstance) {
         var vm = this;
 
         vm.association = entity;
-        vm.previousState = previousState.name;
+        // vm.previousState = previousState.name;
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.amemberNum = '';

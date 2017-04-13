@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -21,7 +20,6 @@ import java.util.Objects;
 @Table(name = "association")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "association")
-@Component
 public class Association implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,11 +29,11 @@ public class Association implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "asso_id", nullable = false, unique=true)
+    @Column(name = "asso_id", nullable = false)
     private String assoId;
 
     @NotNull
-    @Column(name = "asso_name", nullable = false, unique=true)
+    @Column(name = "asso_name", nullable = false)
     private String assoName;
 
     @NotNull
@@ -72,21 +70,21 @@ public class Association implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Amember> membassos = new HashSet<>();
-    
-    
+
+    @ManyToOne
+    private User user;
+
     public Association() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	public Association(Long id, String assoId, String assoName) {
 		super();
 		this.id = id;
 		this.assoId = assoId;
 		this.assoName = assoName;
 	}
-
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -270,6 +268,19 @@ public class Association implements Serializable {
 
     public void setMembassos(Set<Amember> amembers) {
         this.membassos = amembers;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Association user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

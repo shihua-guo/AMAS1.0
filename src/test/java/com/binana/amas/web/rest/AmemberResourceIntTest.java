@@ -79,6 +79,9 @@ public class AmemberResourceIntTest {
     private static final String DEFAULT_MAJOR = "AAAAAAAAAA";
     private static final String UPDATED_MAJOR = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_STATUS = 1;
+    private static final Integer UPDATED_STATUS = 2;
+
     @Autowired
     private AmemberRepository amemberRepository;
 
@@ -130,7 +133,8 @@ public class AmemberResourceIntTest {
                 .dormNum(DEFAULT_DORM_NUM)
                 .politicsStatus(DEFAULT_POLITICS_STATUS)
                 .college(DEFAULT_COLLEGE)
-                .major(DEFAULT_MAJOR);
+                .major(DEFAULT_MAJOR)
+                .status(DEFAULT_STATUS);
         return amember;
     }
 
@@ -168,6 +172,7 @@ public class AmemberResourceIntTest {
         assertThat(testAmember.getPoliticsStatus()).isEqualTo(DEFAULT_POLITICS_STATUS);
         assertThat(testAmember.getCollege()).isEqualTo(DEFAULT_COLLEGE);
         assertThat(testAmember.getMajor()).isEqualTo(DEFAULT_MAJOR);
+        assertThat(testAmember.getStatus()).isEqualTo(DEFAULT_STATUS);
 
         // Validate the Amember in Elasticsearch
         Amember amemberEs = amemberSearchRepository.findOne(testAmember.getId());
@@ -288,7 +293,8 @@ public class AmemberResourceIntTest {
             .andExpect(jsonPath("$.[*].dormNum").value(hasItem(DEFAULT_DORM_NUM.toString())))
             .andExpect(jsonPath("$.[*].politicsStatus").value(hasItem(DEFAULT_POLITICS_STATUS.toString())))
             .andExpect(jsonPath("$.[*].college").value(hasItem(DEFAULT_COLLEGE.toString())))
-            .andExpect(jsonPath("$.[*].major").value(hasItem(DEFAULT_MAJOR.toString())));
+            .andExpect(jsonPath("$.[*].major").value(hasItem(DEFAULT_MAJOR.toString())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS)));
     }
 
     @Test
@@ -313,7 +319,8 @@ public class AmemberResourceIntTest {
             .andExpect(jsonPath("$.dormNum").value(DEFAULT_DORM_NUM.toString()))
             .andExpect(jsonPath("$.politicsStatus").value(DEFAULT_POLITICS_STATUS.toString()))
             .andExpect(jsonPath("$.college").value(DEFAULT_COLLEGE.toString()))
-            .andExpect(jsonPath("$.major").value(DEFAULT_MAJOR.toString()));
+            .andExpect(jsonPath("$.major").value(DEFAULT_MAJOR.toString()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS));
     }
 
     @Test
@@ -346,7 +353,8 @@ public class AmemberResourceIntTest {
                 .dormNum(UPDATED_DORM_NUM)
                 .politicsStatus(UPDATED_POLITICS_STATUS)
                 .college(UPDATED_COLLEGE)
-                .major(UPDATED_MAJOR);
+                .major(UPDATED_MAJOR)
+                .status(UPDATED_STATUS);
 
         restAmemberMockMvc.perform(put("/api/amembers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -369,6 +377,7 @@ public class AmemberResourceIntTest {
         assertThat(testAmember.getPoliticsStatus()).isEqualTo(UPDATED_POLITICS_STATUS);
         assertThat(testAmember.getCollege()).isEqualTo(UPDATED_COLLEGE);
         assertThat(testAmember.getMajor()).isEqualTo(UPDATED_MAJOR);
+        assertThat(testAmember.getStatus()).isEqualTo(UPDATED_STATUS);
 
         // Validate the Amember in Elasticsearch
         Amember amemberEs = amemberSearchRepository.findOne(testAmember.getId());
@@ -438,7 +447,8 @@ public class AmemberResourceIntTest {
             .andExpect(jsonPath("$.[*].dormNum").value(hasItem(DEFAULT_DORM_NUM.toString())))
             .andExpect(jsonPath("$.[*].politicsStatus").value(hasItem(DEFAULT_POLITICS_STATUS.toString())))
             .andExpect(jsonPath("$.[*].college").value(hasItem(DEFAULT_COLLEGE.toString())))
-            .andExpect(jsonPath("$.[*].major").value(hasItem(DEFAULT_MAJOR.toString())));
+            .andExpect(jsonPath("$.[*].major").value(hasItem(DEFAULT_MAJOR.toString())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS)));
     }
 
     @Test

@@ -70,6 +70,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="status" type="integer">
+                <constraints nullable="true" />
+            </column>
+
             <column name="dutymemb_id" type="bigint">
                 <constraints nullable="true" />
             </column>

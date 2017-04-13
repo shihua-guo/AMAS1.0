@@ -50,6 +50,27 @@
                     return $translate.refresh();
                 }]
             }
+        })
+        .state('acti-chart', {
+            parent: 'app',
+            url: '/activity-chart',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'amasApp.amember.home.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/amember/actiCharts.html',
+                    controller: 'amemberChartsController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('amember');
+                    return $translate.refresh();
+                }]
+            }
         });
     }
 

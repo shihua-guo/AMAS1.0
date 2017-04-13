@@ -95,6 +95,10 @@
         {
             "fieldName": "major",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Integer"
         }
     ],
     "changelogDate": "20170226131922",

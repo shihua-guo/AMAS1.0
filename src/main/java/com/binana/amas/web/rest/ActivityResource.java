@@ -2,6 +2,7 @@ package com.binana.amas.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.binana.amas.domain.Activity;
+import com.binana.amas.domain.CommBean;
 import com.binana.amas.domain.Department;
 import com.binana.amas.repository.ActivityRepository;
 import com.binana.amas.repository.search.ActivitySearchRepository;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,7 +52,35 @@ public class ActivityResource {
         this.activityRepository = activityRepository;
         this.activitySearchRepository = activitySearchRepository;
     }
-
+    
+    /**
+     * 获取全体会员各个年级分布分析饼图
+     * @return
+     * @throws URISyntaxException
+     */
+    @GetMapping("/activityMonthTrendBar/{id}")
+    @Timed
+    public List<CommBean> getActivityMonthTrendBar(@PathVariable Long id) 
+    		throws URISyntaxException{
+    	log.debug("REST request 获取某个社团的活动分布柱状图");
+    	List<CommBean> cpList = new ArrayList<CommBean>();
+    	cpList = activityRepository.getActiMonthTrend(id);
+    	return cpList;
+    }
+    /**
+     * 获取全体会员各个年级分布分析饼图
+     * @return
+     * @throws URISyntaxException
+     */
+    @GetMapping("/activityMonthTrendBar")
+    @Timed
+    public List<CommBean> getActivityMonthTrendBar() 
+    		 throws URISyntaxException{
+    	log.debug("REST request 获取全体社团的活动分布柱状图 ");
+    	List<CommBean> cpList = new ArrayList<CommBean>();
+    	cpList = activityRepository.getActiMonthTrend();
+    	return cpList;
+    }
     /**
      * SEARCH  /_search/amembers?query=:query : search for the amember corresponding
      * to the query.

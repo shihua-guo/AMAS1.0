@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+    <head>
+    	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>    
+    	<script src="bower_components/angular/angular.js"></script>
+    	<script src="bower_components/angular-resource/angular-resource.js"></script>
+    	<script src="bower_components/join/js/angular-route.min.js"></script>
+    	<script src="bower_components/join/js/join.constant.js"></script>
+    	<script src="bower_components/join/js/join.controller.js"></script>
+
+		<!-- 
+		<link rel="stylesheet" href="css/bootstrap.css"/>
+    	<script src="js/angular.js"></script>
+    	<script src="js/angular-resource.js"></script>
+    	<script src="js/angular-route.min.js"></script>
+    	<script src="js/join.constant.js"></script>
+    	<script src="js/join.controller.js"></script>
+		 -->
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width"/>
+            <title>加入社团</title>
+    </head>
+    <body ng-app="joinApp">
+    <div class="container" ng-controller="AmemberDialogController">
+        
+        <form name="editForm" role="form" novalidate="novalidate" ng-submit="save()" show-validation="show-validation">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myAmemberLabel" >请填写你的资料</h4>
+            </div>
+            <div class="modal-body">
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group">
+                    <label class="control-label" for="field_membName">姓名</label>
+                    <input type="text" class="form-control" name="membName" id="field_membName"
+                            ng-model="amember.membName"
+                            required="required"/>
+                    <div ng-show="editForm.membName.$invalid">
+                        <p class="help-block"
+                            ng-show="editForm.membName.$error.required" style="color: red">
+                            该项为必填项.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label"  for="field_membNO">学号</label>
+                    <input type="text" class="form-control" name="membNO" id="field_membNO"
+                            ng-model="amember.membNO"
+                            required="required"/>
+                    <div ng-show="editForm.membNO.$invalid">
+                        <p class="help-block"
+                            ng-show="editForm.membNO.$error.required" style="color: red">
+                            该项为必填项.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label"  for="field_membPhone">手机</label>
+                    <input type="text" class="form-control" name="membPhone" id="field_membPhone"
+                            ng-model="amember.membPhone"
+                            required="required"/>
+                    <div ng-show="editForm.membPhone.$invalid">
+                        <p class="help-block"
+                            ng-show="editForm.membPhone.$error.required" style="color: red">
+                            该项为必填项.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label"  for="field_membQQ">QQ</label>
+                    <input type="text" class="form-control" name="membQQ" id="field_membQQ"
+                            ng-model="amember.membQQ"
+                            required="required"/>
+                    <div ng-show="editForm.membQQ.$invalid">
+                        <p class="help-block"
+                            ng-show="editForm.membQQ.$error.required" style="color: red">
+                            该项为必填项.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                	<label class="control-label"  for="field_college">学院</label>
+					 <select class="form-control" ng-model="amember.college" 
+					 ng-options="college as college.label for college in colleges track by college.value">  
+					 </select>  
+				</div>
+				<div class="form-group" ng-if="amember.college.majors">
+					<label class="control-label"  for="field_college">专业</label>
+			        <select class="form-control" ng-model="amember.major"  
+			                ng-options="major as major.value for major in amember.college.majors track by major.value">  
+			        </select> 
+			    </div>
+
+                <div class="form-group">
+                    <label class="control-label"  for="field_membClass">班级</label>
+                    <input type="text" class="form-control" name="membClass" id="field_membClass"
+                            ng-model="amember.membClass"
+                            />
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label"  for="field_membEmail">邮箱</label>
+                    <input type="text" class="form-control" name="membEmail" id="field_membEmail"
+                            ng-model="amember.membEmail"
+                            />
+                </div>
+                <div class="form-group">
+                    <label class="control-label"  for="field_gender">性别</label>
+                    <select class="form-control" name="gender" ng-model="amember.gender" id="field_gender">
+                        <option value="M" data-translate="amasApp.Gender.M">男</option>
+                        <option value="F" data-translate="amasApp.Gender.F">女</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label"  for="field_dormNum">宿舍号</label>
+                    <input type="text" class="form-control" name="dormNum" id="field_dormNum"
+                            ng-model="amember.dormNum"
+                            />
+                </div>
+                <div class="form-group">
+                    <label class="control-label"  for="field_politicsStatus">政治面貌</label>
+                    <select class="form-control" name="politicsStatus" ng-model="amember.politicsStatus" id="field_politicsStatus">
+                        <option value="PARTY" data-translate="amasApp.PoliticsStatus.PARTY">共产党员</option>
+                        <option value="LEAGUE" data-translate="amasApp.PoliticsStatus.LEAGUE">共青团员</option>
+                        <option value="PUBLIC" data-translate="amasApp.PoliticsStatus.PUBLIC">群众</option>
+                        <option value="NON" data-translate="amasApp.PoliticsStatus.NON">无</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label  for="field_association">需要加入的社团</label>
+                    <select class="form-control" id="field_association" name="association" ng-model="amember.associations" ng-options="association as association.assoName for association in associations track by association.id">
+                    	
+                    </select>
+                </div>
+				 
+            </div>
+			
+
+
+
+            <div class="modal-footer" >
+                <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+
+    </div>
+    </body>
+</html>

@@ -18,13 +18,15 @@ import com.binana.amas.domain.GenderPie;
  */
 @SuppressWarnings("unused")
 public interface AmemberRepository extends JpaRepository<Amember,Long> {
-
+	
     @Query("select distinct amember from Amember amember left join fetch amember.associations left join fetch amember.departments left join fetch amember.roles")
     List<Amember> findAllWithEagerRelationships();
 
     @Query("select amember from Amember amember left join fetch amember.associations left join fetch amember.departments left join fetch amember.roles where amember.id =:id")
     Amember findOneWithEagerRelationships(@Param("id") Long id);
     
+    //获取所有激活了的会员
+    Page<Amember> findByStatusIsNull(Pageable pageable);
     //根据社团id获取会员
     Page<Amember> findByAssociations_Id(@Param("id") Long id,Pageable pageable);
     

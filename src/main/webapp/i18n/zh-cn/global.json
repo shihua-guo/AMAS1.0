@@ -6,7 +6,8 @@
             "chart":"分析图表",
             "charts":{
                 "assoCharts":"社团分析",
-                "amemCharts":"会员分析"
+                "amemCharts":"会员分析",
+                "actiCharts":"活动分析"
             },
             "home": "首页",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",

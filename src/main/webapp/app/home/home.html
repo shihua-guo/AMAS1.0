@@ -9,13 +9,19 @@
                     You are logged in as user "{{vm.account.login}}".
                 </div>
                  -->
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.authenticated" translate-compile>
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
-                </div>
+                 <div class="alert alert-warning" ng-switch-when="false" translate-compile>
+                    你可以选择登录或者注册
+                 </div>
+                    <button  type="button"  ng-switch-when="false" class="btn btn-primary btn-lg" ng-click="vm.login()">
+                         <span class="glyphicon glyphicon-user"></span>
+                         <span class="hidden-sm-down" data-translate="global.menu.account.login"> 登录</span>
+                    </button>
+        
+                
+                    <button  type="button" ng-switch-when="false" class="btn btn-primary btn-lg" ui-sref="register">
+                         <span class="glyphicon glyphicon-plus"></span>
+                         <span class="hidden-sm-down" data-translate="global.menu.account.register"> 注册</span>
+                    </button>
             </div>
             <div ng-switch-when="true" >
                 <div ui-view="chart"></div>

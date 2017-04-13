@@ -155,59 +155,16 @@
                                     <span data-translate="global.menu.charts.amemCharts">Amem Charts</span>
                                 </a>
                             </li>
+                            
+                            <li ui-sref-active="active">
+                                <a ui-sref="acti-chart">
+                                    <span class="glyphicon glyphicon-th-large"></span>&nbsp;
+                                    <span data-translate="global.menu.charts.actiCharts">Amem Charts</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     
-                    <!-- 账户标签 -->
-                    <!-- 
-                    <li class="active" ng-class="{active: vm.$state.includes('account')}">
-                        <a href="javascript:;" data-toggle="collapse" data-target="#account"  >
-                            <i class="glyphicon glyphicon-user"></i> 
-                                <span data-translate="global.menu.account.main">
-                                    Account
-                                </span>
-                                <b class="caret"></b>
-                        </a>
-                        <ul id="account" class="collapse" >
-                            <li ui-sref-active="active">
-                               <a ui-sref="settings">
-                                     <span class="glyphicon glyphicon-wrench"></span>&nbsp;
-                                     <span data-translate="global.menu.account.settings">Settings</span>
-                                 </a>
-                            </li>
-                            <li ui-sref-active="active" ng-switch-when="true">
-                                  <a ui-sref="password" >
-                                      <span class="glyphicon glyphicon-lock"></span>&nbsp;
-                                      <span data-translate="global.menu.account.password">Password</span>
-                                  </a>
-                              </li>
-                              <li ui-sref-active="active" ng-switch-when="true">
-                                  <a ui-sref="sessions" >
-                                      <span class="glyphicon glyphicon-cloud"></span>&nbsp;
-                                      <span data-translate="global.menu.account.sessions">Sessions</span>
-                                  </a>
-                              </li>
-                              <li ui-sref-active="active" ng-switch-when="true">
-                                  <a ng-click="vm.logout()" id="logout">
-                                      <span class="glyphicon glyphicon-log-out"></span>&nbsp;
-                                      <span data-translate="global.menu.account.logout">Sign out</span>
-                                  </a>
-                              </li>
-                              <li ui-sref-active="active" ng-switch-when="false">
-                                  <a ng-click="vm.login()" id="login">
-                                      <span class="glyphicon glyphicon-log-in"></span>&nbsp;
-                                      <span data-translate="global.menu.account.login">Sign in</span>
-                                  </a>
-                              </li>
-                              <li ui-sref-active="active" ng-switch-when="false">
-                                  <a ui-sref="register" >
-                                      <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;
-                                      <span data-translate="global.menu.account.register">Register</span>
-                                  </a>
-                              </li>
-                        </ul>
-                    </li>
-                     -->
                     <!-- 管理标签 -->
                     <li ng-class="{active: vm.$state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN">
                         <a href="javascript:;" data-toggle="collapse" data-target="#admin" >

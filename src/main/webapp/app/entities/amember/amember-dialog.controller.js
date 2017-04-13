@@ -19,7 +19,7 @@
         vm.departments = Department.query();
         vm.roles = Role.query();
         vm.duties = Duty.query();
-
+        
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });

@@ -297,6 +297,22 @@ public class AmemberResource {
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
+    /**
+     * POST  /amembers : 新会员加入社团.
+     *
+     * @param amember the amember to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new amember, or with status 400 (Bad Request) if the amember has already an ID
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @PostMapping("/joinAmembers")
+    @Timed
+    public String joinAmember(@Valid @RequestBody Amember amember) throws URISyntaxException {
+    	log.debug("REST request to save Amember : {}", amember);
+    	amember.setStatus(-1);
+    	Amember result = amemberRepository.save(amember);
+    	Amember save = amemberSearchRepository.save(result);
+    	return "加入成功";
+    }
 
     /**
      * PUT  /amembers : Updates an existing amember.
@@ -333,7 +349,7 @@ public class AmemberResource {
     public ResponseEntity<List<Amember>> getAllAmembers(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Amembers");
-        Page<Amember> page = amemberRepository.findAll(pageable);
+        Page<Amember> page = amemberRepository.findByStatusIsNull(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/amembers");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

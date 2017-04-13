@@ -3,12 +3,11 @@
 
     angular
         .module('amasApp')
-        .controller('AssociationDialogController', AssociationDialogController)
-        .directive('assonameAvailable',assonameAvailable);
+        .controller('AssociationDialogController', AssociationDialogController);
 
-    AssociationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Association', 'Department', 'Activity', 'Property', 'Amember'];
+    AssociationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Association', 'Department', 'Activity', 'Property', 'Amember', 'User'];
 
-    function AssociationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Association, Department, Activity, Property, Amember) {
+    function AssociationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Association, Department, Activity, Property, Amember, User) {
         var vm = this;
 
         vm.association = entity;
@@ -22,7 +21,9 @@
         vm.activities = Activity.query();
         vm.properties = Property.query();
         vm.amembers = Amember.query();
+        vm.users = User.query();
 
+        
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
@@ -69,62 +70,5 @@
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
-    }
-
-    assonameAvailable.$inject = ['$timeout','$q','$http'];
-    function assonameAvailable($timeout, $q, $http) {
-      return {
-        restrict: 'AE',
-        require: 'ngModel',
-        link: function(scope, elm, attr, model) { 
-          model.$asyncValidators.usernameExists = function(modelValue, viewValue) { /*
-            return $http.get('api/getAssoIdAndName').then(function(res){+
-                console.log(res.data);
-                console.log(model.$$rawModelValue);
-                var ifExist = false;
-                for (var i = res.data.length - 1; i >= 0; i--) {
-                    console.log(res.data[i].assoName);
-                    if (model.$$rawModelValue == res.data[i].assoName) {
-                        ifExist = true;
-                        break;
-                    }
-                }
-                console.log(ifExist);
-              $timeout(function(){
-                model.$setValidity('usernameExists', ifExist); 
-              }, 1000);
-            }); 
-            */
-            var exist = false;
-            var def = $q.defer();
-                    $timeout(function() {
-                    $http.get('api/getAssoIdAndName').then(function(res){
-                        for (var i = res.data.length - 1; i >= 0; i--) {
-                            console.log(res.data[i].assoName);
-                            console.log(model.$$rawModelValue);
-
-                            if (model.$$rawModelValue == res.data[i].assoName) {
-                                exist = true;
-                                console.log("dsdsddsadsdds")
-                                break;
-                            }
-                        }
-                    })
-                    console.log(exist);
-                      // Mock a delayed response
-                      if (exist) {
-                        // The username is available
-                        def.reject();
-                      } else {
-                        def.resolve();
-                      }
-
-                    });
-
-                    return def.promise;
-            
-          };
-        }
-      } 
     }
 })();

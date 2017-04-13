@@ -11,8 +11,6 @@ import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.ObjectFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -23,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -45,12 +42,12 @@ public class AssociationResource {
     private final AssociationRepository associationRepository;
 
     private final AssociationSearchRepository associationSearchRepository;
-    
+
     public AssociationResource(AssociationRepository associationRepository, AssociationSearchRepository associationSearchRepository) {
         this.associationRepository = associationRepository;
         this.associationSearchRepository = associationSearchRepository;
     }
-    
+
     /**
      * GET  /associations : 获取所有社团的id和名字.
      *
@@ -66,7 +63,6 @@ public class AssociationResource {
         return findAll;
         
     }
-    
     /**
      * POST  /associations : Create a new association.
      *
@@ -125,6 +121,10 @@ public class AssociationResource {
         log.debug("REST request to get a page of Associations");
         Page<Association> page = associationRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/associations");
+        List<Association> assoList = associationRepository.findByUserIsCurrentUser();
+        for(Association asso:assoList){
+        	System.out.println(asso.toString());
+        }
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

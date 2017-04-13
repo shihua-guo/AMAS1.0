@@ -1,0 +1,116 @@
+<!-- 各年招新人数趋势 -->
+<h3 data-translate="amasApp.amember.home.selectAssoCharts">Select Association</h3>
+<!-- 年级饼图的选择按钮 -->
+<div class="col-md-5 input-group">
+    <select class="form-control" ng-model="selectAsso.selected6" ng-options="association6.assoName for association6 in selectAsso.allAssoIdAndName track by association6.id" > 
+    </select>
+    <span>  </span>
+    <span class="input-group-btn">
+        <button id="assoChartBtn6" class="btn btn-primary" type="button" tabindex="-1">
+            <span ></span>
+            <span data-translate="amasApp.amember.home.okay">Submit</span>
+        </button>
+    </span>
+</div>
+<!-- 年级获取选择的社团 -->
+<div style="display: none" id="getSelectedAssoId6">{{selectAsso.selected6.id}}</div>
+<div style="display: none" id="getSelectedAssoName6">{{selectAsso.selected6.assoName}}</div>
+<div id="yearsBarCharts" ></div>
+
+
+<style type="text/css">
+    .container{height: 500px;}
+    .well{height: 800px;}
+    #yearsBarCharts{height:500px;}
+</style>
+<script>
+    'use strict';
+    //初始化各个图表
+    initYearsBarCharts();
+    //绑定各个查询按钮事件
+    $('#assoChartBtn6').on('click',function () {
+        initYearsBarCharts();
+    });
+
+    // 初始化各年招新柱状图
+    function initYearsBarCharts() {
+        var assoId = $('#getSelectedAssoId6').html();
+        var assoName = $('#getSelectedAssoName6').html();
+        if (isNaN(assoId)) {
+            assoId = '';
+        };
+        if(assoName =="{{selectAsso.selected6.assoName}}"){
+            assoName = "全部社团";
+        }
+        $.ajax({
+            type: 'get',
+            url:"api/activityMonthTrendBar/"+assoId,
+            dataType:'json',
+            success:function(barData){
+                var year = [];
+                var value = [];
+                for(var i in barData) {
+                   year.push(barData[i].name);
+                   value.push(barData[i].value);
+                }
+                var myChart = echarts.init(document.getElementById('yearsBarCharts'));
+                  var option = {
+                        title : {
+                            text: assoName+'社团各月活动',
+                            subtext: '包含医学院'
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['近一年活动']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : year
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'近一年活动',
+                                type:'bar',
+                                data: value,
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ],
+                                    precision: 0
+                                }
+                            }
+                        ]
+                    };
+                    
+                myChart.setOption(option);
+            }
+        });
+     }
+
+</script>

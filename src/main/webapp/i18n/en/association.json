@@ -24,7 +24,10 @@
             "department": "Department",
             "activity": "Activity",
             "property": "Property",
-            "membasso": "Membasso"
+            "membasso": "Membasso",
+            "membersNum": "members number",
+            "departments": "departments",
+            "activities": "recent activities"
         }
     }
 }

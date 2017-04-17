@@ -25,8 +25,14 @@
 			<div ></div>
             <div ng-show="uploader.isHTML5">
                 <!-- 3. nv-file-over uploader="link" over-class="className" -->
-                <div class="well my-drop-zone" nv-file-over="" uploader="uploader" filters="xlsxFilter" data-translate="amasApp.amember.home.dropZone">
-                    Drop zone
+                <div class="well my-drop-zone" nv-file-over="" uploader="uploader" filters="xlsxFilter" >
+                    <span data-translate="amasApp.amember.home.dropZone">Drop zone</span>
+                    <br>
+                    <span>请按照格式：姓名,学号,班级,手机,QQ,Email,加入社团时间,性别,宿舍号,政治面貌,学院,专业</span>
+                    <br>
+                    <span>目前还没有加格式验证。姓名字段不能为空！</span>
+                    <br>
+                    <span>格式限制为Excel文件（xlsx，xls，xlsm等）</span>
                 </div>
 
                 <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->

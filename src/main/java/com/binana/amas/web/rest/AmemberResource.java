@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -148,7 +149,8 @@ public class AmemberResource {
     		throws URISyntaxException{
     	log.debug("REST request 获取全体会员专业分布分析饼图 ");
     	List<CommBean> cpList = new ArrayList<CommBean>();
-    	cpList = amemberRepository.countMajorByAssoId(id);
+    	Pageable topTen = new PageRequest(0, 10);
+    	cpList = amemberRepository.countMajorByAssoId(id,topTen);
     	return cpList;
     }
     
@@ -163,7 +165,8 @@ public class AmemberResource {
     		 throws URISyntaxException{
     	log.debug("REST request 获取全体会员专业分布分析饼图 ");
     	List<CommBean> cpList = new ArrayList<CommBean>();
-    	cpList = amemberRepository.countMajorMapResult();
+    	Pageable topTen = new PageRequest(0, 10);
+    	cpList = amemberRepository.countMajorMapResult(topTen);
     	return cpList;
     }
     

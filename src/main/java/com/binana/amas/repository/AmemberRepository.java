@@ -58,17 +58,17 @@ public interface AmemberRepository extends JpaRepository<Amember,Long> {
   //获取全体会员前十专业数量
     @Query("select new com.binana.amas.domain.CommBean(amember.major, count(1))"
     	 + " from  Amember amember "
-    	 + " where amember.major is not null and ROWNUM <=10 "
+    	 + " where amember.major is not null  "
     	 + " GROUP by amember.major order by count(1) DESC")
-    List<CommBean> countMajorMapResult();
+    List<CommBean> countMajorMapResult(Pageable pageable);
     
     //获取某个社团会员前十专业数量
     @Query("select new com.binana.amas.domain.CommBean(amember.major, count(1)) "
        	 + "from Amember amember join amember.associations b "
-       	 + "where amember.major is not null and b.id =:id and ROWNUM <=10 "
+       	 + "where amember.major is not null and b.id =:id  "
        	 + " GROUP by amember.major "
        	 + " ORDER by count(1) DESC") 
-       List<CommBean> countMajorByAssoId(@Param("id") Long id);
+       List<CommBean> countMajorByAssoId(@Param("id") Long id,Pageable pageable);
        
   //获取全体会员男女数量
     @Query("select new com.binana.amas.domain.GenderPie(amember.gender, count(1))"
